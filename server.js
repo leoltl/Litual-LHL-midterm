@@ -48,7 +48,7 @@ app.use("/api/restaurants", restaurantsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-  app.use(express.static(path.join(__dirname, './public')));
+app.use(express.static(path.join(__dirname, './public')));
 
 
 app.listen(PORT, () => {
