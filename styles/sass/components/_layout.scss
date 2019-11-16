@@ -1,0 +1,19 @@
+// See: https://sass-lang.com/
+@import "../global/variables.scss";
+
+
+body {
+  color: $font-color
+}
+
+main {
+  section#restaurant-listing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 30vh;
+    border: 1px solid red;
+  }
+}
+  
