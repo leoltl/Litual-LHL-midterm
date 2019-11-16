@@ -19,16 +19,105 @@
   </head>
 
   <body>
+    <!-- start header component -->
     <header id="page-header" class="page-header">
     </header>
+    <!-- end header component -->
 
 
-    <h1>Hello World!</h1>
+    <main id="main-content">
 
-    <main id="main-content"></main>
+      <section id="restaurant-listing" data-restaurantId="1" >
+        <h1>BAAAM</h1>
+        <small>131 King Street, Toronto</small>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis modi atque corporis hic dolore ea aperiam laudantium eveniet provident quod? Minus, reprehenderit labore excepturi placeat vero quod ex nihil nobis.</p>
+      </section>
 
-    <script type="text/javascript" src="/scripts/app.js"></script>
-    <script type="text/javascript" src="/templates/header.js"></script>
+      <!-- start food-options component -->
+      <section id="food-options">
 
+        <!-- start food-options item component -->
+        <article class="food-option" data-foodId="foodid--DYNAMIC">
+          <img src="https://dynamicmedia.zuza.com/zz/m/original_/4/0/40d321ca-2ec2-4e10-82a1-d355f9081393/B823566265Z.1_20170927054258_000_GHL1V9ISF.2_Super_Portrait.jpg" alt="food.name--DYNAMIC">
+          <h4>Overpriced Salad</h4>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis dolorum ex perspiciatis voluptate placeat at ducimus neque architecto aliquam quis fugit facere iure, itaque quod.</p>
+
+          <div class="buy-box">
+            <h5 class="price-tag">$19.99/order</h5>
+            <form action="/order" method="AJAXPOST--TODO">
+              <select name="quantity" class="form-control">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="100">100</option>
+                </select>
+                <input class="call-to-action form-control" type="submit" value="Add To Cart">
+            </form>
+          </div>
+        </article>
+        <!-- end food-options item component -->
+
+        <!-- start food-options item component -->
+        <article class="food-option" data-foodId="foodid--DYNAMIC">
+          <img src="https://www.qsrmagazine.com/sites/default/files/styles/story_page/public/news-image/freshii-adds-kale-caesar-lto-limited-time.jpg?itok=mmm_eMXg" alt="food.name--DYNAMIC">
+          <h4>Jay's Favourite</h4>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis dolorum ex perspiciatis voluptate placeat at ducimus neque architecto aliquam quis fugit facere iure, itaque quod.</p>
+          <div class="buy-box">
+            <h5 class="price-tag">$19.99/order</h5>
+            <form action="/order" method="AJAXPOST--TODO">
+              <select name="quantity" class="form-control">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="100">100</option>
+                </select>
+                <input class="call-to-action form-control" type="submit" value="Add To Cart">
+            </form>
+          </div>
+        </article>
+        <!-- end food-options item component -->
+
+        <!-- start food-options item component -->
+        <article class="food-option" data-foodId="foodid--DYNAMIC">
+          <img src="https://www.qsrmagazine.com/sites/default/files/styles/story_page/public/news-image/freshii-launches-biiblos-bowl-inspired-moroccan-flavors.jpg?itok=G2Fr9BZT" alt="food.name--DYNAMIC">
+          <h4>TexMex Bowl</h4>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis dolorum ex perspiciatis voluptate placeat at ducimus neque architecto aliquam quis fugit facere iure, itaque quod.</p>
+          <div class="buy-box">
+            <h5 class="price-tag">$19.99/order</h5>
+            <form action="/order" method="AJAXPOST--TODO">
+              <select name="quantity" class="form-control">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="100">100</option>
+                </select>
+                <input class="call-to-action form-control" type="submit" value="Add To Cart">
+            </form>
+          </div>
+        </article>
+        <!-- end food-options item component -->
+
+
+      </section>
+      <!-- end food-options component -->
+    </main>
+
+    <div class="checkout-footer hidden">
+        items in cart: 0
+    </div>
+    <!-- <script type="text/javascript" src="/scripts/app.js"></script> -->
+    <!-- <script type="text/javascript" src="/templates/header.js"></script> -->
   </body>
 </html>

@@ -10,6 +10,7 @@ main {
   max-width: 1124px;
   margin: 0 auto;
   margin-bottom: 5vh;
+  
   section#restaurant-listing {
     display: flex;
     flex-direction: column;
@@ -18,17 +19,13 @@ main {
     height: 30vh;
   }
 
-  section#food-options {
-    display: flex;
-    flex-direction: column;
-  }
-
   @media only screen and (min-width: 800px) {
     section#restaurant-listing {
       height: 40vh;
     }
     
     section#food-options {
+      display: flex;
       flex-direction: row;
       max-width: 100vw;
     }
