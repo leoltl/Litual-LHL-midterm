@@ -1,0 +1,13 @@
+.order-viewer {
+  margin-top: 1rem;
+  h2 {
+    text-align: center;
+  }
+  .col-wrapper {
+    display: flex;
+    border-top: 4px solid black;
+    > :last-child{
+      border-left: 4px solid black;
+    }
+  }
+}

@@ -1,0 +1,35 @@
+section.cart {
+  padding: 1rem;
+  margin-top: 2rem;
+
+  table.cart-table {
+    margin-top: 2rem;
+  
+    .item-row {
+      height: 100px;
+      border-bottom: 2px solid $font-color;
+  
+      a {
+        color: $font-secondary-color;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .cart-action {
+    float: right;
+    margin-right: 5vw;
+    text-align: end;
+    a {
+      color: $font-secondary-color;
+      cursor: pointer;
+    }
+  }
+
+  @media screen and (min-width: 800px) {
+    .cart-action {
+      margin-right: 10vw;
+      margin-top: 5wh;
+    }
+  }
+}
