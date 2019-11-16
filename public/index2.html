@@ -18,6 +18,7 @@
   </head>
 
   <body>
+    <!-- start header component -->
     <header id="page-header" class="page-header">
         <nav class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand" id="brand" href="#"><h2>LitApp.JS</h2></a>
@@ -38,6 +39,9 @@
             </div>
           </nav>
     </header>
+    <!-- end header component -->
+
+
     <main id="main-content">
 
       <section id="restaurant-listing" data-restaurantId="1" >
@@ -46,8 +50,10 @@
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis modi atque corporis hic dolore ea aperiam laudantium eveniet provident quod? Minus, reprehenderit labore excepturi placeat vero quod ex nihil nobis.</p>
       </section>
 
+      <!-- start food-options component -->
       <section id="food-options">
-
+        
+        <!-- start food-options item component -->
         <article class="food-option" data-foodId="foodid--DYNAMIC">
           <img src="https://dynamicmedia.zuza.com/zz/m/original_/4/0/40d321ca-2ec2-4e10-82a1-d355f9081393/B823566265Z.1_20170927054258_000_GHL1V9ISF.2_Super_Portrait.jpg" alt="food.name--DYNAMIC">
           <h4>Overpriced Salad</h4>
@@ -70,7 +76,9 @@
             </form>
           </div>
         </article>
+        <!-- end food-options item component -->
 
+        <!-- start food-options item component -->
         <article class="food-option" data-foodId="foodid--DYNAMIC">
           <img src="https://www.qsrmagazine.com/sites/default/files/styles/story_page/public/news-image/freshii-adds-kale-caesar-lto-limited-time.jpg?itok=mmm_eMXg" alt="food.name--DYNAMIC">
           <h4>Jay's Favourite</h4>
@@ -92,7 +100,9 @@
             </form>
           </div>
         </article>
+        <!-- end food-options item component -->
 
+        <!-- start food-options item component -->
         <article class="food-option" data-foodId="foodid--DYNAMIC">
           <img src="https://www.qsrmagazine.com/sites/default/files/styles/story_page/public/news-image/freshii-launches-biiblos-bowl-inspired-moroccan-flavors.jpg?itok=G2Fr9BZT" alt="food.name--DYNAMIC">
           <h4>TexMex Bowl</h4>
@@ -114,17 +124,17 @@
             </form>
           </div>
         </article>
+        <!-- end food-options item component -->
 
         
       </section>
+      <!-- end food-options component -->
     </main>
 
-    <footer class="hidden">
+    <div class="checkout-footer hidden">
         items in cart: 0
-    </footer>
+    </div>
     <!-- <script type="text/javascript" src="/scripts/app.js"></script> -->
-
     <!-- <script type="text/javascript" src="/templates/header.js"></script> -->
-
   </body>
 </html>

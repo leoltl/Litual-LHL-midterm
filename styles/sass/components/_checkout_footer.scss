@@ -1,7 +1,6 @@
 @import "../global/variables.scss";
 
-footer {
-  visibility: hidden;
+.checkout-footer {
   position: fixed;
   bottom: 0;
   width: 100vw;
@@ -10,4 +9,11 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+
+  @media screen and (min-width: 800px) {
+    width: 40vw;
+    max-width: 400px;
+    right: 0;
+  }
 }
