@@ -1,3 +1,15 @@
+@import "../global/variables.scss";
+
 section#restaurant-listing {
   padding: 0.5rem;
+  margin: 2px;
+  text-align: center;
+  background-color: $light-shades;
+  border: 2px solid $dark-accent;
+  p {
+    color: $font-secondary-color;
+  }
+  > * {
+    margin: 0.5rem;
+  }
 }

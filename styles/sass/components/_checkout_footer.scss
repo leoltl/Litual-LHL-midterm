@@ -1,0 +1,12 @@
+@import "../global/variables.scss";
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  height: 5vh;
+  background-color: $light-accent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
