@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- External asset -->
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/styles.css" type="text/css" />
+
+    <title>Cart</title>
+  </head>
+
+  <body>
+    <header id="page-header" class="page-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" id="brand" href="#"><h2>LitApp.JS</h2></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+      
+            <div class="collapse navbar-collapse" id="navbarToggler">
+              <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Cart</a>
+                </li>
+              </ul>
+              <div class="user-actions d-flex flex-column flex-lg-row">
+                <button id="register-btn" class="btn btn-outline-secondary my-2 my-lg-0 ml-0 ml-lg-2">Register</button>
+                <button id="login-btn" class="btn btn-outline btn-login my-2 my-lg-0 ml-0 ml-lg-2">Login</button>
+              </div>
+            </div>
+          </nav>
+    </header>
+
+    <main>
+      <section class="cart">
+        <h3>Your Cart</h3>
+        <table class="table cart-table mx-auto"">
+            <thead>
+              <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Unit Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="item-row" data-foodId="1">
+                <td class="item">
+                  <p>Overpriced Salad</p>
+                  <small><a class="remove-item">Remove Item</a></small>
+                </td>
+                <td class="unit-price">$19.99</td>
+                <td class="quantity">
+                  <select name="quantity" class="form-control">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="100">100</option>
+                  </select>
+                </td>
+                <td class="subtotal">$19.99</td>
+              </tr>
+  
+              <tr class="item-row" data-foodId="1">
+                  <td class="item">
+                    <p>Cheap Salad</p>
+                    <small><a class="remove-item">Remove Item</a></small>
+                  </td>
+                  <td class="unit-price">$19.99</td>
+                  <td class="quantity">
+                    <select name="quantity" class="form-control">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="100">100</option>
+                    </select>
+                  </td>
+                  <td class="subtotal">$19.99</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col">Total:</th>
+                  <th scope="col">$39.98</th>
+                </tr>
+            </tfoot>
+          </table>
+          <div class="cart-action">
+            <input id="cart-checkout-btn" type="submit" value="Confirm Order" class="call-to-action btn">
+            <br />
+            <small><a class="remove-item">Cancel</a></small>
+          </div>
+        </section>
+    </main>
+  </body>
+  </html>
+  

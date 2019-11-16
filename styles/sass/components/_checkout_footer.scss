@@ -1,6 +1,7 @@
 @import "../global/variables.scss";
 
 footer {
+  visibility: hidden;
   position: fixed;
   bottom: 0;
   width: 100vw;
