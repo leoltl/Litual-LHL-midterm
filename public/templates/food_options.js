@@ -101,9 +101,15 @@ $(() => {
       event.preventDefault();
       const quantity = parseInt($(this).closest("form").find("option:selected").val());
       totalItemsInCart += quantity;
-      $("footer").text(`items in cart: ${totalItemsInCart}`);
+      $("footer p").text(`items in cart: ${totalItemsInCart}`);
       $("footer").show();
     });
+  });
+
+  $("footer .cart").on('click', function(event) {
+    event.preventDefault();
+    $("footer").hide();
+    views_manager.show("checkout");
   });
 
 });
