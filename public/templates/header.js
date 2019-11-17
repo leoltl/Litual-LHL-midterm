@@ -20,11 +20,6 @@ $(() => {
     currentUser = user;
     $pageHeader.find("#page-header__user-links").remove();
     let header;
-    // <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-    //       <li class="nav-item">
-    //         <a class="nav-link" href="#">Cart</a>
-    //       </li>
-    //     </ul>
     if (!user) {
       header = $(`<nav class="navbar navbar-expand-lg navbar-light">
       <a class="navbar-brand" id="brand" href="#">LitApp.JS</a>
