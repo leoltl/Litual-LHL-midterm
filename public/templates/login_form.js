@@ -24,6 +24,7 @@ $(() => {
     event.preventDefault();
 
     const data = $(this).serialize();
+    console.log(data);
     logIn(data)
       .then(json => {
         console.log(json);
@@ -43,3 +44,11 @@ $(() => {
   });
 
 });
+
+function logIn(data) {
+  return $.ajax({
+    method: "POST",
+    url: "/api/users/login",
+    data
+  });
+}
