@@ -20,7 +20,11 @@ $(() => {
     currentUser = user;
     $pageHeader.find("#page-header__user-links").remove();
     let header;
-
+    // <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+    //       <li class="nav-item">
+    //         <a class="nav-link" href="#">Cart</a>
+    //       </li>
+    //     </ul>
     if (!user) {
       header = $(`<nav class="navbar navbar-expand-lg navbar-light">
       <a class="navbar-brand" id="brand" href="#">LitApp.JS</a>
@@ -29,12 +33,8 @@ $(() => {
       </button>
 
       <div class="collapse navbar-collapse" id="navbarToggler">
-        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Cart</a>
-          </li>
-        </ul>
-        <div class="user-actions d-flex flex-column flex-lg-row">
+        
+        <div class="user-actions ml-auto d-flex flex-column flex-lg-row">
           <button id="register-btn" class="btn btn-outline-secondary my-2 my-lg-0 ml-0 ml-lg-2">Register</button>
           <button id="login-btn" class="btn btn-outline btn-login my-2 my-lg-0 ml-0 ml-lg-2">Login</button>
         </div>
