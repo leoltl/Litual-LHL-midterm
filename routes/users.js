@@ -21,40 +21,67 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+
+  router.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+    try {
+      if (email) {
+        const dbRes = await db.query(`SELECT * FROM users WHERE email = '${email}';`)
+        const user = dbRes.rows[0];
+        if (user && user.password == password) {
+          req.session.userId = user.id;
+          res.status(200).send({ user: { name: user.name, id: user.id, email: user.email } });
+        } else {
+          throw new Error ('Authentication failed');
+        }
+      } else {
+        throw new Error ('Input field is empty')
+      }
+    } catch (e) {
+      res.status(400).send({ user: {}, message: `login failed! ${e}`})
+    }
+    
+  })
+
+  router.post('/logout', (req, res) => {
+    req.session.userId = null;
+    res.sendStatus(200);
+  })
+
   return router;
 };
 
-const login =  function(email, password) {
-  return database.getUserWithEmail(email)
-  .then(user => {
-    if (bcrypt.compareSync(password, user.password)) {
-      return user;
-    }
-    return null;
-  });
-}
-exports.login = login;
+// const login =  function(email, password) {
+//   return database.getUserWithEmail(email)
+//   .then(user => {
+//     if (bcrypt.compareSync(password, user.password)) {
+//       return user;
+//     }
+//     return null;
+//   });
+// }
+// exports.login = login;
 
 
-router.post('/login', (req, res) => {
-  const {email, password} = req.body;
-  login(email, password)
-    .then(user => {
-      if (!user) {
-        res.send({error: "error"});
-        return;
-      }
-      req.session.userId = user.id;
-      res.send({user: {name: user.name, email: user.email, id: user.id}});
-    })
-    .catch(e => res.send(e));
-});
+// router.post('/login', (req, res) => {
+//   const {email, password} = req.body;
+//   login(email, password)
+//     .then(user => {
+//       if (!user) {
+//         res.send({error: "error"});
+//         return;
+//       }
+//       req.session.userId = user.id;
+//       res.send({user: {name: user.name, email: user.email, id: user.id}});
+//     })
+//     .catch(e => res.send(e));
+// });
 
 
-router.post('/logout', (req, res) => {
-  req.session.userId = null;
-  res.send({});
-});
+// router.post('/logout', (req, res) => {
+//   req.session.userId = null;
+//   res.send({});
+// });
 
 // create this function for this route to work
 
@@ -63,22 +90,22 @@ router.post('/logout', (req, res) => {
 // redirects the object to the client which the header template uses
 // with getmydetails to hide the login button and show relevant user name
 
-router.get("/me", (req, res) => {
-  const userId = req.session.userId;
-  if (!userId) {
-    res.send({message: "not logged in"});
-    return;
-  }
+// router.get("/me", (req, res) => {
+//   const userId = req.session.userId;
+//   if (!userId) {
+//     res.send({message: "not logged in"});
+//     return;
+//   }
 
-database.getUserWithId(userId)
-.then(user => {
-  if (!user) {
-    res.send({error: "no user with that id"});
-    return;
-  }
+// database.getUserWithId(userId)
+// .then(user => {
+//   if (!user) {
+//     res.send({error: "no user with that id"});
+//     return;
+//   }
 
-  res.send({user: {name: user.name, email: user.email, id: userId}});
-})
-.catch(e => res.send(e));
-});
+//   res.send({user: {name: user.name, email: user.email, id: userId}});
+// })
+// .catch(e => res.send(e));
+// });
 
