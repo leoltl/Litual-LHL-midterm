@@ -7,7 +7,7 @@ $(() => {
   window.views_manager.show = function(item, data) {
     /* $checkout_footer.detach();
     $checkout_item.detach();
-    $checkout_page.detach();
+
     $confirmation.detach();
 
     $res_order_card.detach();
@@ -16,6 +16,7 @@ $(() => {
     $restaurant_listing.detach(); */
     $logInForm.detach();
     $food_options.detach();
+    $checkout_page.detach();
 
     switch (item) {
       case 'food_options':
@@ -25,7 +26,9 @@ $(() => {
       case 'logIn':
         $logInForm.appendTo($main);
         break;
-      case 'reservations':
+      case 'checkout':
+        $checkout_page.appendTo($main);
+        break;
 
       case 'error': {
         const $error = $(`<p>${arguments[1]}</p>`);
