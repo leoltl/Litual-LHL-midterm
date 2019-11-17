@@ -8,3 +8,93 @@
 
     user will be redirected to confirmation page
 */
+
+$(() => {
+
+  const $checkout_page = $(`
+  <!-- start checkout_page component -->
+      <section class="cart">
+        <h3>Your Cart</h3>
+        <table class="table cart-table mx-auto"">
+          <thead>
+            <tr>
+              <th scope="col">Item</th>
+              <th scope="col">Unit Price</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- start checkout-item component-->
+            <tr class="item-row checkout-item" data-foodId="1">
+              <td class="item">
+                <p>Overpriced Salad</p>
+                <small><a class="remove-item">Remove Item</a></small>
+              </td>
+              <td class="unit-price">$19.99</td>
+              <td class="quantity">
+                <select name="quantity" class="form-control">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="100">100</option>
+                </select>
+              </td>
+              <td class="subtotal">$19.99</td>
+            </tr>
+            <!-- end checkout-item component-->
+
+            <!-- start checkout-item component-->
+            <tr class="item-row checkout-item" data-foodId="1">
+              <td class="item">
+                <p>Cheap Salad</p>
+                <small><a class="remove-item">Remove Item</a></small>
+              </td>
+              <td class="unit-price">$19.99</td>
+              <td class="quantity">
+                <select name="quantity" class="form-control">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="100">100</option>
+                </select>
+              </td>
+              <td class="subtotal">$19.99</td>
+            </tr>
+            <!-- end checkout-item component-->
+          </tbody>
+          <tfoot>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col">Total:</th>
+                <th scope="col">$39.98</th>
+              </tr>
+          </tfoot>
+        </table>
+        <div class="cart-action">
+          <input id="cart-checkout-btn" type="submit" value="Confirm Order" class="call-to-action btn">
+          <br />
+          <small><a class="remove-item">Cancel</a></small>
+        </div>
+      </section>
+      <!-- end checkout_page component -->
+  `);
+
+  window.$checkout_page = $checkout_page;
+
+  $('body').on('click', ".remove-item", function() {
+    views_manager.show('food_options');
+    return false;
+  });
+
+
+});
