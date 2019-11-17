@@ -22,26 +22,45 @@ module.exports = (db) => {
       });
   });
 
+  //create new user on post to /api/users/
+  router.post("/", (req, res) => {
+    const { email, name, password, phone } = req.body;
+    console.log(req.body);
+    //TODO: implement checks for valid user input.
+    db.query(`INSERT INTO users(email, name, password, phone) VALUES ($1, $2, $3, $4) RETURNING *`, [email, name, password, phone])
+      .then(data => {
+        const users = data.rows;
+        res.json({ users });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+  // Login route expects email, password in request body from a client post request. 
+  // query the database based on matching email, then check if user exists and 
+  // provided password matches record
   router.post('/login', async (req, res) => {
     const { email, password } = req.body;
     try {
       if (email) {
-        const dbRes = await db.query(`SELECT * FROM users WHERE email = '${email}';`)
+        const dbRes = await db.query(`SELECT * FROM users WHERE email = '${email}';`);
         const user = dbRes.rows[0];
-        if (user && user.password == password) {
+        if (user && user.password === password) {
           req.session.userId = user.id;
           res.status(200).send({ user: { name: user.name, id: user.id, email: user.email } });
         } else {
           throw new Error ('Authentication failed');
         }
       } else {
-        throw new Error ('Input field is empty')
+        throw new Error ('Login input field is empty');
       }
     } catch (e) {
-      res.status(400).send({ user: {}, message: `login failed! ${e}`})
+      res.status(400).send({ user: {}, message: `login failed! ${e}`});
     }
-    
-  })
+  });
 
   router.post('/logout', (req, res) => {
     req.session.userId = null;
