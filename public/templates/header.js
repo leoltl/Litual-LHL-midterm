@@ -41,7 +41,7 @@ $(() => {
   }
 
   updateHeader(undefined);
-  
+
   // window.header.update = updateHeader;
 
   // getMyDetails()
@@ -75,6 +75,11 @@ $(() => {
   //       views_manager.show('listings');
   //   });
   // });
+
+  $("header").on('click', '#brand', function(event) {
+    event.preventDefault();
+    views_manager.show('food_options');
+  });
 
   $("header").on('click', '#login-btn', () => {
     console.log('login btn click')
