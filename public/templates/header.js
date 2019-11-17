@@ -22,19 +22,18 @@ $(() => {
     let header;
     if (!user) {
       header = $(`<nav class="navbar navbar-expand-lg navbar-light">
-      <a class="navbar-brand" id="brand" href="#">LitApp.JS</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+                    <a class="navbar-brand" id="brand" href="#">LitApp.JS</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
 
-      <div class="collapse navbar-collapse" id="navbarToggler">
-        
-        <div class="user-actions ml-auto d-flex flex-column flex-lg-row">
-          <button id="register-btn" class="btn btn-outline-secondary my-2 my-lg-0 ml-0 ml-lg-2">Register</button>
-          <button id="login-btn" class="btn btn-outline btn-login my-2 my-lg-0 ml-0 ml-lg-2">Login</button>
-        </div>
-      </div>
-    </nav>`)
+                    <div class="collapse navbar-collapse" id="navbarToggler">
+                      <div class="user-actions ml-auto d-flex flex-column flex-lg-row">
+                        <button id="register-btn" class="btn btn-outline-secondary my-2 my-lg-0 ml-0 ml-lg-2">Register</button>
+                        <button id="login-btn" class="btn btn-outline btn-login my-2 my-lg-0 ml-0 ml-lg-2">Login</button>
+                      </div>
+                    </div>
+                  </nav>`)
     } else {
       header = "" //TOADD
     }
