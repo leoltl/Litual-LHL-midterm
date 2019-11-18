@@ -15,11 +15,4 @@ $(() => {
   }
 
   updateFooter();
-
-  $("footer .cart").on('click', function(event) {
-    event.preventDefault();
-    $("footer").hide();
-    views_manager.show("checkout");
-  });
-
 });
