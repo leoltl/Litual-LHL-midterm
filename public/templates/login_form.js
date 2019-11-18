@@ -40,6 +40,8 @@ $(() => {
 
   $('body').on('click', '#login-form__cancel', function() {
     views_manager.show('food_options');
+    $logInForm.detach();
+
     return false;
   });
 

@@ -63,13 +63,16 @@ $(() => {
     $restaurant_carousel.detach();
     $restaurant_listing.detach(); */
     $logInForm.detach();
-    $food_options.detach();
+    // $food_options.detach();
+    $('#main-content article').hide();
+    $('#restaurant-listing').hide();
     $checkout_page.detach();
 
     switch (item) {
       case 'food_options':
-        //data.restaurant_id = $restaurant.restaurant_id;
-        $food_options.appendTo($main);
+        // data.restaurant_id = $restaurant.restaurant_id;
+        $('#main-content article').show();
+        $('#restaurant-listing').show();
         break;
       case 'logIn':
         $logInForm.appendTo($main);

@@ -99,6 +99,8 @@ $(() => {
 
   $("header").on('click', '#login-btn', () => {
     console.log('login btn click')
+    // $('#main-content article').hide();
+    // $('#restaurant-listing').hide();
     views_manager.show('logIn');
   });
 

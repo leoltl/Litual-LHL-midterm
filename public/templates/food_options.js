@@ -27,9 +27,6 @@ $(() => {
     console.log(item)
     const $food_options = $(`
 
-
-
-
         <!-- start food-options item component -->
         <article class="food-option" data-foodId="foodid--DYNAMIC">
           <img src=${item.photo_url}>
@@ -58,7 +55,6 @@ $(() => {
       for (let item of json.menu) {
         updateMenu(item)
       }
-      $('main').append(`</section>`)
     });
 
   $(document).ready(function() {
