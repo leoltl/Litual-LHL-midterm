@@ -33,9 +33,20 @@ $(() => {
                         <button id="login-btn" class="btn btn-outline btn-login my-2 my-lg-0 ml-0 ml-lg-2">Login</button>
                       </div>
                     </div>
-                  </nav>`)
+                  </nav>`);
     } else {
-      header = "" //TOADD
+      header = $(`<nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" id="brand" href="#">LitApp.JS</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarToggler">
+        <div class="user-actions ml-auto d-flex flex-column flex-lg-row">
+          <button id="logout-btn" class="btn btn-outline-secondary my-2 my-lg-0 ml-0 ml-lg-2">Log Out</button>
+        </div>
+      </div>
+    </nav>`) //TOADD
     }
     $pageHeader.append(header);
   }

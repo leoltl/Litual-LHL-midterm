@@ -6,18 +6,20 @@ $(() => {
   window.footer = {};
 
   const $pageFooter = $('.checkout-footer');
-  let currentUser = null;
-  function updateFooter(user) {
-    currentUser = user;
-    if (!user) {
-      footer = $(`<p>items in cart: 0</p>
-      <button class="cart">Go To Cart</button>`);
-    } else {
-      footer = "" //TOADD
-    }
+
+  function updateFooter() {
+    footer = $(`<p>items in cart: 0</p>
+    <button class="cart">Go To Cart</button>`);
+
     $pageFooter.append(footer);
   }
 
-  updateFooter(undefined);
+  updateFooter();
+
+  $("footer .cart").on('click', function(event) {
+    event.preventDefault();
+    $("footer").hide();
+    views_manager.show("checkout");
+  });
 
 });
