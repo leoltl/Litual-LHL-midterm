@@ -1,0 +1,19 @@
+// @import "./utils/reset.scss";
+//Google Font
+@import url("https://fonts.googleapis.com/css?family=Oswald:300,400,600,700|Cabin:400,500&display=swap");
+
+//Base html tags styling
+@import "./global/base.scss";
+
+//Components
+
+@import "components/buttons";
+@import "components/restaurant-listing";
+@import "components/checkout_footer";
+@import "components/checkout_page";
+@import "components/res-order_viewer";
+@import "components/res-order_col";
+@import "components/res-order_card";
+@import "components/food_option";
+@import "components/header";
+@import "components/layout";

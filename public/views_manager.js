@@ -8,11 +8,12 @@ $(() => {
 
     // need to add logic to checkout footer to check if there are items already ***MVP***
     // if so, do not detach, but route it to the update footer case ***STRETCH***
-    $checkout_footer.detach();
+    // $checkout_footer.detach();
 
     // these three detach upon any navigation from their respective pages
+    /* $checkout_footer.detach();
     $checkout_item.detach();
-    $checkout_page.detach();
+
     $confirmation.detach();
 
     // DO NOT detach if item = add_item
@@ -59,6 +60,25 @@ $(() => {
       //   break;
       case '':
 
+    $restaurant_carousel.detach();
+    $restaurant_listing.detach(); */
+    $logInForm.detach();
+    $food_options.detach();
+    $checkout_page.detach();
+
+    switch (item) {
+      case 'food_options':
+        //data.restaurant_id = $restaurant.restaurant_id;
+        $food_options.appendTo($main);
+        break;
+      case 'logIn':
+        $logInForm.appendTo($main);
+        break;
+      case 'checkout':
+        $checkout_page.appendTo($main);
+        break;
+      case 'register':
+        $signup_form.appendTo($main);
 
       case 'error': {
         const $error = $(`<p>${arguments[1]}</p>`);

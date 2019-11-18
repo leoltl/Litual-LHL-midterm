@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "local": "./node_modules/.bin/nodemon -L --ignore public/",
+    "local": "./node_modules/.bin/nodemon -L ",
+    "build-sass": "sass --watch styles/sass/main.scss:public/styles/styles.css",
     "db:reset": "node bin/resetdb.js"
   },
   "author": "Lighthouse Labs",
@@ -21,7 +22,8 @@
     "morgan": "^1.9.1",
     "node-sass-middleware": "^0.11.0",
     "pg": "^6.4.2",
-    "pg-native": "^3.0.0"
+    "pg-native": "^3.0.0",
+    "twilio": "^3.37.1"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"

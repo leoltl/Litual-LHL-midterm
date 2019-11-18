@@ -1,0 +1,20 @@
+@import "../global/variables.scss";
+
+
+nav {
+  background-color: $light-accent;
+
+  #brand {
+    padding: 1rem;
+    font-family: $brand-font;
+    color: $brand-color;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+
+  .btn-login {
+    border: $dark-accent solid 2px;
+    color: $dark-accent;
+    font-weight: bolder;
+  }
+}

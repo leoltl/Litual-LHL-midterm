@@ -6,6 +6,7 @@ const PORT       = process.env.PORT || 8080;
 const ENV        = process.env.ENV  || "development";
 const express    = require("express");
 const bodyParser = require("body-parser");
+const cookieSession = require("cookie-session");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
@@ -24,12 +25,19 @@ app.use(morgan('dev'));
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1']
+}));
+
 app.use("/styles", sass({
   src: __dirname + "/styles",
   dest: __dirname + "/public/styles",
   debug: true,
   outputStyle: 'expanded'
 }));
+
 app.use(express.static("public"));
 
 // Separated Routes for each Resource
@@ -48,7 +56,7 @@ app.use("/api/restaurants", restaurantsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-  app.use(express.static(path.join(__dirname, './public')));
+app.use(express.static(path.join(__dirname, './public')));
 
 
 app.listen(PORT, () => {

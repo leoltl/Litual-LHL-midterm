@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- External asset -->
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/styles.css" type="text/css" />
+
+    <title>Home Page</title>
+  </head>
+
+  <body>
+    <!-- start header component -->
+    <header id="page-header" class="page-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" id="brand" href="#"><h2>LitApp.JS</h2></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+      
+            <div class="collapse navbar-collapse" id="navbarToggler">
+              <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Cart</a>
+                </li>
+              </ul>
+              <div class="user-actions d-flex flex-column flex-lg-row">
+                <button id="register-btn" class="btn btn-outline-secondary my-2 my-lg-0 ml-0 ml-lg-2">Register</button>
+                <button id="login-btn" class="btn btn-outline btn-login my-2 my-lg-0 ml-0 ml-lg-2">Login</button>
+              </div>
+            </div>
+          </nav>
+    </header>
+    <!-- end header component -->
+
+
+    <main id="main-content">
+      <!-- start res-order_viewer component -->
+      <section class="order-viewer">
+        <h2>RESTAURANT NAME - Order List</h2>
+          <div class="col-wrapper">
+            <!-- start res-order_col component -->
+            <div id="pending" class="order-column">
+                <h3>Pending</h3>
+                <hr/>
+                <!-- start res_order_card component -->
+                <article class="order-card card">
+                  <div class="card-body">
+                    <h5 class="card-title">Order # 235</h5>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Cras justo odio<span class="quantity">x1</span></li>
+                    <li class="list-group-item">Dapibus ac facilisis in<span class="quantity">x1</span></li>
+                    <li class="list-group-item">Vestibulum at eros<span class="quantity">x1</span></li>
+                  </ul>
+                  <div class="card-footer">
+                    <button class="card-link call-to-action">SURE</button>
+                    <a href="#" class="card-link">NOPE</a>
+                  </div>
+                </article>
+                <!-- end res_order_card component -->
+            </div>
+            <!-- end res-order_col component -->
+          
+
+            <!-- start res-order_col component -->
+            <div id="pending" class="order-column">
+                <h3>Accepted</h3>
+                <hr/>
+                <!-- start res_order_card component -->
+                <article class="order-card card">
+                  <div class="card-body">
+                    <h5 class="card-title">Order # 235</h5>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Cras justo odio<span class="quantity">x1</span></li>
+                    <li class="list-group-item">Dapibus ac facilisis in<span class="quantity">x1</span></li>
+                    <li class="list-group-item">Vestibulum at eros<span class="quantity">x1</span></li>
+                  </ul>
+                  <div class="card-footer">
+                    <button class="card-link call-to-action">SURE</button>
+                    <a href="#" class="card-link">NOPE</a>
+                  </div>
+                </article>
+                <!-- end res_order_card component -->
+            </div>
+            <!-- end res-order_col component -->
+
+          </div>
+        </section>
+      <!-- end res-order_viewer component -->
+      
+    </main>
+  </body>
+</html>
