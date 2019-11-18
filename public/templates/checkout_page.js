@@ -9,7 +9,7 @@
     user will be redirected to confirmation page
 */
 
-$(() => {
+window.loadCheckoutPage = () => {
 
   const $checkout_page = $(`
   <!-- start checkout_page component -->
@@ -25,7 +25,9 @@ $(() => {
             </tr>
           </thead>
           <tbody>
-            <!-- start checkout-item component-->
+
+          ${(parseInt(localStorage.item1) > 0) ?
+            ` <!-- start checkout-item component-->
             <tr class="item-row checkout-item" data-foodId="1">
               <td class="item">
                 <p>Overpriced Salad</p>
@@ -33,43 +35,45 @@ $(() => {
               </td>
               <td class="unit-price">$19.99</td>
               <td class="quantity">
-                <select name="quantity" class="form-control">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="100">100</option>
-                </select>
+                <input value=${parseInt(localStorage.item1)} type="number" min=0>
               </td>
               <td class="subtotal">$19.99</td>
             </tr>
-            <!-- end checkout-item component-->
+            <!-- end checkout-item component-->`
+           : ""}
 
-            <!-- start checkout-item component-->
-            <tr class="item-row checkout-item" data-foodId="1">
+           ${(parseInt(localStorage.item2) > 0) ?
+            ` <!-- start checkout-item component-->
+            <tr class="item-row checkout-item" data-foodId="2">
               <td class="item">
-                <p>Cheap Salad</p>
+                <p>Jay's Favorite</p>
                 <small><a class="remove-item">Remove Item</a></small>
               </td>
               <td class="unit-price">$19.99</td>
               <td class="quantity">
-                <select name="quantity" class="form-control">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="100">100</option>
-                </select>
+                <input value=${parseInt(localStorage.item2)} type="number" min=0>
               </td>
               <td class="subtotal">$19.99</td>
             </tr>
-            <!-- end checkout-item component-->
+            <!-- end checkout-item component-->`
+           : ""}
+
+           ${(parseInt(localStorage.item3) > 0) ?
+            ` <!-- start checkout-item component-->
+            <tr class="item-row checkout-item" data-foodId="3">
+              <td class="item">
+                <p>TexMex Bowl</p>
+                <small><a class="remove-item">Remove Item</a></small>
+              </td>
+              <td class="unit-price">$19.99</td>
+              <td class="quantity">
+                <input value=${parseInt(localStorage.item3)} type="number" min=0>
+              </td>
+              <td class="subtotal">$19.99</td>
+            </tr>
+            <!-- end checkout-item component-->`
+           : ""}
+
           </tbody>
           <tfoot>
               <tr>
@@ -86,10 +90,10 @@ $(() => {
           <small><a class="remove-item">Cancel</a></small>
         </div>
       </section>
-      <!-- end checkout_page component -->
-  `);
+      <!-- end checkout_page component -->`);
 
   window.$checkout_page = $checkout_page;
+  //console.log(localStorage);
 
   $('body').on('click', ".remove-item", function() {
     views_manager.show('food_options');
@@ -97,4 +101,4 @@ $(() => {
   });
 
 
-});
+};
