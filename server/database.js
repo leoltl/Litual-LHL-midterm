@@ -38,6 +38,15 @@ const addUser =  function(user) {
   return db.query(insert, [user.name, user.email, user.password])
     .then(res => res.rows ? res.rows[0] : null);
 }
-// exports.addUser = addUser;
 
-module.exports = { getUserWithId, getUserWithEmail, addUser };
+const addOrder =  function(userId, order) {
+  const { restaurant_id, items } = order;
+  const insert = `
+    INSERT INTO orders (restaurant_id, users_id)
+    VALUES ($1, $2) RETURNING *
+    `;
+  return db.query(insert, [restaurant_id, userId])
+    .then(res => res.rows ? res.rows[0] : null);
+}
+
+module.exports = { getUserWithId, getUserWithEmail, addUser, addOrder };

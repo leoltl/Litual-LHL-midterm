@@ -33,16 +33,7 @@ $(() => {
               </td>
               <td class="unit-price">$19.99</td>
               <td class="quantity">
-                <select name="quantity" class="form-control">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="100">100</option>
-                </select>
+                <input type="number" min="0">
               </td>
               <td class="subtotal">$19.99</td>
             </tr>
@@ -56,16 +47,7 @@ $(() => {
               </td>
               <td class="unit-price">$19.99</td>
               <td class="quantity">
-                <select name="quantity" class="form-control">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="100">100</option>
-                </select>
+              <input type="number" min="0">
               </td>
               <td class="subtotal">$19.99</td>
             </tr>

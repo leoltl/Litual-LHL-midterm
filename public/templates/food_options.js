@@ -26,17 +26,8 @@ $(() => {
         <div class="buy-box">
           <h5 class="price-tag">$19.99/order</h5>
           <form action="/order" method="AJAXPOST--TODO">
-            <select name="quantity" class="form-control">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="100">100</option>
-              </select>
-              <input class="add-to-cart call-to-action form-control" type="submit" value="Add To Cart">
+            <input type="number" min="0">
+            <input class="add-to-cart call-to-action form-control" type="submit" value="Add To Cart">
           </form>
         </div>
       </article>
@@ -50,17 +41,8 @@ $(() => {
         <div class="buy-box">
           <h5 class="price-tag">$19.99/order</h5>
           <form action="/order" method="AJAXPOST--TODO">
-            <select name="quantity" class="form-control">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="100">100</option>
-              </select>
-              <input class="add-to-cart call-to-action form-control" type="submit" value="Add To Cart">
+            <input type="number" min="0">
+            <input class="add-to-cart call-to-action form-control" type="submit" value="Add To Cart">
           </form>
         </div>
       </article>
@@ -74,17 +56,8 @@ $(() => {
         <div class="buy-box">
           <h5 class="price-tag">$19.99/order</h5>
           <form action="/order" method="AJAXPOST--TODO">
-            <select name="quantity" class="form-control">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="100">100</option>
-              </select>
-              <input class="add-to-cart call-to-action form-control" type="submit" value="Add To Cart">
+            <input type="number" min="0">
+            <input class="add-to-cart call-to-action form-control" type="submit" value="Add To Cart">
           </form>
         </div>
       </article>
