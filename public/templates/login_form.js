@@ -45,10 +45,10 @@ $(() => {
 
 });
 
-function logIn(data) {
-  return $.ajax({
-    method: "POST",
-    url: "/api/users/login",
-    data
-  });
-}
+// function logIn(data) {
+//   return $.ajax({
+//     method: "POST",
+//     url: "/api/users/login",
+//     data
+//   });
+// }
