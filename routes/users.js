@@ -5,6 +5,7 @@
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
+const database = require('../server/database.js');
 const express = require('express');
 const router  = express.Router();
 const bcrypt = require('bcrypt');
@@ -115,25 +116,27 @@ module.exports = (db) => {
   .catch(e => res.send(e));
   });
 
+  router.post('/login', (req, res) => {
+    const {email, password} = req.body;
+    login(email, password)
+      .then(user => {
+        if (!user) {
+          res.send({error: "error"});
+          return;
+        }
+        req.session.userId = user.id;
+        res.send({user: {name: user.name, email: user.email, id: user.id}});
+      })
+      .catch(e => res.send(e));
+  });
+
   return router;
 };
 
 
 
 
-// router.post('/login', (req, res) => {
-//   const {email, password} = req.body;
-//   login(email, password)
-//     .then(user => {
-//       if (!user) {
-//         res.send({error: "error"});
-//         return;
-//       }
-//       req.session.userId = user.id;
-//       res.send({user: {name: user.name, email: user.email, id: user.id}});
-//     })
-//     .catch(e => res.send(e));
-// });
+
 
 
 // router.post('/logout', (req, res) => {
