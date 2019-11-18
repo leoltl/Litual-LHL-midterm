@@ -7,6 +7,7 @@
 
 const express = require('express');
 const router  = express.Router();
+const bcrypt = require('bcrypt');
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
@@ -21,6 +22,17 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+
+  const login =  function(email, password) {
+    return database.getUserWithEmail(email)
+    .then(user => {
+      if (bcrypt.compareSync(password, user.password)) {
+        return user;
+      }
+      return null;
+    });
+  }
+  exports.login = login;
 
   //create new user on post to /api/users/
   router.post("/", (req, res) => {
@@ -39,28 +51,45 @@ module.exports = (db) => {
       });
   });
 
+  router.post('/', (req, res) => {
+    const user = req.body;
+    user.password = bcrypt.hashSync(user.password, 12);
+    database.addUser(user)
+    .then(user => {
+      if (!user) {
+        res.send({error: "error"});
+        return;
+      }
+      req.session.userId = user.id;
+      res.send("Successfully registered!");
+    })
+    .catch(e => res.send(e));
+  });
+
   // Login route expects email, password in request body from a client post request.
   // query the database based on matching email, then check if user exists and
   // provided password matches record
-  router.post('/login', async (req, res) => {
-    const { email, password } = req.body;
-    try {
-      if (email) {
-        const dbRes = await db.query(`SELECT * FROM users WHERE email = '${email}';`);
-        const user = dbRes.rows[0];
-        if (user && user.password === password) {
-          req.session.userId = user.id;
-          res.status(200).send({ user: { name: user.name, id: user.id, email: user.email } });
-        } else {
-          throw new Error ('Authentication failed');
-        }
-      } else {
-        throw new Error ('Login input field is empty');
-      }
-    } catch (e) {
-      res.status(400).send({ user: {}, message: `login failed! ${e}`});
-    }
-  });
+  // router.post('/login', async (req, res) => {
+  //   const { email, password } = req.body;
+  //   try {
+  //     if (email) {
+  //       // this query currently does not escape SQL injection or javascript inputs
+  //       const dbRes = await db.query(`SELECT * FROM users WHERE email = '${email}';`);
+  //       const user = dbRes.rows[0];
+  //       // need to compare with bcrypt instead
+  //       if (user && user.password === password) {
+  //         req.session.userId = user.id;
+  //         res.status(200).send({ user: { name: user.name, id: user.id, email: user.email } });
+  //       } else {
+  //         throw new Error ('Authentication failed');
+  //       }
+  //     } else {
+  //       throw new Error ('Login input field is empty');
+  //     }
+  //   } catch (e) {
+  //     res.status(400).send({ user: {}, message: `login failed! ${e}`});
+  //   }
+  // });
 
   router.post('/logout', (req, res) => {
     req.session.userId = null;
@@ -89,16 +118,7 @@ module.exports = (db) => {
   return router;
 };
 
-// const login =  function(email, password) {
-//   return database.getUserWithEmail(email)
-//   .then(user => {
-//     if (bcrypt.compareSync(password, user.password)) {
-//       return user;
-//     }
-//     return null;
-//   });
-// }
-// exports.login = login;
+
 
 
 // router.post('/login', (req, res) => {
