@@ -39,14 +39,62 @@ const addUser =  function(user) {
     .then(res => res.rows ? res.rows[0] : null);
 }
 
-const addOrder =  function(userId, order) {
-  const { restaurant_id, items } = order;
-  const insert = `
-    INSERT INTO orders (restaurant_id, users_id)
-    VALUES ($1, $2) RETURNING *
+const addOrder =  async function (userId, order) {
+  try {
+    const { restaurant_id } = order;
+    //create a order record in order table and return the order id back for later use
+    const orderTableinsert = `
+    INSERT INTO orders (restaurant_id, user_id)
+    VALUES ($1, $2) RETURNING orders.id
     `;
-  return db.query(insert, [restaurant_id, userId])
-    .then(res => res.rows ? res.rows[0] : null);
+    const dbRes = await db.query(orderTableinsert, [restaurant_id, userId]);
+    const orderID = dbRes.rows[0].id;
+    
+    // insert the order into orderItem bridge table 
+    const { items } = order;
+    const insertValues = items.map(item => `('${orderID}', '${item.foodid}', '${item.quantity}')`).join(',');
+    const fullQuery = `
+    INSERT INTO orderItems (order_id, food_id, quantity)
+    VALUES
+    ${insertValues} RETURNING *;
+    `
+    return db.query(fullQuery);
+  } catch (e) {
+    console.log(e);
+  }
+  
 }
 
-module.exports = { getUserWithId, getUserWithEmail, addUser, addOrder };
+const getAllOrders = function (restaurant_id) {
+  return db.query(`
+    SELECT * FROM orders 
+    JOIN orderItems ON (orders.id = orderItems.order_id)
+    WHERE orders.restaurant_id = ${restaurant_id};`)
+}
+
+const getOrder = function(order_id) {
+  return db.query(`
+    SELECT * FROM orders
+    JOIN orderItems ON (orders.id = orderItems.order_id)  
+    WHERE orders.id = ${order_id};  
+  `)
+
+}
+
+const updateOrderStatus = function(order_id, status) {
+  return db.query(`
+  UPDATE orders
+  SET status = ${status}
+  WHERE orders.id = order_id;
+  `)
+}
+
+module.exports = { 
+    getUserWithId, 
+    getUserWithEmail,
+    addUser,
+    addOrder,
+    getAllOrders,
+    getOrder,
+    updateOrderStatus
+  };

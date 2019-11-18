@@ -8,5 +8,5 @@ CREATE TABLE orders (
   restaurant_id SMALLINT NOT NULL REFERENCES restaurants(id) ON DELETE CASCADE,
   user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   deleted BOOLEAN DEFAULT FALSE,
-  status orderStatus
+  status orderStatus DEFAULT 'pending'
 );

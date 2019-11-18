@@ -29,6 +29,9 @@ article.food-option {
     .price-tag {
       padding-right: 1rem;
     }
+    input[type=number] {
+      width: 80px;
+    }
     form {
       display: flex;
     }
