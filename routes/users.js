@@ -24,7 +24,7 @@ module.exports = (db) => {
       });
   });
 
-  const login =  function(email, password) {
+  const login =  function(email, password, type) {
     return database.getUserWithEmail(email)
     .then(user => {
       if (bcrypt.compareSync(password, user.password)) {
@@ -125,7 +125,7 @@ module.exports = (db) => {
           return;
         }
         req.session.userId = user.id;
-        res.send({user: {name: user.name, email: user.email, id: user.id}});
+        user.title ? res.send({user: {title: user.title, email: user.email, id: user.id}}) : res.send({user: {name: user.name, email: user.email, id: user.id}});
       })
       .catch(e => res.send(e));
   });

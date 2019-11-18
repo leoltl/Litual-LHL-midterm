@@ -18,9 +18,17 @@ const getUserWithEmail = function(email) {
     FROM users
     WHERE email=$1
   `, [email])
-  .then(res => res.rows ? res.rows[0] : null);
+  .then(res => res.rows.length > 0 ? res.rows[0] : getRestaurantWithEmail(email));
 }
 // exports.getUserWithEmail = getUserWithEmail;
+const getRestaurantWithEmail = function(email) {
+  return db.query(`
+    SELECT *
+    FROM restaurants
+    WHERE email=$1
+  `, [email])
+  .then(res => res.rows ? res.rows[0] : null);
+}
 
 const addUser =  function(user) {
   const insert = `
