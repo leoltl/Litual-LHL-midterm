@@ -1,4 +1,6 @@
 // this file should contain all database related helper functions that query the DB
+const db = require('./db.js');
+
 
 const getUserWithId = function(id) {
   return db.query(`
@@ -8,7 +10,7 @@ const getUserWithId = function(id) {
   `, [id])
   .then(res => res.rows ? res.rows[0] : null);
 }
-exports.getUserWithId = getUserWithId;
+// exports.getUserWithId = getUserWithId;
 
 const getUserWithEmail = function(email) {
   return db.query(`
@@ -18,7 +20,7 @@ const getUserWithEmail = function(email) {
   `, [email])
   .then(res => res.rows ? res.rows[0] : null);
 }
-exports.getUserWithEmail = getUserWithEmail;
+// exports.getUserWithEmail = getUserWithEmail;
 
 const addUser =  function(user) {
   const insert = `
@@ -28,4 +30,6 @@ const addUser =  function(user) {
   return db.query(insert, [user.name, user.email, user.password])
     .then(res => res.rows ? res.rows[0] : null);
 }
-exports.addUser = addUser;
+// exports.addUser = addUser;
+
+module.exports = { getUserWithId, getUserWithEmail, addUser };
