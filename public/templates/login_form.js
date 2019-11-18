@@ -34,7 +34,8 @@ $(() => {
         }
         console.log(json.user);
         header.update(json.user);
-        views_manager.show('food_options');
+        json.user.name ? views_manager.show('food_options') : views_manager.show('res_order_viewer');
+
       });
   });
 

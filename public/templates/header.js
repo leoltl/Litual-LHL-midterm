@@ -18,6 +18,7 @@ $(() => {
   let currentUser = null;
   function updateHeader(user) {
     currentUser = user;
+    console.log(currentUser);
     $pageHeader.find("nav").remove();
     let header;
     if (!user) {

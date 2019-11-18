@@ -66,6 +66,7 @@ $(() => {
     // $food_options.detach();
     $('#main-content article').hide();
     $('#restaurant-listing').hide();
+    $res_order_viewer.hide();
     $checkout_page.detach();
 
     switch (item) {
@@ -82,6 +83,9 @@ $(() => {
         break;
       case 'register':
         $signup_form.appendTo($main);
+      case 'res_order_viewer':
+        $res_order_viewer.appendTo($main);
+        $res_order_viewer.show();
 
       case 'error': {
         const $error = $(`<p>${arguments[1]}</p>`);

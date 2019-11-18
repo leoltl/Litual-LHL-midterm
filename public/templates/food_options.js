@@ -20,7 +20,7 @@ $(() => {
     `)
 
     window.$restaurant_banner = $restaurant_banner;
-    $('main').append($restaurant_banner).append('<section id="food-options">')
+    $('main').append($restaurant_banner).append('<section id="food-options"></section>')
   }
 
   function updateMenu(item) {
@@ -46,7 +46,7 @@ $(() => {
     `);
 
     window.$food_options = $food_options;
-    $('main').append($food_options);
+    $('#food-options').append($food_options);
   }
 
   showMenu()
