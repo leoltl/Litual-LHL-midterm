@@ -75,6 +75,7 @@ $(() => {
         $logInForm.appendTo($main);
         break;
       case 'checkout':
+        loadCheckoutPage();
         $checkout_page.appendTo($main);
         break;
       case 'register':
