@@ -18,7 +18,7 @@ $(() => {
   let currentUser = null;
   function updateHeader(user) {
     currentUser = user;
-    $pageHeader.find("#page-header__user-links").remove();
+    $pageHeader.find("nav").remove();
     let header;
     if (!user) {
       header = $(`<nav class="navbar navbar-expand-lg navbar-light">
@@ -35,19 +35,35 @@ $(() => {
                     </div>
                   </nav>`)
     } else {
-      header = "" //TOADD
+      header = $(`<nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" id="brand" href="#">LitApp.JS</a>
+      <p>Hello ${currentUser.name ? currentUser.name : currentUser.title}</p>
+      <div>
+        <button>Logout</button>
+      </div>
+      </div>
+    </nav>`);
     }
+
     $pageHeader.append(header);
   }
 
   updateHeader(undefined);
 
-  // window.header.update = updateHeader;
+  window.header.update = updateHeader;
 
-  // getMyDetails()
-  //   .then(function( json ) {
-  //   updateHeader(json.user);
-  // });
+  function getMyDetails() {
+    console.log("getMyDetails");
+    return $.ajax({
+      url: "/users/me",
+    });
+  }
+
+
+  getMyDetails()
+    .then(function( json ) {
+    updateHeader(json.user);
+  });
 
   // $("header").on("click", '.my_reservations_button', function() {
   //   propertyListings.clearListings();

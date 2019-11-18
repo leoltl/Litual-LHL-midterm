@@ -126,8 +126,14 @@ module.exports = (db) => {
         }
         req.session.userId = user.id;
         user.title ? res.send({user: {title: user.title, email: user.email, id: user.id}}) : res.send({user: {name: user.name, email: user.email, id: user.id}});
+
       })
       .catch(e => res.send(e));
+  });
+
+  router.post('/logout', (req, res) => {
+    req.session.userId = null;
+    res.send({});
   });
 
   return router;
@@ -139,10 +145,7 @@ module.exports = (db) => {
 
 
 
-// router.post('/logout', (req, res) => {
-//   req.session.userId = null;
-//   res.send({});
-// });
+
 
 // create this function for this route to work
 

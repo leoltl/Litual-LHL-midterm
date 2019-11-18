@@ -33,7 +33,7 @@ $(() => {
           return;
         }
         console.log(json.user);
-        // header.update(json.user);
+        header.update(json.user);
         views_manager.show('food_options');
       });
   });
