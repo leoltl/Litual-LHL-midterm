@@ -28,6 +28,12 @@ function signUp(data) {
   });
 }
 
+function showMenu() {
+  return $.ajax({
+    url: "api/restaurants/me"
+  })
+}
+
 function submitOrder(data) {
   return $.ajax({
     method: "POST",

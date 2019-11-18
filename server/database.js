@@ -1,6 +1,7 @@
 // this file should contain all database related helper functions that query the DB
 const db = require('./db.js');
 
+// User based queries and insertions
 
 const getUserWithId = function(id) {
   return db.query(`
@@ -21,14 +22,6 @@ const getUserWithEmail = function(email) {
   .then(res => res.rows.length > 0 ? res.rows[0] : getRestaurantWithEmail(email));
 }
 // exports.getUserWithEmail = getUserWithEmail;
-const getRestaurantWithEmail = function(email) {
-  return db.query(`
-    SELECT *
-    FROM restaurants
-    WHERE email=$1
-  `, [email])
-  .then(res => res.rows ? res.rows[0] : null);
-}
 
 const addUser =  function(user) {
   const insert = `
@@ -49,4 +42,33 @@ const addOrder =  function(userId, order) {
     .then(res => res.rows ? res.rows[0] : null);
 }
 
-module.exports = { getUserWithId, getUserWithEmail, addUser, addOrder };
+// Restaurant based queries and responses
+
+const getRestaurantWithEmail = function(email) {
+  return db.query(`
+    SELECT *
+    FROM restaurants
+    WHERE email=$1;
+  `, [email])
+  .then(res => res.rows ? res.rows[0] : null);
+}
+
+const getRestaurantWithId = function(id) {
+  return db.query(`
+    SELECT *
+    FROM restaurants
+    WHERE id=$1
+  `, [id])
+  .then(res => res.rows ? res.rows[0] : null);
+}
+
+const getMenu = function(resId) {
+  return db.query(`
+  SELECT *
+  FROM foods
+  WHERE restaurant_id=$1;
+  `, [resId])
+  .then(res => res.rows ? res.rows : null);
+}
+
+module.exports = { getUserWithId, getUserWithEmail, addUser, addOrder, getMenu, getRestaurantWithId };

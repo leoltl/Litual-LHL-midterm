@@ -36,21 +36,21 @@ module.exports = (db) => {
   exports.login = login;
 
   //create new user on post to /api/users/
-  router.post("/", (req, res) => {
-    const { email, name, password, phone } = req.body;
-    console.log(req.body);
-    //TODO: implement checks for valid user input.
-    db.query(`INSERT INTO users(email, name, password, phone) VALUES ($1, $2, $3, $4) RETURNING *`, [email, name, password, phone])
-      .then(data => {
-        const users = data.rows;
-        res.json({ users });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  });
+  // router.post("/", (req, res) => {
+  //   const { email, name, password, phone } = req.body;
+  //   console.log(req.body);
+  //   //TODO: implement checks for valid user input.
+  //   db.query(`INSERT INTO users(email, name, password, phone) VALUES ($1, $2, $3, $4) RETURNING *`, [email, name, password, phone])
+  //     .then(data => {
+  //       const users = data.rows;
+  //       res.json({ users });
+  //     })
+  //     .catch(err => {
+  //       res
+  //         .status(500)
+  //         .json({ error: err.message });
+  //     });
+  // });
 
   router.post('/', (req, res) => {
     const user = req.body;
@@ -105,15 +105,14 @@ module.exports = (db) => {
     }
 
   database.getUserWithId(userId)
-  .then(user => {
-    if (!user) {
-      res.send({error: "no user with that id"});
-      return;
-    }
-
-    res.send({user: {name: user.name, email: user.email, id: userId}});
-  })
-  .catch(e => res.send(e));
+    .then(user => {
+      if (!user) {
+        res.send({error: "no user with that id"});
+        return;
+      }
+      res.send({user: {name: user.name, email: user.email, id: userId}});
+    })
+    .catch(e => res.send(e));
   });
 
   router.post('/login', (req, res) => {
@@ -126,7 +125,6 @@ module.exports = (db) => {
         }
         req.session.userId = user.id;
         user.title ? res.send({user: {title: user.title, email: user.email, id: user.id}}) : res.send({user: {name: user.name, email: user.email, id: user.id}});
-
       })
       .catch(e => res.send(e));
   });

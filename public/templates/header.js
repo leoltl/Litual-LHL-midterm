@@ -48,7 +48,7 @@ $(() => {
     $pageHeader.append(header);
   }
 
-  updateHeader(undefined);
+  updateHeader(null);
 
   window.header.update = updateHeader;
 
@@ -62,8 +62,8 @@ $(() => {
 
   getMyDetails()
     .then(function( json ) {
-    updateHeader(json.user);
-  });
+      updateHeader(json.user);
+    });
 
   // $("header").on("click", '.my_reservations_button', function() {
   //   propertyListings.clearListings();
