@@ -9,5 +9,7 @@ $(() => {
     }
   });; */
   console.log("start");
+  loadCheckoutPage();
+  localStorage.clear();
   views_manager.show('food_options');
 });
