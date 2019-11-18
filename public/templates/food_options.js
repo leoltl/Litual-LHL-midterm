@@ -36,7 +36,7 @@ $(() => {
                 <option value="7">7</option>
                 <option value="100">100</option>
               </select>
-              <input class="add-to-cart call-to-action form-control" type="submit" value="Add To Cart">
+              <input id="item1" class="add-to-cart call-to-action form-control" type="submit" value="Add To Cart">
           </form>
         </div>
       </article>
@@ -60,7 +60,7 @@ $(() => {
                 <option value="7">7</option>
                 <option value="100">100</option>
               </select>
-              <input class="add-to-cart call-to-action form-control" type="submit" value="Add To Cart">
+              <input id="item2" class="add-to-cart call-to-action form-control" type="submit" value="Add To Cart">
           </form>
         </div>
       </article>
@@ -84,7 +84,7 @@ $(() => {
                 <option value="7">7</option>
                 <option value="100">100</option>
               </select>
-              <input class="add-to-cart call-to-action form-control" type="submit" value="Add To Cart">
+              <input id="item3" class="add-to-cart call-to-action form-control" type="submit" value="Add To Cart">
           </form>
         </div>
       </article>
@@ -94,15 +94,57 @@ $(() => {
   `);
 
   window.$food_options = $food_options;
+  //localStorage.clear();
   $(document).ready(function() {
+    let item1Quantity = 0;
+    let item2Quantity = 0;
+    let item3Quantity = 0;
+
     $("footer").hide();
     let totalItemsInCart = parseInt($("footer").text().split(":")[1].trim());
+
+    $("#item1.form-control").on('click', function(event) {
+      console.log("item1");
+      const quantity = parseInt($(this).closest("form").find("option:selected").val());
+      item1Quantity += quantity;
+      totalItemsInCart += quantity;
+      console.log(item1Quantity);
+    });
+
+    $("#item2.form-control").on('click', function(event) {
+      console.log("item2");
+      const quantity = parseInt($(this).closest("form").find("option:selected").val());
+      item2Quantity += quantity;
+      totalItemsInCart += quantity;
+      console.log(item2Quantity);
+    });
+
+    $("#item3.form-control").on('click', function(event) {
+      console.log("item3");
+      const quantity = parseInt($(this).closest("form").find("option:selected").val());
+      item3Quantity += quantity;
+      totalItemsInCart += quantity;
+      console.log(item3Quantity);
+    });
+
+
     $(".add-to-cart.form-control").on('click', function(event) {
       event.preventDefault();
-      const quantity = parseInt($(this).closest("form").find("option:selected").val());
-      totalItemsInCart += quantity;
+      //const quantity = parseInt($(this).closest("form").find("option:selected").val());
+      //totalItemsInCart += item1Quantity;
       $("footer p").text(`items in cart: ${totalItemsInCart}`);
       $("footer").show();
+    });
+
+    $("footer .cart").on('click', function(event) {
+      event.preventDefault();
+      //console.log(localStorage);
+      localStorage.setItem("item1", item1Quantity.toString());
+      localStorage.setItem("item2", item2Quantity.toString());
+      localStorage.setItem("item3", item3Quantity.toString());
+
+      $("footer").hide();
+      views_manager.show("checkout");
     });
   });
 });
