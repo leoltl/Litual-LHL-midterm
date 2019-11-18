@@ -3,22 +3,22 @@ function getMyDetails() {
   return $.ajax({
     url: "/users/me",
   });
-};
+}
 
 function logOut() {
   return $.ajax({
     method: "POST",
     url: "/users/logout",
   })
-};
+}
 
 function logIn(data) {
   return $.ajax({
     method: "POST",
-    url: "/users/login",
+    url: "api/users/login",
     data
   });
-};
+}
 
 function signUp(data) {
   return $.ajax({
@@ -26,7 +26,7 @@ function signUp(data) {
     url: "/users",
     data
   });
-};
+}
 
 function submitOrder(data) {
   return $.ajax({
@@ -34,4 +34,4 @@ function submitOrder(data) {
     url: "/restaurants",
     data
   })
-};
+}

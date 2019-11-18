@@ -18,7 +18,7 @@ $(() => {
   let currentUser = null;
   function updateHeader(user) {
     currentUser = user;
-    $pageHeader.find("#page-header__user-links").remove();
+    $pageHeader.find("nav").remove();
     let header;
     if (!user) {
       header = $(`<nav class="navbar navbar-expand-lg navbar-light">
@@ -37,28 +37,33 @@ $(() => {
     } else {
       header = $(`<nav class="navbar navbar-expand-lg navbar-light">
       <a class="navbar-brand" id="brand" href="#">LitApp.JS</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarToggler">
-        <div class="user-actions ml-auto d-flex flex-column flex-lg-row">
-          <button id="logout-btn" class="btn btn-outline-secondary my-2 my-lg-0 ml-0 ml-lg-2">Log Out</button>
-        </div>
+      <p>Hello ${currentUser.name ? currentUser.name : currentUser.title}</p>
+      <div>
+        <button>Logout</button>
       </div>
-    </nav>`) //TOADD
+      </div>
+    </nav>`);
     }
+
     $pageHeader.append(header);
   }
 
   updateHeader(undefined);
 
-  // window.header.update = updateHeader;
+  window.header.update = updateHeader;
 
-  // getMyDetails()
-  //   .then(function( json ) {
-  //   updateHeader(json.user);
-  // });
+  function getMyDetails() {
+    console.log("getMyDetails");
+    return $.ajax({
+      url: "/users/me",
+    });
+  }
+
+
+  getMyDetails()
+    .then(function( json ) {
+    updateHeader(json.user);
+  });
 
   // $("header").on("click", '.my_reservations_button', function() {
   //   propertyListings.clearListings();
