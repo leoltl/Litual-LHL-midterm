@@ -52,13 +52,6 @@ $(() => {
 
   window.header.update = updateHeader;
 
-  function getMyDetails() {
-    console.log("getMyDetails");
-    return $.ajax({
-      url: "/users/me",
-    });
-  }
-
 
   getMyDetails()
     .then(function( json ) {
@@ -112,8 +105,11 @@ $(() => {
   $("header").on('click', '.logout_button', () => {
     logOut().then(() => {
       localStorage.removeItem('res');
+      views_manager.show();
+      $('#main-content .food-option').show();
+      $('#restaurant-listing').show();
+      // views_manager.show('food_options');
       header.update(null);
-      views_manager.show('food_options');
     });
   });
 

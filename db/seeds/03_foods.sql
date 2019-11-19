@@ -13,3 +13,8 @@ INSERT INTO foods (restaurant_id, name, price, photo_url, description) VALUES (
 'https://dynamicmedia.zuza.com/zz/m/original_/4/0/40d321ca-2ec2-4e10-82a1-d355f9081393/B823566265Z.1_20170927054258_000_GHL1V9ISF.2_Super_Portrait.jpg',
 'Expensive'
 );
+INSERT INTO foods (restaurant_id, name, price, photo_url, description) VALUES (
+1, 'test salad', 10,
+'http://www.todayifoundout.com/wp-content/uploads/2016/05/breakfast-cereal-640x427.png',
+'lol'
+);

@@ -5,7 +5,7 @@ const sendSMS = function (MO, MT, body) {
 
   const client = require('twilio')(accountSid, authToken);
   client.messages.create({
-    to: MT,
+    to: '+1' + MT,
     from: MO,
     body: body
   })
@@ -19,7 +19,7 @@ module.exports = { sendSMS };
 //for DAN and LEO, MO means the originated (sender) and MT means terminated (receiver)
 //welcome to 4 years of mobile qa at samsung. if they deduct mark for this name I will make the complaint!!
 const MO = '+16476998007'; //twilio
-const MT = '+16472704577'; //jay
-const message = 'SMS Test 1';
+const MT = '4169106793'; //jay
+const message = 'lol hi';
 
 sendSMS(MO, MT, message);

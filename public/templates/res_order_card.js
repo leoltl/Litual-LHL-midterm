@@ -42,17 +42,38 @@ function createOrderCard (order) {
     }
   });
 
+  if (order.status === 'rejected' || order.status === 'done') return;
+
   $(`${order.status === "pending" ? '#pending' : '#accepted'}`).append($(`<article class="order-card card">
-              <div class="card-body" id="${order.order_id}">
+              <div class="card-body" data-id="${order.order_id}">
                 <h5 class="card-title">Order #${order.order_id}<span>${order.status}</span></h5>
               </div>
               <ul class="list-group list-group-flush">
                 ${orderItems}
               </ul>
               <div class="card-footer">
-                <button class="card-link call-to-action">SURE</button>
-                <a href="#" class="card-link">NOPE</a>
+                <button id="accept" class="card-link call-to-action">ACCEPT</button>
+                <form class="hidden">
+                  <input type="number" name="time" min="1" max="30">
+                  <input type="submit" name="order-accept" value="Confirm">
+                </form>
+                <button data-reject="${order.order_id}" id="reject-btn" class="card-link">REJECT</button>
               </div>
             </article>
             `));
 }
+
+$("main").on('click', '#accept', function(event) {
+  event.preventDefault();
+  $(this).siblings('form').toggleClass('hidden');
+});
+
+$("main").on('click', '#reject-btn', function(event) {
+  event.preventDefault();
+  console.log($(this).data('reject'));
+  let order_id = $(this).data('reject');
+  updateOrder(order_id, 'rejected')
+    .then(() => views_manager.show('res_order_viewer'));
+
+});
+

@@ -29,10 +29,11 @@ module.exports = (db) => {
   router.post('/:id', (req, res) => {
     const restaurantId = req.session.userId;
     const orderId = req.params.id;
-    const status = req.body;
-
+    const {status} = req.body;
+    // console.log(orderId, restaurantId)
+    // console.log('status', typeof status)
     if(restaurantId && orderId) {
-      updateOrderStatus(orderId, status);
+      database.updateOrderStatus(orderId, status);
     }
 
   });
