@@ -34,10 +34,16 @@ function showMenu() {
   })
 }
 
+function findOrder(restaurantId) {
+  return $.ajax({
+    url: "/orders",
+    data: restaurantId
+  })
+}
+
 function submitOrder(data) {
   return $.ajax({
     method: "POST",
-    url: "/restaurants",
-    data
+    url: "/restaurants"
   })
 }

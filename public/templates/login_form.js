@@ -29,6 +29,7 @@ $(() => {
       .then(json => {
         console.log(json);
         if (!json.user) {
+          console.log( "!!!!",json.user);
           views_manager.show('error', 'Failed to login');
           return;
         }

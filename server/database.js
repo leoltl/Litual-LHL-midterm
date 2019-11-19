@@ -62,13 +62,15 @@ const getAllOrders = function (restaurant_id) {
   return db.query(`
     SELECT * FROM orders 
     JOIN orderItems ON (orders.id = orderItems.order_id)
+    JOIN foods ON (orderItems.food_id = foods.id)
     WHERE orders.restaurant_id = ${restaurant_id};`)
 }
 
 const getOrder = function(order_id) {
   return db.query(`
     SELECT * FROM orders
-    JOIN orderItems ON (orders.id = orderItems.order_id)  
+    JOIN orderItems ON (orders.id = orderItems.order_id) 
+    JOIN foods ON (orderItems.food_id = foods.id) 
     WHERE orders.id = ${order_id};  
   `)
 
