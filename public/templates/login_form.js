@@ -27,23 +27,26 @@ $(() => {
     console.log(data);
     logIn(data)
       .then(json => {
-        console.log(json);
         if (!json.user) {
           console.log( "!!!!",json.user);
           views_manager.show('error', 'Failed to login');
           return;
         }
-        console.log(json.user);
+        console.log(json.user.title);
         header.update(json.user);
-        json.user.name ? views_manager.show('food_options') : views_manager.show('res_order_viewer');
-
+        if (json.user.title !== undefined)  {
+          views_manager.show('res_order_viewer');
+          localStorage.setItem('res', `${json.user.id}`);
+        } else {
+          views_manager.show('food_options');
+          localStorage.removeItem('res');
+        }
       });
   });
 
   $('body').on('click', '#login-form__cancel', function() {
     views_manager.show('food_options');
     $logInForm.detach();
-
     return false;
   });
 
