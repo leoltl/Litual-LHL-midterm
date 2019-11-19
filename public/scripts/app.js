@@ -8,8 +8,14 @@ $(() => {
       $("<div>").text(user.name).appendTo($("body"));
     }
   });; */
+  // delete localStorage.restaurant_id;
+  localStorage.res > 0 ?
+        views_manager.show('res_order_viewer') :
+        views_manager.show('food_options');
   console.log("start");
   loadCheckoutPage();
-  localStorage.clear();
-  views_manager.show('food_options');
+  $('#main-content article').hide();
+  $('#restaurant-listing').hide();
+  //localStorage.clear();
+  //views_manager.show('food_options');
 });

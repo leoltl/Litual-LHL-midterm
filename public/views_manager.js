@@ -64,14 +64,15 @@ $(() => {
     $restaurant_listing.detach(); */
     $logInForm.detach();
     // $food_options.detach();
-    $('#main-content article').hide();
+    $('#main-content .food-option').hide();
     $('#restaurant-listing').hide();
+    $res_order_viewer.hide();
     $checkout_page.detach();
 
     switch (item) {
       case 'food_options':
         // data.restaurant_id = $restaurant.restaurant_id;
-        $('#main-content article').show();
+        $('#main-content .food-option').show();
         $('#restaurant-listing').show();
         break;
       case 'logIn':
@@ -83,7 +84,12 @@ $(() => {
         break;
       case 'register':
         $signup_form.appendTo($main);
-
+        break;
+      case 'res_order_viewer':
+        $res_order_viewer.appendTo($main);
+        $res_order_viewer.show();
+        renderOrder();
+        break;
       case 'error': {
         const $error = $(`<p>${arguments[1]}</p>`);
         $error.appendTo('body');

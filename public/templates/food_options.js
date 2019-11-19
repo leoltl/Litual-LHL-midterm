@@ -7,8 +7,8 @@
 */
 
 $(() => {
-  localStorage.setItem('restaurant_id', '1');
-  let currentRes = Number(localStorage.getItem('restaurant_id'));
+  // localStorage.setItem('restaurant_id', '1');
+  // let currentRes = Number(localStorage.getItem('restaurant_id'));
 
   function showRestaurant(item) {
     const $restaurant_banner = $(`
@@ -20,7 +20,7 @@ $(() => {
     `)
 
     window.$restaurant_banner = $restaurant_banner;
-    $('main').append($restaurant_banner).append('<section id="food-options">')
+    $('main').append($restaurant_banner).append('<section id="food-options"></section>')
   }
 
   function updateMenu(item) {
@@ -49,14 +49,16 @@ $(() => {
     localStorage.setItem(`item${item.id}Quantity`, "0");
     console.log(localStorage[`item${item.id}Price`]);
     window.$food_options = $food_options;
-    $('main').append($food_options);
+    $('#food-options').append($food_options);
   }
 
   showMenu()
     .then(function(json) {
-      showRestaurant(json.menu[0])
-      for (let item of json.menu) {
-        updateMenu(item)
+      if (localStorage.res === undefined) {
+        showRestaurant(json.menu[0])
+        for (let item of json.menu) {
+          updateMenu(item)
+        }
       }
     });
 

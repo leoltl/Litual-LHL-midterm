@@ -111,7 +111,9 @@ $(() => {
 
   $("header").on('click', '.logout_button', () => {
     logOut().then(() => {
+      localStorage.removeItem('res');
       header.update(null);
+      views_manager.show('food_options');
     });
   });
 

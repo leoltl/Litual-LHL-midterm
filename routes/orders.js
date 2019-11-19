@@ -32,7 +32,7 @@ module.exports = (db) => {
     const status = req.body;
 
     if(restaurantId && orderId) {
-
+      updateOrderStatus(orderId, status);
     }
 
   });
@@ -40,10 +40,10 @@ module.exports = (db) => {
 
   /* Route to create an new Order
   request format should be:
-  { restaurant_id : 1,                       
-    ordersItem    : [ {foodid: 1, quantity: 1},                  
-                      {foodid: 3, quantity: 2}     
-                    ] 
+  { restaurant_id : 1,
+    ordersItem    : [ {foodid: 1, quantity: 1},
+                      {foodid: 3, quantity: 2}
+                    ]
   }
   */
   router.post('/', (req, res) => {
@@ -70,7 +70,6 @@ module.exports = (db) => {
     }
     res.status(406).send({ message: 'You are not logged in as restaurant'});
   })
-  
 
   return router;
 };

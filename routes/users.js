@@ -98,22 +98,41 @@ module.exports = (db) => {
   })
 
   router.get("/me", (req, res) => {
+    console.log(req.session.type)
+    console.log(req.session.userId)
     const userId = req.session.userId;
     if (!userId) {
       res.send({message: "not logged in"});
       return;
     }
 
+    if (req.session.type === 'res') {
+      database.getRestaurantWithId(userId)
+    .then(user => {
+      if (!user) {
+        res.send({error: "no user with that id"});
+        return;
+      } else {
+      res.send({user: {title: user.title, email: user.email, id: userId}});
+      }
+    })
+    .catch(e => res.send(e))
+    } if (req.session.type === 'user') {
+
+
   database.getUserWithId(userId)
     .then(user => {
       if (!user) {
         res.send({error: "no user with that id"});
         return;
-      }
+      } else {
       res.send({user: {name: user.name, email: user.email, id: userId}});
+      }
     })
     .catch(e => res.send(e));
+  }
   });
+
 
   router.post('/login', (req, res) => {
     const {email, password} = req.body;
@@ -123,6 +142,7 @@ module.exports = (db) => {
           res.send({error: "error"});
           return;
         }
+        user.title ? req.session.type = 'res' : req.session.type = 'user';
         req.session.userId = user.id;
         user.title ? res.send({user: {title: user.title, email: user.email, id: user.id}}) : res.send({user: {name: user.name, email: user.email, id: user.id}});
       })
