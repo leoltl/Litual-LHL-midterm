@@ -52,12 +52,13 @@ function createOrderCard (order) {
                 ${orderItems}
               </ul>
               <div class="card-footer">
-                <button id="accept" class="card-link call-to-action">ACCEPT</button>
-                <form class="hidden">
-                  <input type="number" name="time" min="1" max="30">
-                  <input type="submit" name="order-accept" value="Confirm">
-                </form>
-                <button data-reject="${order.order_id}" id="reject-btn" class="card-link">REJECT</button>
+              ${order.status === 'pending' ? `<button id="accept" class="card-link call-to-action">ACCEPT</button>
+              <form class="hidden">
+                <input type="number" name="time" min="1" max="30">
+                <input type="submit" data-submit="${order.order_id}" id="submit-btn" name="order-accept" value="Confirm">
+              </form>
+              <button data-reject="${order.order_id}" id="reject-btn" class="card-link">REJECT</button>
+              ` : `<button data-done="${order.order_id}" id="done-btn" class="card-link call-to-action">Ready</button>`}
               </div>
             </article>
             `));
@@ -72,8 +73,26 @@ $("main").on('click', '#reject-btn', function(event) {
   event.preventDefault();
   console.log($(this).data('reject'));
   let order_id = $(this).data('reject');
+  $('.order-card').empty();
   updateOrder(order_id, 'rejected')
-    .then(() => views_manager.show('res_order_viewer'));
+    .then(res => renderOrder());
 
 });
 
+$("main").on('click', '#submit-btn', function(event) {
+  event.preventDefault();
+  console.log($(this).data('submit'));
+  let order_id = $(this).data('submit');
+  $('.order-card').empty();
+  updateOrder(order_id, 'accepted')
+    .then(res => renderOrder());
+});
+
+$("main").on('click', '#done-btn', function(event) {
+  event.preventDefault();
+  console.log($(this).data('done'));
+  let order_id = $(this).data('done');
+  $('.order-card').empty();
+  updateOrder(order_id, 'done')
+    .then(res => renderOrder());
+});

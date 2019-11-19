@@ -33,9 +33,12 @@ module.exports = (db) => {
     // console.log(orderId, restaurantId)
     // console.log('status', typeof status)
     if(restaurantId && orderId) {
-      database.updateOrderStatus(orderId, status);
+      database.updateOrderStatus(orderId, status)
+        .then(dbres => res.send(dbres))
+        .catch(err => res.status(500).send(err));
+      return;
     }
-
+    res.status(406).send({message: 'Failed updating the order'});
   });
 
 
