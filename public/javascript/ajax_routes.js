@@ -46,3 +46,11 @@ function submitOrder(data) {
     url: "/restaurants"
   })
 }
+
+function updateOrder(data, status) {
+  return $.ajax({
+    method: "POST",
+    url: `orders/${data.order_id}`,
+    data: {status: status , user_id: data.user_id, estimate: data.estimate}
+  })
+}

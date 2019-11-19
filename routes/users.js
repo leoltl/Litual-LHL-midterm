@@ -5,12 +5,12 @@
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
-const database = require('../server/database.js');
 const express = require('express');
 const router  = express.Router();
 const bcrypt = require('bcrypt');
 
 module.exports = (db) => {
+  const database = require('../server/database.js')(db);
   router.get("/", (req, res) => {
     db.query(`SELECT * FROM users;`)
       .then(data => {

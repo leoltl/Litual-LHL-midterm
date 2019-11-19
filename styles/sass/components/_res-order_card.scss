@@ -1,9 +1,20 @@
 .order-card {
-  border: 1px solid black;
+  border: 0;
+  box-shadow: 0 2px 6px 0 hsla(0%, 0%, 0%, 0.3);
   .list-group-item > span.quantity {
     float:right;
   }
+  .card-title {
+    margin: 0;
+    padding: 0;
+  }
+  h5 {
+    color: $font-secondary-color
+  }
   h5 > span {
     float: right;
+  }
+  form {
+    display: inline;
   }
 }

@@ -12,10 +12,10 @@ $(() => {
   //localStorage.clear();
   loadCheckoutPage();
   localStorage.res > 0 ?
+        $('#main-content article').hide() &&
+        $('#restaurant-listing').hide() &&
         views_manager.show('res_order_viewer') :
         views_manager.show('food_options');
   console.log("start");
-  $('#main-content article').hide();
-  $('#restaurant-listing').hide();
   //views_manager.show('food_options');
 });

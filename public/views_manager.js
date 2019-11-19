@@ -66,7 +66,7 @@ $(() => {
     // $food_options.detach();
     $('#main-content .food-option').hide();
     $('#restaurant-listing').hide();
-    $res_order_viewer.hide();
+    $res_order_viewer.detach();
     $checkout_page.detach();
     $signUpForm.detach();
 
@@ -88,7 +88,6 @@ $(() => {
         break;
       case 'res_order_viewer':
         $res_order_viewer.appendTo($main);
-        $res_order_viewer.show();
         renderOrder();
         break;
       case 'error': {
