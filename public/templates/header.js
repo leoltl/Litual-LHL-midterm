@@ -39,7 +39,7 @@ $(() => {
       <a class="navbar-brand" id="brand" href="#">LitApp.JS</a>
       <p>Hello ${currentUser.name ? currentUser.name : currentUser.title}</p>
       <div>
-        <button>Logout</button>
+        <button class="logout_button">Logout</button>
       </div>
       </div>
     </nav>`);
@@ -48,22 +48,22 @@ $(() => {
     $pageHeader.append(header);
   }
 
-  updateHeader(undefined);
+  updateHeader(null);
 
   window.header.update = updateHeader;
 
-  function getMyDetails() {
-    console.log("getMyDetails");
-    return $.ajax({
-      url: "/users/me",
-    });
-  }
+  // function getMyDetails() {
+  //   console.log("getMyDetails");
+  //   return $.ajax({
+  //     url: "/users/me",
+  //   });
+  // }
 
 
   getMyDetails()
     .then(function( json ) {
-    updateHeader(json.user);
-  });
+      updateHeader(json.user);
+    });
 
   // $("header").on("click", '.my_reservations_button', function() {
   //   propertyListings.clearListings();
@@ -99,6 +99,8 @@ $(() => {
 
   $("header").on('click', '#login-btn', () => {
     console.log('login btn click')
+    // $('#main-content article').hide();
+    // $('#restaurant-listing').hide();
     views_manager.show('logIn');
   });
 

@@ -1,14 +1,14 @@
 function getMyDetails() {
   console.log("getMyDetails");
   return $.ajax({
-    url: "/users/me",
+    url: "api/users/me",
   });
 }
 
 function logOut() {
   return $.ajax({
     method: "POST",
-    url: "/users/logout",
+    url: "api/users/logout",
   })
 }
 
@@ -26,6 +26,12 @@ function signUp(data) {
     url: "/users",
     data
   });
+}
+
+function showMenu() {
+  return $.ajax({
+    url: "api/restaurants/me"
+  })
 }
 
 function submitOrder(data) {

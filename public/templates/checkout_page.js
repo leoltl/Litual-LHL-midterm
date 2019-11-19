@@ -10,7 +10,10 @@
 */
 
 window.loadCheckoutPage = () => {
-
+  const total = parseInt(localStorage.item1Quantity)*parseInt(localStorage.item1Price) +
+  parseInt(localStorage.item2Quantity)*parseInt(localStorage.item2Price) +
+  parseInt(localStorage.item3Quantity)*parseInt(localStorage.item3Price);
+  console.log(total);
   const $checkout_page = $(`
   <!-- start checkout_page component -->
       <section class="cart">
@@ -26,50 +29,50 @@ window.loadCheckoutPage = () => {
           </thead>
           <tbody>
 
-          ${(parseInt(localStorage.item1) > 0) ?
+          ${(parseInt(localStorage.item1Quantity) > 0) ?
             ` <!-- start checkout-item component-->
             <tr class="item-row checkout-item" data-foodId="1">
               <td class="item">
-                <p>Overpriced Salad</p>
-                <small><a class="remove-item">Remove Item</a></small>
+                <p>${localStorage.item1Name}</p>
+                <small><a id="removeItem1" class="remove-item">Remove Item</a></small>
               </td>
-              <td class="unit-price">$19.99</td>
+              <td class="unit-price">$${parseInt(localStorage.item1Price)}</td>
               <td class="quantity">
-                <input value=${parseInt(localStorage.item1)} type="number" min=0>
+                <input id="quantity1" value=${parseInt(localStorage.item1Quantity)} type="number" min=1>
               </td>
-              <td class="subtotal">$19.99</td>
+              <td class="subtotal">$${parseInt(localStorage.item1Quantity)*parseInt(localStorage.item1Price)}</td>
             </tr>
             <!-- end checkout-item component-->`
            : ""}
 
-           ${(parseInt(localStorage.item2) > 0) ?
+           ${(parseInt(localStorage.item2Quantity) > 0) ?
             ` <!-- start checkout-item component-->
             <tr class="item-row checkout-item" data-foodId="2">
               <td class="item">
-                <p>Jay's Favorite</p>
-                <small><a class="remove-item">Remove Item</a></small>
+                <p>${localStorage.item2Name}</p>
+                <small><a id="removeItem2" class="remove-item">Remove Item</a></small>
               </td>
-              <td class="unit-price">$19.99</td>
+              <td class="unit-price">$${parseInt(localStorage.item2Price)}</td>
               <td class="quantity">
-                <input value=${parseInt(localStorage.item2)} type="number" min=0>
+                <input id="quantity2" value=${parseInt(localStorage.item2Quantity)} type="number" min=1>
               </td>
-              <td class="subtotal">$19.99</td>
+              <td class="subtotal">$${parseInt(localStorage.item2Quantity)*parseInt(localStorage.item2Price)}</td>
             </tr>
             <!-- end checkout-item component-->`
            : ""}
 
-           ${(parseInt(localStorage.item3) > 0) ?
+           ${(parseInt(localStorage.item3Quantity) > 0) ?
             ` <!-- start checkout-item component-->
             <tr class="item-row checkout-item" data-foodId="3">
               <td class="item">
-                <p>TexMex Bowl</p>
-                <small><a class="remove-item">Remove Item</a></small>
+                <p>${localStorage.item3Name}</p>
+                <small><a id="removeItem3" class="remove-item">Remove Item</a></small>
               </td>
-              <td class="unit-price">$19.99</td>
+              <td class="unit-price">$${parseInt(localStorage.item3Price)}</td>
               <td class="quantity">
-                <input value=${parseInt(localStorage.item3)} type="number" min=0>
+                <input id="quantity3" value=${parseInt(localStorage.item3Quantity)} type="number" min=1>
               </td>
-              <td class="subtotal">$19.99</td>
+              <td class="subtotal">$${parseInt(localStorage.item3Quantity)*parseInt(localStorage.item3Price)}</td>
             </tr>
             <!-- end checkout-item component-->`
            : ""}
@@ -80,25 +83,65 @@ window.loadCheckoutPage = () => {
                 <th scope="col"></th>
                 <th scope="col"></th>
                 <th scope="col">Total:</th>
-                <th scope="col">$39.98</th>
+                <th scope="col">$${total}</th>
               </tr>
           </tfoot>
         </table>
         <div class="cart-action">
           <input id="cart-checkout-btn" type="submit" value="Confirm Order" class="call-to-action btn">
           <br />
-          <small><a class="remove-item">Cancel</a></small>
+          <small><a id="cancel" class="remove-item">Cancel</a></small>
         </div>
       </section>
       <!-- end checkout_page component -->`);
 
   window.$checkout_page = $checkout_page;
   //console.log(localStorage);
-
-  $('body').on('click', ".remove-item", function() {
-    views_manager.show('food_options');
-    return false;
-  });
-
-
 };
+
+$('body').on('click', "#cancel", function() {
+  views_manager.show('food_options');
+  let totalItemsInCart = parseInt(localStorage["item1Quantity"]) + parseInt(localStorage["item2Quantity"]) + parseInt(localStorage["item3Quantity"]);
+  $("footer p").text(`items in cart: ${totalItemsInCart}`);
+  $("footer").show();
+  return false;
+});
+
+$('body').on('click', "#removeItem1", function() {
+  localStorage.setItem("item1Quantity", "0");
+  views_manager.show('checkout');
+  return false;
+});
+
+$('body').on('click', "#removeItem2", function() {
+  localStorage.setItem("item2Quantity", "0");
+  views_manager.show('checkout');
+  return false;
+});
+
+$('body').on('click', "#removeItem3", function() {
+  localStorage.setItem("item3Quantity", "0");
+  views_manager.show('checkout');
+  return false;
+});
+
+$('body').on('change', "#quantity1", function() {
+  console.log("changed 1");
+  console.log($(this).val());
+  localStorage.setItem("item1Quantity", $(this).val().toString());
+  views_manager.show('checkout');
+});
+
+$('body').on('change', "#quantity2", function() {
+  console.log("changed 2");
+  localStorage.setItem("item2Quantity", $(this).val().toString());
+  views_manager.show('checkout');
+});
+
+$('body').on('change', "#quantity3", function() {
+  console.log("changed 3");
+  localStorage.setItem("item3Quantity", $(this).val().toString());
+  views_manager.show('checkout');
+});
+
+
