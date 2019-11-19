@@ -68,6 +68,7 @@ $(() => {
     $('#restaurant-listing').hide();
     $res_order_viewer.hide();
     $checkout_page.detach();
+    $signUpForm.detach();
 
     switch (item) {
       case 'food_options':
@@ -82,8 +83,8 @@ $(() => {
         loadCheckoutPage();
         $checkout_page.appendTo($main);
         break;
-      case 'register':
-        $signup_form.appendTo($main);
+      case 'signUp':
+        $signUpForm.appendTo($main);
         break;
       case 'res_order_viewer':
         $res_order_viewer.appendTo($main);

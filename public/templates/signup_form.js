@@ -5,7 +5,7 @@ $(() => {
         <p>Sign Up</p>
 
         <div class="sign-up-form__field-wrapper">
-            <input type="text" name="name" placeholder="Username">
+            <input type="text" name="name" placeholder="Name">
           </div>
 
         <div class="sign-up-form__field-wrapper">
@@ -17,7 +17,8 @@ $(() => {
         </div>
 
         <div class="sign-up-form__field-wrapper">
-          <input type="tel" name="phone-number" placeholder="Phone Number">
+          <input type="tel" name="phone-number" placeholder="Phone Number" pattern="[0-9]{10}" required>
+          <span>Format: 6471239876</span>
         </div>
 
         <div class="sign-up-form__field-wrapper">
@@ -33,16 +34,32 @@ $(() => {
     event.preventDefault();
 
     const data = $(this).serialize();
-    signUp(data)
+    console.log(data);
+
+    /* signUp(data)
       .then(getMyDetails)
       .then((json) => {
         header.update(json.user);
         views_manager.show('food_options');
-      });
+      }); */
   });
 
   $('body').on('click', '#sign-up-form__cancel', function() {
+    event.preventDefault();
     views_manager.show('food_options');
+    let totalItemsInCart = 0;
+    let i = 1;
+    while (true) {
+      if (localStorage[`item${i}Quantity`]) {
+        totalItemsInCart += parseInt(localStorage[`item${i}Quantity`]);
+        i++;
+      } else {
+        break;
+      }
+    }
+    //let totalItemsInCart = parseInt(localStorage["item1Quantity"]) + parseInt(localStorage["item2Quantity"]) + parseInt(localStorage["item3Quantity"]);
+    $("footer p").text(`items in cart: ${totalItemsInCart}`);
+    $("footer").show();
     return false;
   });
 

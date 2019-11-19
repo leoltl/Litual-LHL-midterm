@@ -13,3 +13,8 @@ INSERT INTO foods (restaurant_id, name, price, photo_url, description) VALUES (
 'https://dynamicmedia.zuza.com/zz/m/original_/4/0/40d321ca-2ec2-4e10-82a1-d355f9081393/B823566265Z.1_20170927054258_000_GHL1V9ISF.2_Super_Portrait.jpg',
 'Expensive'
 );
+INSERT INTO foods (restaurant_id, name, price, photo_url, description) VALUES (
+1, 'Disgusting Burger', 100,
+'https://assets.bonappetit.com/photos/5d1cb1880813410008e914fc/16:9/w_2560,c_limit/Print-Summer-Smash-Burger.jpg',
+'GROSS NOT HEALTHY!'
+);
