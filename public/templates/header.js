@@ -18,7 +18,6 @@ $(() => {
   let currentUser = null;
   function updateHeader(user) {
     currentUser = user;
-    console.log(currentUser);
     $pageHeader.find("nav").remove();
     let header;
     if (!user) {
@@ -112,7 +111,9 @@ $(() => {
 
   $("header").on('click', '.logout_button', () => {
     logOut().then(() => {
+      localStorage.removeItem('res');
       header.update(null);
+      views_manager.show('food_options');
     });
   });
 

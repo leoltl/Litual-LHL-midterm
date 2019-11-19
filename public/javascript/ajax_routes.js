@@ -1,5 +1,4 @@
 function getMyDetails() {
-  console.log("getMyDetails");
   return $.ajax({
     url: "api/users/me",
   });

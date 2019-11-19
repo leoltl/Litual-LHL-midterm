@@ -42,8 +42,8 @@ const addOrder =  async function (userId, order) {
     `;
     const dbRes = await db.query(orderTableinsert, [restaurant_id, userId]);
     const orderID = dbRes.rows[0].id;
-    
-    // insert the order into orderItem bridge table 
+
+    // insert the order into orderItem bridge table
     const { items } = order;
     const insertValues = items.map(item => `('${orderID}', '${item.foodid}', '${item.quantity}')`).join(',');
     const fullQuery = `
@@ -55,31 +55,31 @@ const addOrder =  async function (userId, order) {
   } catch (e) {
     console.log(e);
   }
-  
+
 }
 
 const getAllOrders = function (restaurant_id) {
   return db.query(`
-    SELECT * FROM orders 
+    SELECT * FROM orders
     JOIN orderItems ON (orders.id = orderItems.order_id)
-    WHERE orders.restaurant_id = ${restaurant_id};`)
+    WHERE orders.restaurant_id = $1;` ,[restaurant_id])
 }
 
 const getOrder = function(order_id) {
   return db.query(`
     SELECT * FROM orders
-    JOIN orderItems ON (orders.id = orderItems.order_id)  
-    WHERE orders.id = ${order_id};  
-  `)
+    JOIN orderItems ON (orders.id = orderItems.order_id)
+    WHERE orders.id = $1;
+  `, [order_id])
 
 }
 
 const updateOrderStatus = function(order_id, status) {
   return db.query(`
   UPDATE orders
-  SET status = ${status}
-  WHERE orders.id = order_id;
-  `)
+  SET status = $2
+  WHERE orders.id = $1;
+  `, [order_id, status])
 }
 
 // Restaurant based queries and responses

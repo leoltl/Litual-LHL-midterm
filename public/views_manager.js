@@ -83,10 +83,11 @@ $(() => {
         break;
       case 'register':
         $signup_form.appendTo($main);
+        break;
       case 'res_order_viewer':
         $res_order_viewer.appendTo($main);
         $res_order_viewer.show();
-
+        break;
       case 'error': {
         const $error = $(`<p>${arguments[1]}</p>`);
         $error.appendTo('body');
