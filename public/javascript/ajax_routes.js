@@ -47,10 +47,10 @@ function submitOrder(data) {
   })
 }
 
-function updateOrder(order_id, status) {
+function updateOrder(data, status) {
   return $.ajax({
     method: "POST",
-    url: `orders/${order_id}`,
-    data: { status: status }
+    url: `orders/${data.order_id}`,
+    data: {status: status , user_id: data.user_id, estimate: data.estimate}
   })
 }

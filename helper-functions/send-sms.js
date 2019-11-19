@@ -1,9 +1,8 @@
+const accountSid = 'AC04797f986e3f1c3f9a1aeb5084f75991';
+const authToken = 'd190c7a6e081ed2d834185d76031fb8b';
+const client = require('twilio')(accountSid, authToken);
 //I think it will be easier to send the entire message string into the body when we call the helper function
 const sendSMS = function (MO, MT, body) {
-  const accountSid = 'AC04797f986e3f1c3f9a1aeb5084f75991';
-  const authToken = 'd190c7a6e081ed2d834185d76031fb8b';
-
-  const client = require('twilio')(accountSid, authToken);
   client.messages.create({
     to: '+1' + MT,
     from: MO,
@@ -12,7 +11,7 @@ const sendSMS = function (MO, MT, body) {
   .then((message) => console.log(message));
 }
 
-module.exports = { sendSMS };
+module.exports = sendSMS;
 
 //to test this remember to install npm package. npm install twilio
 //testing
@@ -22,4 +21,4 @@ const MO = '+16476998007'; //twilio
 const MT = '4169106793'; //jay
 const message = 'lol hi';
 
-sendSMS(MO, MT, message);
+// sendSMS(MO, MT, message);

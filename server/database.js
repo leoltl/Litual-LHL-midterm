@@ -1,8 +1,7 @@
 // this file should contain all database related helper functions that query the DB
-const db = require('./db.js');
 
 // User based queries and insertions
-
+module.exports = (db) => {
 const getUserWithId = function(id) {
   return db.query(`
     SELECT *
@@ -110,8 +109,8 @@ const getMenu = function(resId) {
   `, [resId])
   .then(res => res.rows ? res.rows : null);
 }
-
-module.exports = { getUserWithId, getUserWithEmail, addUser, addOrder, getMenu, getRestaurantWithId, getAllOrders,
+return { getUserWithId, getUserWithEmail, addUser, addOrder, getMenu, getRestaurantWithId, getAllOrders,
   getOrder,
   updateOrderStatus };
+}
 

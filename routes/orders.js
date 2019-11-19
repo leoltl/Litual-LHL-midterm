@@ -5,11 +5,28 @@
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
-const database = require('../server/database.js');
+ const statusCheck = (status, estimate) => {
+  let result = '';
+  switch (status) {
+    case 'accepted':
+      result += `Your order has been accepted! It will be ready in approximately ${estimate} minutes`;
+      break;
+    case 'rejected':
+      result += 'Your order has been rejected... Try another restaurant!';
+      break;
+    case 'done':
+      result += 'Your order is ready for pickup!';
+      break;
+   }
+   return result;
+ }
+
 const express = require('express');
 const router  = express.Router();
+const sendSMS = require('../helper-functions/send-sms');
 
 module.exports = (db) => {
+  const database = require('../server/database.js')(db);
 
   /* Route to get individual order */
   router.get('/:id', (req, res) => {
@@ -29,16 +46,18 @@ module.exports = (db) => {
   router.post('/:id', (req, res) => {
     const restaurantId = req.session.userId;
     const orderId = req.params.id;
-    const {status} = req.body;
-    // console.log(orderId, restaurantId)
-    // console.log('status', typeof status)
+    const {status, user_id, estimate} = req.body;
+
     if(restaurantId && orderId) {
       database.updateOrderStatus(orderId, status)
-        .then(dbres => res.send(dbres))
+        .then(dbres => {
+          res.send(dbres);
+          return database.getUserWithId(parseInt(user_id))
+            .then(dbres2 => sendSMS('+16476998007', dbres2.phone.toString(), statusCheck(status, estimate)));
+        })
         .catch(err => res.status(500).send(err));
-      return;
     }
-    res.status(406).send({message: 'Failed updating the order'});
+    //res.status(406).send({message: 'Failed updating the order'});
   });
 
 
@@ -65,6 +84,7 @@ module.exports = (db) => {
 
   /* Route to get all the Orders from restaurant-id */
   router.get('/', (req, res) => {
+    console.log('inside get /')
     const restaurantId = req.session.userId;
     if (restaurantId) {
     database.getAllOrders(restaurantId)

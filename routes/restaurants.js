@@ -5,11 +5,11 @@
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
-const database = require('../server/database.js');
 const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
+  const database = require('../server/database.js')(db);
 
   router.get("/", (req, res) => {
     let query = `SELECT * FROM restaurants`;
