@@ -14,13 +14,12 @@ INSERT INTO foods (restaurant_id, name, price, photo_url, description) VALUES (
 'Expensive'
 );
 INSERT INTO foods (restaurant_id, name, price, photo_url, description) VALUES (
-<<<<<<< HEAD
 1, 'Disgusting Burger', 100,
 'https://assets.bonappetit.com/photos/5d1cb1880813410008e914fc/16:9/w_2560,c_limit/Print-Summer-Smash-Burger.jpg',
 'GROSS NOT HEALTHY!'
-=======
+);
+INSERT INTO foods (restaurant_id, name, price, photo_url, description) VALUES (
 1, 'test salad', 10,
 'http://www.todayifoundout.com/wp-content/uploads/2016/05/breakfast-cereal-640x427.png',
 'lol'
->>>>>>> 2bb48bd6754af39c41cb6d0fa7eb3fc0c400b3c7
 );
