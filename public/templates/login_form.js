@@ -34,6 +34,7 @@ $(() => {
         }
         console.log(json.user.title);
         header.update(json.user);
+        localStorage.setItem("logIn", "true");
         if (json.user.title !== undefined)  {
           views_manager.show('res_order_viewer');
           localStorage.setItem('res', `${json.user.id}`);

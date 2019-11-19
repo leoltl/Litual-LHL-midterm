@@ -196,7 +196,12 @@ $('body').on('change', "#quantity3", function() {
 }); */
 
 $('body').on('click', "#cart-checkout-btn", function() {
-  console.log("yes");
+  if (!localStorage["logIn"]) {
+    views_manager.show("logIn");
+  } else {
+    console.log("order sent");
+  }
+
 });
 
 

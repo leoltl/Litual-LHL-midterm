@@ -63,7 +63,7 @@ $(() => {
     $restaurant_carousel.detach();
     $restaurant_listing.detach(); */
     $logInForm.detach();
-    // $food_options.detach();
+    //$food_options.detach();
     $('#main-content .food-option').hide();
     $('#restaurant-listing').hide();
     $res_order_viewer.detach();
