@@ -52,12 +52,12 @@ $(() => {
 
   window.header.update = updateHeader;
 
-  // function getMyDetails() {
-  //   console.log("getMyDetails");
-  //   return $.ajax({
-  //     url: "/users/me",
-  //   });
-  // }
+  function getMyDetails() {
+    console.log("getMyDetails");
+    return $.ajax({
+      url: "/users/me",
+    });
+  }
 
 
   getMyDetails()

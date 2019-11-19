@@ -33,8 +33,6 @@ function showMenu() {
   })
 }
 
-<<<<<<< HEAD
-=======
 function findOrders(restaurantId) {
   return $.ajax({
     url: "/orders",
@@ -42,7 +40,6 @@ function findOrders(restaurantId) {
   })
 }
 
->>>>>>> 7a236c4bb43219e53694e8307b7199b6685a013e
 function submitOrder(data) {
   return $.ajax({
     method: "POST",
