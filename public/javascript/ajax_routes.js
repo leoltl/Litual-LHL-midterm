@@ -34,7 +34,7 @@ function showMenu() {
   })
 }
 
-function findOrder(restaurantId) {
+function findOrders(restaurantId) {
   return $.ajax({
     url: "/orders",
     data: restaurantId

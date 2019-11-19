@@ -23,11 +23,17 @@ $(() => {
       </section>
   `);
 
-  
-  
   window.$res_order_viewer = $res_order_viewer;
   $('main').append($res_order_viewer);
 });
+
+function renderOrder () {
+  // hard coded to restaurant id 1;
+  findOrders(1)
+    .then(res => groupByOrderID(res.orders))
+    .then(results => {
+      results.forEach(order => createOrderCard(order))});
+}
 
 function groupByOrderID (orders) {
   let groupedOrders = {}
@@ -44,9 +50,8 @@ function groupByOrderID (orders) {
       groupedOrders[order.order_id] = obj;
     }
   });
-
-  return groupedOrders;
-}
+  return Object.keys(groupedOrders).map(key => groupedOrders[key]);
+};
 
 function createOrderCard (order) {
   orderItems = "";
@@ -56,7 +61,6 @@ function createOrderCard (order) {
     }
   });
 
-  order.status === "pending" ? '#pending' : '#accepted';
   $(`${order.status === "pending" ? '#pending' : '#accepted'}`).append($(`<article class="order-card card">
               <div class="card-body" id="${order.order_id}">
                 <h5 class="card-title">Order #${order.order_id}<span>${order.status}</span></h5>
@@ -72,13 +76,3 @@ function createOrderCard (order) {
             `));
 }
 
-function renderOrder () {
-  findOrder(1)
-    .then(res => groupByOrderID(res.orders))
-    .then(results => {
-      Object.keys(results).forEach(key => {
-        createOrderCard(results[key], key);
-      })
-    
-    });
-}
