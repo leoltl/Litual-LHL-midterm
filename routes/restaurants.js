@@ -44,6 +44,11 @@ module.exports = (db) => {
       .catch(err => res.send(err));
   });
 
+  router.post('/info', (req, res) => {
+    database.getRestaurantWithId(req.body.data)
+      .then(dbres => res.send(dbres));
+  })
+
 
   return router;
 };

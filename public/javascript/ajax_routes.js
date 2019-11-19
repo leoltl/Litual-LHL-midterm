@@ -33,6 +33,14 @@ function showMenu() {
   })
 }
 
+function findRestaurant(data) {
+  return $.ajax({
+    method: "POST",
+    url: "api/restaurants/info",
+    data : {data}
+  })
+}
+
 function findOrders(restaurantId) {
   return $.ajax({
     url: "/orders",
