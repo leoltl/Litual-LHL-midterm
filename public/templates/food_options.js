@@ -7,15 +7,19 @@
 */
 
 $(() => {
-  // localStorage.setItem('restaurant_id', '1');
-  // let currentRes = Number(localStorage.getItem('restaurant_id'));
 
   function showRestaurant(item) {
+    localStorage.setItem('restaurant_id', item.restaurant_id.toString());
+
+    // let currentRes = Number(localStorage.getItem('restaurant_id'));
+
+    console.log(resInfo);
     const $restaurant_banner = $(`
       <section id="restaurant-listing" data-restaurantId="${item.restaurant_id}" >
-        <h1>BAAAM</h1>
+        <h1>${resInfo.res.title}</h1>
         <small>131 King Street, Toronto</small>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis modi atque corporis hic dolore ea aperiam laudantium eveniet provident quod? Minus, reprehenderit labore excepturi placeat vero quod ex nihil nobis.</p>
+        <p>${resInfo.res.phone}</p>
+        <p>${resInfo.res.email}</p>
       </section>
     `)
 
@@ -52,6 +56,19 @@ $(() => {
     $('#food-options').append($food_options);
   }
 
+  localStorage.restaurant_id = '1';
+
+  let resInfo = {};
+
+  const displayRes = async () => {
+    let res_id = parseInt(localStorage.restaurant_id);
+    await findRestaurant(res_id)
+      .then(res => resInfo.res = res)
+    return resInfo;
+  }
+
+  displayRes();
+
   showMenu()
     .then(function(json) {
       if (localStorage.res === undefined) {
@@ -61,6 +78,7 @@ $(() => {
         }
       }
     });
+
 
 
 
