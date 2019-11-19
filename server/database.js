@@ -72,8 +72,6 @@ const getOrder = function(order_id) {
     JOIN foods ON (orderItems.food_id = foods.id)
     WHERE orders.id = $1;
     `, [order_id])
-
-
 }
 
 const updateOrderStatus = function(order_id, status) {
