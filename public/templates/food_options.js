@@ -40,8 +40,7 @@ $(() => {
           <div class="buy-box">
             <h5 class="price-tag">$${item.price}/order</h5>
             <form action="/order" method="AJAXPOST--TODO">
-              <input type="number" min="0">
-              <input data-itemid="${item.id}" id="item${item.id}" class="add-to-cart call-to-action form-control" type="submit" value="Add To Cart">
+              <input data-itemid="${item.id}" class="add-to-cart call-to-action form-control" type="submit" value="Add To Cart">
             </form>
           </div>
         </article>
@@ -50,7 +49,9 @@ $(() => {
     `);
     localStorage.setItem(`item${item.id}Price`, item.price.toString());
     localStorage.setItem(`item${item.id}Name`, item.name);
-    localStorage.setItem(`item${item.id}Quantity`, "0");
+    if (!localStorage[`item${item.id}Quantity`]) {
+      localStorage.setItem(`item${item.id}Quantity`, "0");
+    }
     console.log(localStorage[`item${item.id}Price`]);
     window.$food_options = $food_options;
     $('#food-options').append($food_options);
@@ -83,6 +84,17 @@ $(() => {
 
 
   $(document).ready(function() {
+    let totalItemsInCart = 0;
+    let i = 1;
+    while (true) {
+      if (localStorage[`item${i}Quantity`]) {
+        totalItemsInCart += parseInt(localStorage[`item${i}Quantity`]);
+        i++;
+      } else {
+        break;
+      }
+    }
+    $("footer p").text(`items in cart: ${totalItemsInCart}`);
     //console.log("yo", localStorage[`item1Quantity`]);
     /* let item1Quantity = localStorage[`item1Quantity`] ? parseInt(localStorage[`item1Quantity`]) : 0;
     let item2Quantity = localStorage[`item2Quantity`] ? parseInt(localStorage[`item2Quantity`]) : 0;
@@ -93,7 +105,7 @@ $(() => {
     localStorage.setItem("item3Quantity", "0");
     console.log(localStorage["item4Quantity"]); */
 
-    $("footer").hide();
+    //$("footer").hide();
 
     //parseInt($("footer").text().split(":")[1].trim());
 

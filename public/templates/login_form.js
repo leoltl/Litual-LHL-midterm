@@ -45,9 +45,24 @@ $(() => {
   });
 
   $('body').on('click', '#login-form__cancel', function() {
+    event.preventDefault();
     views_manager.show('food_options');
-    $logInForm.detach();
-    return false;
+    let totalItemsInCart = 0;
+    let i = 1;
+    while (true) {
+      if (localStorage[`item${i}Quantity`]) {
+        totalItemsInCart += parseInt(localStorage[`item${i}Quantity`]);
+        i++;
+      } else {
+        break;
+      }
+    }
+    //let totalItemsInCart = parseInt(localStorage["item1Quantity"]) + parseInt(localStorage["item2Quantity"]) + parseInt(localStorage["item3Quantity"]);
+    $("footer p").text(`items in cart: ${totalItemsInCart}`);
+    $("footer").show();
+    // views_manager.show('food_options');
+    // $logInForm.detach();
+    // return false;
   });
 
 });
