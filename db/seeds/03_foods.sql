@@ -19,6 +19,11 @@ INSERT INTO foods (restaurant_id, name, price, photo_url, description) VALUES (
 'GROSS NOT HEALTHY!'
 );
 INSERT INTO foods (restaurant_id, name, price, photo_url, description) VALUES (
+2, 'test salad', 10,
+'http://www.todayifoundout.com/wp-content/uploads/2016/05/breakfast-cereal-640x427.png',
+'lol'
+);
+INSERT INTO foods (restaurant_id, name, price, photo_url, description) VALUES (
 1, 'test salad', 10,
 'http://www.todayifoundout.com/wp-content/uploads/2016/05/breakfast-cereal-640x427.png',
 'lol'
