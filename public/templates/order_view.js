@@ -26,16 +26,15 @@ $(() => {
 
   function renderOrders(ordersRes) {
     clearOrders();
-    $("footer").hide();
     const ordersArr = [...ordersRes.orders]
     const pendingOrders = ordersArr.filter(order => order.status === 'pending');
     const acceptedOrders = ordersArr.filter(order => order.status === 'accepted');
     pendingOrders.forEach(order => addCardToDom(createOrderCard(order), '#pending'));
     acceptedOrders.forEach(order => addCardToDom(createOrderCard(order), '#accepted'));
   }
-  
+
   window.$order_view.renderOrders = renderOrders;
-  
+
   function addCardToDom(el, domSelector) {
     $(`${domSelector}`).append(el);
   }
@@ -70,7 +69,7 @@ $(() => {
     event.preventDefault();
     $(this).siblings('form').toggleClass('hidden');
   });
-  
+
   $("main").on('click', '#reject-btn', function(event) {
     event.preventDefault();
     console.log($(this).data('reject'));
@@ -81,7 +80,7 @@ $(() => {
     updateOrder(data, 'rejected')
       .then(res => renderOrderView());
   });
-  
+
   $("main").on('click', '#submit-btn', function(event) {
     event.preventDefault();
     console.log($(this).data('submit'));
@@ -94,7 +93,7 @@ $(() => {
     updateOrder(data, 'accepted')
       .then(res => renderOrderView());
   });
-  
+
   $("main").on('click', '#done-btn', function(event) {
     event.preventDefault();
     console.log($(this).data('done'));
