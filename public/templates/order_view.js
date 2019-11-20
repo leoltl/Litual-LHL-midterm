@@ -26,6 +26,7 @@ $(() => {
 
   function renderOrders(ordersRes) {
     clearOrders();
+    $("footer").hide();
     const ordersArr = [...ordersRes.orders]
     const pendingOrders = ordersArr.filter(order => order.status === 'pending');
     const acceptedOrders = ordersArr.filter(order => order.status === 'accepted');
