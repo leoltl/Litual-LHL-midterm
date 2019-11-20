@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "sass styles/sass/main.scss:public/styles/styles.css && node server.js",
-    "local": "./node_modules/.bin/nodemon -L ",
+    "local": "./node_modules/.bin/nodemon -L server.js local",
     "build-sass": "sass --watch styles/sass/main.scss:public/styles/styles.css",
     "db:reset": "node bin/resetdb.js"
   },
