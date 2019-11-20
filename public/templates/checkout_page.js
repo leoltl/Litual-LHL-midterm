@@ -259,12 +259,22 @@ $('body').on('click', "#cart-checkout-btn", function() {
       restaurant_id: parseInt(localStorage.restaurant_id),
       orderItems: orderItems
     };
-    console.log('order items after loop, before submit', orderItems)
+    console.log('order items after loop, before submit', orderItems);
 
     console.log(data);
-    submitOrder(data);
-    console.log('order items after loop, after submit', orderItems)
-    alert('Your order has been submitted! Check your phone for updates')
+    if (orderItems.length === 0){
+      alert("No Items in Cart, Please add menu");
+    } else {
+      submitOrder(data);
+      console.log('order items after loop, after submit', orderItems);
+      alert('Your order has been submitted! Check your phone for updates');
+      for (let item of JSON.parse(localStorage[`itemsIdArray`])) {
+        if (localStorage[`item${item}Quantity`]) {
+          localStorage.setItem(`item${item}Quantity`, "0");
+        }
+      }
+    }
+    updateCartTotal();
     views_manager.show('food_options');
     // call clear cart function here
   }
