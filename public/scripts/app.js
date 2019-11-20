@@ -19,5 +19,6 @@ $(() => {
         views_manager.show('order_view') :
         views_manager.show('food_options');
   console.log("start");
+
   //views_manager.show('food_options');
 });

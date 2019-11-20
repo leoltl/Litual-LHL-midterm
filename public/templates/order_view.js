@@ -25,6 +25,7 @@ $(() => {
   }
 
   function renderOrders(ordersRes) {
+    poll();
     clearOrders();
     const ordersArr = [...ordersRes.orders]
     const pendingOrders = ordersArr.filter(order => order.status === 'pending');
@@ -32,6 +33,24 @@ $(() => {
     pendingOrders.forEach(order => addCardToDom(createOrderCard(order), '#pending'));
     acceptedOrders.forEach(order => addCardToDom(createOrderCard(order), '#accepted'));
   }
+<<<<<<< HEAD
+=======
+  
+
+  var poll = function () {
+    $.ajax({
+      url:'poll',
+      success: function(data) {
+        findOrders(1).then(res => $order_view.renderOrders(res));
+        poll();
+      }, 
+      error: function() {
+        poll();
+      },
+      timeout: 30000
+    })
+  };
+>>>>>>> 21a0b6e35c37f82d5e6dede973bc3f749a03b907
 
   window.$order_view.renderOrders = renderOrders;
 
