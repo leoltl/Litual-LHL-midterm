@@ -45,9 +45,16 @@ module.exports = (db) => {
   });
 
   router.post('/info', (req, res) => {
+    let info = {};
     database.getRestaurantWithId(req.body.data)
-      .then(dbres => res.send(dbres));
-  })
+      .then(dbres => {
+        info.id = dbres.id;
+        info.title = dbres.title;
+        info.phone = dbres.phone;
+        info.email = dbres.email;
+        res.send(info);
+      });
+    });
 
 
   return router;
