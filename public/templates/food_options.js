@@ -74,6 +74,8 @@ $(() => {
     .then(function(json) {
       if (localStorage.res === undefined) {
         showRestaurant(json.menu[0])
+        localStorage.setItem("restaurant_id", json.menu[0].id.toString());
+        console.log("res id", json.menu[0].id);
         for (let item of json.menu) {
           updateMenu(item)
         }
@@ -84,6 +86,9 @@ $(() => {
 
 
   $(document).ready(function() {
+
+    console.log()
+
     let totalItemsInCart = 0;
     let i = 1;
     while (true) {
