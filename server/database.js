@@ -43,8 +43,8 @@ const addOrder =  async function (userId, order) {
     const orderID = dbRes.rows[0].id;
 
     // insert the order into orderItem bridge table
-    const { items } = order;
-    const insertValues = items.map(item => `('${orderID}', '${item.foodid}', '${item.quantity}')`).join(',');
+    const { orderItems } = order;
+    const insertValues = orderItems.map(item => `('${orderID}', '${item.foodid}', '${item.quantity}')`).join(',');
     const fullQuery = `
     INSERT INTO orderItems (order_id, food_id, quantity)
     VALUES
@@ -58,7 +58,7 @@ const addOrder =  async function (userId, order) {
 
 const getAllOrders = function (restaurant_id) {
   return db.query(`
-    SELECT * FROM orders
+    SELECT orderItems.order_id, orderItems.quantity, orders.status, orders.user_id, foods.name, foods.id AS food_id FROM orders
     JOIN orderItems ON (orders.id = orderItems.order_id)
     JOIN foods ON (orderItems.food_id = foods.id)
     WHERE orders.restaurant_id = $1;` ,[restaurant_id])

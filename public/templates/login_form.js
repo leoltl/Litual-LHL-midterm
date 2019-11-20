@@ -32,12 +32,13 @@ $(() => {
           views_manager.show('error', 'Failed to login');
           return;
         }
-        console.log(json.user.title);
         header.update(json.user);
         localStorage.setItem("logIn", "true");
         if (json.user.title !== undefined)  {
-          views_manager.show('res_order_viewer');
-          localStorage.setItem('res', `${json.user.id}`);
+          findOrders(1).then(res => $order_view.renderOrders(res));
+          views_manager.show('order_view');
+          localStorage.setItem('res', `${json.user.id}`)
+
         } else {
           views_manager.show('food_options');
           localStorage.removeItem('res');

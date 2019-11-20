@@ -4,13 +4,17 @@ section#restaurant-listing {
   padding: 0.5rem;
   margin: 2px;
   text-align: center;
-  background-color: $light-shades;
+  background-image: url("https://i.imgur.com/F4m0XZY.png");
   border: 2px solid $dark-accent;
   p {
     color: $font-secondary-color;
   }
   > * {
     margin: 0.5rem;
+  }
+
+  .information {
+    background: rgba(0, 0, 0, 0.3);
   }
 
   @media only screen and (min-width: 800px) {

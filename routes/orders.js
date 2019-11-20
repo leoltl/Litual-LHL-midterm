@@ -71,11 +71,13 @@ module.exports = (db) => {
   */
   router.post('/', (req, res) => {
     const { userId } = req.session;
-    const { order } = req.body;
+    const order = req.body;
+    console.log(order)
     if (userId && order) {
     database.addOrder(userId, order)
       .then(dbres => res.send({ orders: dbres.rows }))
       .catch(err => res.status(500).send({ message: err }));
+      console.log('order sent!')
     return;
     }
     res.status(406).send({message: 'Failed placing the order'});
@@ -84,11 +86,11 @@ module.exports = (db) => {
 
   /* Route to get all the Orders from restaurant-id */
   router.get('/', (req, res) => {
-    console.log('inside get /')
     const restaurantId = req.session.userId;
     if (restaurantId) {
     database.getAllOrders(restaurantId)
-      .then(dbres => res.send({ orders: dbres.rows }))
+      .then(dbres => groupByOrderID(dbres.rows))
+      .then(orders => res.send({ orders }))
       .catch(err => res.status(500).send({ message: err }));
     return;
     }
@@ -96,4 +98,35 @@ module.exports = (db) => {
   })
 
   return router;
+};
+
+
+/*Group database response to format that is used in front-end
+  examples:
+  input: [ { order_id: 1, quantity: 2, status: 'pending', user_id: 3, name: 'Jays Favorite', food_id: 2 },
+           { order_id: 1,  quantity: 1,  status: 'pending',  user_id: 3, name: 'Texmex Bowl', food_id: 1 }]
+  output:[ { items: { 'Jays Favorite': 2, 'Texmex Bowl': 1 },
+             status: 'pending',
+             order_id: 1,
+             user_id: 3 } ]
+*/
+function groupByOrderID (orderItems) {
+  let groupedOrders = {}
+  orderItems.forEach(item => {
+    if (groupedOrders[item.order_id]) {
+      groupedOrders[item.order_id]['items'][item.name] = item.quantity;
+      groupedOrders[item.order_id]['status'] = item.status;
+      groupedOrders[item.order_id]['order_id'] = item.order_id;
+      groupedOrders[item.order_id]['user_id'] = item.user_id;
+    } else {
+      obj = {}
+      obj['items'] = {}
+      obj['items'][item.name] = item.quantity;
+      obj['status'] = item.status;
+      obj['order_id'] = item.order_id;
+      obj['user_id'] = item.user_id;
+      groupedOrders[item.order_id] = obj;
+    }
+  });
+  return Object.values(groupedOrders);
 };

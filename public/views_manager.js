@@ -63,10 +63,10 @@ $(() => {
     $restaurant_carousel.detach();
     $restaurant_listing.detach(); */
     $logInForm.detach();
-    //$food_options.detach();
+    // $food_options.detach();
     $('#main-content .food-option').hide();
     $('#restaurant-listing').hide();
-    $res_order_viewer.detach();
+    $order_view.detach();
     $checkout_page.detach();
     $signUpForm.detach();
 
@@ -86,9 +86,8 @@ $(() => {
       case 'signUp':
         $signUpForm.appendTo($main);
         break;
-      case 'res_order_viewer':
-        $res_order_viewer.appendTo($main);
-        renderOrder();
+      case 'order_view':
+        $order_view.appendTo($main);
         break;
       case 'error': {
         const $error = $(`<p>${arguments[1]}</p>`);

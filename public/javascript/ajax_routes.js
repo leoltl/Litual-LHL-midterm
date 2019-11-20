@@ -51,7 +51,8 @@ function findOrders(restaurantId) {
 function submitOrder(data) {
   return $.ajax({
     method: "POST",
-    url: "/restaurants"
+    url: "/orders",
+    data
   })
 }
 

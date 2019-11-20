@@ -15,7 +15,8 @@ $(() => {
   localStorage.res > 0 ?
         $('#main-content article').hide() &&
         $('#restaurant-listing').hide() &&
-        views_manager.show('res_order_viewer') :
+        findOrders(1).then(res => $order_view.renderOrders(res)) &&
+        views_manager.show('order_view') :
         views_manager.show('food_options');
   console.log("start");
   //views_manager.show('food_options');
