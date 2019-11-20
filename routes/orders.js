@@ -27,7 +27,7 @@ const router  = express.Router();
 const sendSMS = require('../helper-functions/send-sms');
 
 module.exports = (db) => {
-  const longpoll    = require("express-longpoll")(router);
+  const longpoll = require("express-longpoll")(router);
   const database = require('../server/database.js')(db);
 
   /* Route to get individual order */
