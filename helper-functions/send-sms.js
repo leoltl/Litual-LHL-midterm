@@ -1,5 +1,5 @@
 const accountSid = 'AC9776c27e20080b2c3fd6d6dc0dcc96b6';
-const authToken = '2800da4ef17d6bdc29637646e7840044';
+const authToken = 'b10fbe314cf1898a7a1a103e9577a532';
 const client = require('twilio')(accountSid, authToken);
 // //I think it will be easier to send the entire message string into the body when we call the helper function
 const sendSMS = function (MO, MT, body) {
