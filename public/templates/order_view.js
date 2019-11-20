@@ -44,7 +44,7 @@ $(() => {
         poll();
       },
       error: function() {
-        poll();
+        window.alert('server died')
       },
       timeout: 30000
     })
