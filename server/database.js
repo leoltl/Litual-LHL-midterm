@@ -58,7 +58,7 @@ const addOrder =  async function (userId, order) {
 
 const getAllOrders = function (restaurant_id) {
   return db.query(`
-    SELECT * FROM orders
+    SELECT orderItems.order_id, orderItems.quantity, orders.status, orders.user_id, foods.name, foods.id AS food_id FROM orders
     JOIN orderItems ON (orders.id = orderItems.order_id)
     JOIN foods ON (orderItems.food_id = foods.id)
     WHERE orders.restaurant_id = $1;` ,[restaurant_id])
