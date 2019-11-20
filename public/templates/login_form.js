@@ -34,6 +34,7 @@ $(() => {
         }
         header.update(json.user);
         localStorage.setItem("logIn", "true");
+
         if (json.user.title !== undefined)  {
           findOrders(1).then(res => $order_view.renderOrders(res));
           views_manager.show('order_view');
@@ -49,17 +50,8 @@ $(() => {
   $('body').on('click', '#login-form__cancel', function() {
     event.preventDefault();
     views_manager.show('food_options');
-    let totalItemsInCart = 0;
-    for (let item of JSON.parse(localStorage[`itemsIdArray`])) {
-      if (localStorage[`item${item}Quantity`]) {
-        totalItemsInCart += parseInt(localStorage[`item${item}Quantity`]);
-      }
-    }
-    //let totalItemsInCart = parseInt(localStorage["item1Quantity"]) + parseInt(localStorage["item2Quantity"]) + parseInt(localStorage["item3Quantity"]);
-    $("footer p").text(`items in cart: ${totalItemsInCart}`);
-    $("footer").show();
-    // views_manager.show('food_options');
-    // $logInForm.detach();
+    updateCartTotal();
+    footer.show();
     // return false;
   });
 

@@ -96,15 +96,16 @@ $(() => {
     console.log(localStorage[`itemsIdArray`]);
     console.log(JSON.parse(localStorage[`itemsIdArray`]));
 
+    updateCartTotal();
 
-    let totalItemsInCart = 0;
+    /* let totalItemsInCart = 0;
 
     for (let item of JSON.parse(localStorage[`itemsIdArray`])) {
       if (localStorage[`item${item}Quantity`]) {
         totalItemsInCart += parseInt(localStorage[`item${item}Quantity`]);
       }
     }
-
+ */
     //let i = 1;
     /* while (true) {
       if (localStorage[`item${i}Quantity`]) {
@@ -114,7 +115,7 @@ $(() => {
         break;
       }
     } */
-    $("footer p").text(`items in cart: ${totalItemsInCart}`);
+    //$("footer p").text(`items in cart: ${totalItemsInCart}`);
     //console.log("yo", localStorage[`item1Quantity`]);
     /* let item1Quantity = localStorage[`item1Quantity`] ? parseInt(localStorage[`item1Quantity`]) : 0;
     let item2Quantity = localStorage[`item2Quantity`] ? parseInt(localStorage[`item2Quantity`]) : 0;
@@ -174,7 +175,7 @@ $(() => {
       localStorage.setItem("item2Quantity", item2Quantity.toString());
       localStorage.setItem("item3Quantity", item3Quantity.toString()); */
 
-      $("footer").hide();
+
       views_manager.show("checkout");
     });
   });
