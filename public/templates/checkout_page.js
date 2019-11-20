@@ -4,7 +4,7 @@
   if cart not empty -> will show a list of the selected items and quantities
                     -> will show total of all selected items at the bottom, updated upon change in quantity or list
                     -> will have a place order button at the bottom
-  once order is placed, a new orders row is generated and as many orderitems as there are separate items are generated => this is sent to the restaurant
+  once order is placed, a new orders row is generated and as many  as there are separate items are generated => this is sent to the restaurant
 
     user will be redirected to confirmation page
 */
@@ -203,32 +203,38 @@ $('body').on('click', "#cart-checkout-btn", function() {
     /* Route to create an new Order
     request format should be:
     { restaurant_id : 1,
-      ordersItem    : [ {foodid: 1, quantity: 1},
+      orderItems    : [ {foodid: 1, quantity: 1},
                         {foodid: 3, quantity: 2}
                       ]
     }
     */
 
-    let ordersItem = [];
+    let orderItems = [];
 
-    let i = 1;
-    while (true) {
-      if (localStorage[`item${i}Quantity`] && parseInt(localStorage[`item${i}Quantity`]) > 0) {
-        const item = {foodid: i, quantity: parseInt(localStorage[`item${i}Quantity`])};
-        ordersItem.push(item);
-        i++;
-      } else {
-        break;
-      }
-    }
+    // let i = 1;
+    // while (true) {
+    //   if (localStorage[`item${i}Quantity`] && parseInt(localStorage[`item${i}Quantity`]) > 0) {
+    //     const item = {foodid: i, quantity: parseInt(localStorage[`item${i}Quantity`])};
+    //     console.log(orderItems)
+    //     orderItems.push(item);
+    //     i++;
+    //   } else {
+    //     console.log('loop over')
+    //     break;
+    //   }
+    // }
+
+
 
     const data = {
       restaurant_id: parseInt(localStorage.restaurant_id),
-      ordersItem: ordersItem
+      orderItems: orderItems
     };
+    console.log('order items after loop, before submit', orderItems)
 
     console.log(data);
-
+    submitOrder(data);
+    console.log('order items after loop, after submit', orderItems)
   }
 
 });

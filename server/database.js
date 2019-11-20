@@ -43,8 +43,8 @@ const addOrder =  async function (userId, order) {
     const orderID = dbRes.rows[0].id;
 
     // insert the order into orderItem bridge table
-    const { items } = order;
-    const insertValues = items.map(item => `('${orderID}', '${item.foodid}', '${item.quantity}')`).join(',');
+    const { orderItems } = order;
+    const insertValues = orderItems.map(item => `('${orderID}', '${item.foodid}', '${item.quantity}')`).join(',');
     const fullQuery = `
     INSERT INTO orderItems (order_id, food_id, quantity)
     VALUES

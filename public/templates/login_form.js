@@ -32,7 +32,6 @@ $(() => {
           views_manager.show('error', 'Failed to login');
           return;
         }
-        console.log(json.user.title);
         header.update(json.user);
         localStorage.setItem("logIn", "true");
         if (json.user.title !== undefined)  {

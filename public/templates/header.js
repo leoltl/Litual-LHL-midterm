@@ -56,8 +56,7 @@ $(() => {
   getMyDetails()
     .then(function( json ) {
       updateHeader(json.user);
-      return json.user
-    }).then(user => user.title ? renderOrderView() : '');
+    });
 
   // $("header").on("click", '.my_reservations_button', function() {
   //   propertyListings.clearListings();
