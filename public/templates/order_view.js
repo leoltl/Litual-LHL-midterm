@@ -21,7 +21,7 @@ $(() => {
   $('main').append($order_view);
 
   function clearOrders() {
-    $('.order-column').children('div').empty();
+    $('.order-card').remove();
   }
 
   function renderOrders(ordersRes) {
