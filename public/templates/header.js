@@ -89,13 +89,9 @@ $(() => {
     event.preventDefault();
     views_manager.show('food_options');
     let totalItemsInCart = 0;
-    let i = 1;
-    while (true) {
-      if (localStorage[`item${i}Quantity`]) {
-        totalItemsInCart += parseInt(localStorage[`item${i}Quantity`]);
-        i++;
-      } else {
-        break;
+    for (let item of JSON.parse(localStorage[`itemsIdArray`])) {
+      if (localStorage[`item${item}Quantity`]) {
+        totalItemsInCart += parseInt(localStorage[`item${item}Quantity`]);
       }
     }
     //let totalItemsInCart = parseInt(localStorage["item1Quantity"]) + parseInt(localStorage["item2Quantity"]) + parseInt(localStorage["item3Quantity"]);

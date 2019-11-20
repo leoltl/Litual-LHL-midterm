@@ -17,7 +17,29 @@ window.loadCheckoutPage = () => {
   // console.log(total);
 
   let orders = ``;
-  let i = 1;
+  for (let item of JSON.parse(localStorage[`itemsIdArray`])) {
+    if (localStorage[`item${item}Quantity`]) {
+      console.log(item);
+      if (parseInt(localStorage[`item${item}Quantity`]) > 0) {
+        orders += ` <!-- start checkout-item component-->
+        <tr class="item-row checkout-item">
+          <td class="item">
+            <p>${localStorage[`item${item}Name`]}</p>
+            <small><a data-itemid="${item}" class="remove-item">Remove Item</a></small>
+          </td>
+          <td class="unit-price">$${parseInt(localStorage[`item${item}Price`])}</td>
+          <td class="quantity">
+            <input class="item-quantity" data-itemquantityid="${item}" value=${parseInt(localStorage[`item${item}Quantity`])} type="number" min=1>
+          </td>
+          <td class="subtotal">$${parseInt(localStorage[`item${item}Quantity`])*parseInt(localStorage[`item${item}Price`])}</td>
+        </tr>
+        <!-- end checkout-item component-->`;
+        total += parseInt(localStorage[`item${item}Quantity`])*parseInt(localStorage[`item${item}Price`]);
+      }
+    }
+  }
+
+  /* let i = 1;
   while (true) {
     if (localStorage[`item${i}Quantity`]) {
       console.log(i);
@@ -41,7 +63,7 @@ window.loadCheckoutPage = () => {
     } else {
       break;
     }
-  }
+  } */
   //console.log(orders);
 
   /* const rows = `
@@ -138,7 +160,12 @@ $('body').on('click', "#cancel", function() {
   event.preventDefault();
   views_manager.show('food_options');
   let totalItemsInCart = 0;
-  let i = 1;
+  for (let item of JSON.parse(localStorage[`itemsIdArray`])) {
+    if (localStorage[`item${item}Quantity`]) {
+      totalItemsInCart += parseInt(localStorage[`item${item}Quantity`]);
+    }
+  }
+  /* let i = 1;
   while (true) {
     if (localStorage[`item${i}Quantity`]) {
       totalItemsInCart += parseInt(localStorage[`item${i}Quantity`]);
@@ -146,7 +173,7 @@ $('body').on('click', "#cancel", function() {
     } else {
       break;
     }
-  }
+  } */
   //let totalItemsInCart = parseInt(localStorage["item1Quantity"]) + parseInt(localStorage["item2Quantity"]) + parseInt(localStorage["item3Quantity"]);
   $("footer p").text(`items in cart: ${totalItemsInCart}`);
   $("footer").show();
@@ -211,7 +238,14 @@ $('body').on('click', "#cart-checkout-btn", function() {
 
     let ordersItem = [];
 
-    let i = 1;
+    for (let i of JSON.parse(localStorage[`itemsIdArray`])) {
+      if (localStorage[`item${i}Quantity`] && parseInt(localStorage[`item${i}Quantity`]) > 0) {
+        const item = {foodid: i, quantity: parseInt(localStorage[`item${i}Quantity`])};
+        ordersItem.push(item);
+      }
+    }
+
+    /* let i = 1;
     while (true) {
       if (localStorage[`item${i}Quantity`] && parseInt(localStorage[`item${i}Quantity`]) > 0) {
         const item = {foodid: i, quantity: parseInt(localStorage[`item${i}Quantity`])};
@@ -220,7 +254,7 @@ $('body').on('click', "#cart-checkout-btn", function() {
       } else {
         break;
       }
-    }
+    } */
 
     const data = {
       restaurant_id: parseInt(localStorage.restaurant_id),

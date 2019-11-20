@@ -27,6 +27,8 @@ $(() => {
     $('main').append($restaurant_banner).append('<section id="food-options"></section>')
   }
 
+  let itemsIdArray = [];
+
   function updateMenu(item) {
     //console.log(item)
     const $food_options = $(`
@@ -47,12 +49,14 @@ $(() => {
         <!-- end food-options item component -->
 
     `);
+    itemsIdArray.push(item.id);
     localStorage.setItem(`item${item.id}Price`, item.price.toString());
     localStorage.setItem(`item${item.id}Name`, item.name);
     if (!localStorage[`item${item.id}Quantity`]) {
       localStorage.setItem(`item${item.id}Quantity`, "0");
     }
     console.log(localStorage[`item${item.id}Price`]);
+    localStorage.setItem("itemsIdArray", JSON.stringify(itemsIdArray));
     window.$food_options = $food_options;
     $('#food-options').append($food_options);
   }
@@ -87,18 +91,27 @@ $(() => {
 
   $(document).ready(function() {
 
-    console.log()
+    console.log(localStorage[`itemsIdArray`]);
+    console.log(JSON.parse(localStorage[`itemsIdArray`]));
+
 
     let totalItemsInCart = 0;
-    let i = 1;
-    while (true) {
+
+    for (let item of JSON.parse(localStorage[`itemsIdArray`])) {
+      if (localStorage[`item${item}Quantity`]) {
+        totalItemsInCart += parseInt(localStorage[`item${item}Quantity`]);
+      }
+    }
+
+    //let i = 1;
+    /* while (true) {
       if (localStorage[`item${i}Quantity`]) {
         totalItemsInCart += parseInt(localStorage[`item${i}Quantity`]);
         i++;
       } else {
         break;
       }
-    }
+    } */
     $("footer p").text(`items in cart: ${totalItemsInCart}`);
     //console.log("yo", localStorage[`item1Quantity`]);
     /* let item1Quantity = localStorage[`item1Quantity`] ? parseInt(localStorage[`item1Quantity`]) : 0;
