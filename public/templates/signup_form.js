@@ -47,15 +47,7 @@ $(() => {
   $('body').on('click', '#sign-up-form__cancel', function() {
     event.preventDefault();
     views_manager.show('food_options');
-    let totalItemsInCart = 0;
-    for (let item of JSON.parse(localStorage[`itemsIdArray`])) {
-      if (localStorage[`item${item}Quantity`]) {
-        totalItemsInCart += parseInt(localStorage[`item${item}Quantity`]);
-      }
-    }
-    //let totalItemsInCart = parseInt(localStorage["item1Quantity"]) + parseInt(localStorage["item2Quantity"]) + parseInt(localStorage["item3Quantity"]);
-    $("footer p").text(`items in cart: ${totalItemsInCart}`);
-    $("footer").show();
+    updateCartTotal();
     return false;
   });
 

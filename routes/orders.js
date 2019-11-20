@@ -27,6 +27,7 @@ const router  = express.Router();
 const sendSMS = require('../helper-functions/send-sms');
 
 module.exports = (db) => {
+  const longpoll = require("express-longpoll")(router);
   const database = require('../server/database.js')(db);
 
   /* Route to get individual order */
@@ -76,6 +77,7 @@ module.exports = (db) => {
     if (userId && order) {
     database.addOrder(userId, order)
       .then(dbres => res.send({ orders: dbres.rows }))
+      .then(longpoll.publish('/poll', 'new order'))
       .catch(err => res.status(500).send({ message: err }));
       console.log('order sent!')
     return database.getRestaurantWithId(order.restaurant_id)

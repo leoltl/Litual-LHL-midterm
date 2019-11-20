@@ -159,24 +159,7 @@ $('body').on('click', "#cancel", function() {
   console.log("push");
   event.preventDefault();
   views_manager.show('food_options');
-  let totalItemsInCart = 0;
-  for (let item of JSON.parse(localStorage[`itemsIdArray`])) {
-    if (localStorage[`item${item}Quantity`]) {
-      totalItemsInCart += parseInt(localStorage[`item${item}Quantity`]);
-    }
-  }
-  /* let i = 1;
-  while (true) {
-    if (localStorage[`item${i}Quantity`]) {
-      totalItemsInCart += parseInt(localStorage[`item${i}Quantity`]);
-      i++;
-    } else {
-      break;
-    }
-  } */
-  //let totalItemsInCart = parseInt(localStorage["item1Quantity"]) + parseInt(localStorage["item2Quantity"]) + parseInt(localStorage["item3Quantity"]);
-  $("footer p").text(`items in cart: ${totalItemsInCart}`);
-  $("footer").show();
+  updateCartTotal();
   return false;
 });
 
@@ -186,6 +169,7 @@ $('body').on('click', ".remove-item", function() {
   console.log(id);
   localStorage.setItem(`item${id}Quantity`, "0");
   views_manager.show('checkout');
+  updateCartTotal();
   return false;
 });
 
@@ -208,6 +192,7 @@ $('body').on('change', ".item-quantity", function() {
   //console.log(id);
   localStorage.setItem(`item${id}Quantity`, $(this).val().toString());
   views_manager.show('checkout');
+  updateCartTotal();
 });
 
 /* $('body').on('change', "#quantity2", function() {
@@ -274,12 +259,22 @@ $('body').on('click', "#cart-checkout-btn", function() {
       restaurant_id: parseInt(localStorage.restaurant_id),
       orderItems: orderItems
     };
-    console.log('order items after loop, before submit', orderItems)
+    console.log('order items after loop, before submit', orderItems);
 
     console.log(data);
-    submitOrder(data);
-    console.log('order items after loop, after submit', orderItems)
-    alert('Your order has been submitted! Check your phone for updates')
+    if (orderItems.length === 0){
+      alert("No Items in Cart, Please add menu");
+    } else {
+      submitOrder(data);
+      console.log('order items after loop, after submit', orderItems);
+      alert('Your order has been submitted! Check your phone for updates');
+      for (let item of JSON.parse(localStorage[`itemsIdArray`])) {
+        if (localStorage[`item${item}Quantity`]) {
+          localStorage.setItem(`item${item}Quantity`, "0");
+        }
+      }
+    }
+    updateCartTotal();
     views_manager.show('food_options');
     // call clear cart function here
   }
