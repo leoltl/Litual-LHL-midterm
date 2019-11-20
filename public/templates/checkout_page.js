@@ -200,6 +200,35 @@ $('body').on('click', "#cart-checkout-btn", function() {
     views_manager.show("logIn");
   } else {
     console.log("order sent");
+    /* Route to create an new Order
+    request format should be:
+    { restaurant_id : 1,
+      ordersItem    : [ {foodid: 1, quantity: 1},
+                        {foodid: 3, quantity: 2}
+                      ]
+    }
+    */
+
+    let ordersItem = [];
+
+    let i = 1;
+    while (true) {
+      if (localStorage[`item${i}Quantity`] && parseInt(localStorage[`item${i}Quantity`]) > 0) {
+        const item = {foodid: i, quantity: parseInt(localStorage[`item${i}Quantity`])};
+        ordersItem.push(item);
+        i++;
+      } else {
+        break;
+      }
+    }
+
+    const data = {
+      restaurant_id: parseInt(localStorage.restaurant_id),
+      ordersItem: ordersItem
+    };
+
+    console.log(data);
+
   }
 
 });
