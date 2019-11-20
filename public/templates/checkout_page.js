@@ -255,7 +255,7 @@ $('body').on('click', "#cart-checkout-btn", function() {
     for (let i of JSON.parse(localStorage[`itemsIdArray`])) {
       if (localStorage[`item${i}Quantity`] && parseInt(localStorage[`item${i}Quantity`]) > 0) {
         const item = {foodid: i, quantity: parseInt(localStorage[`item${i}Quantity`])};
-        ordersItem.push(item);
+        orderItems.push(item);
       }
     }
 

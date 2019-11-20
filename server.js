@@ -9,6 +9,7 @@ const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
 const sass       = require("node-sass-middleware");
 const app        = express();
+const longpoll   = require("express-longpoll")(app);
 const morgan     = require('morgan');
 const path       = require('path');
 
@@ -54,10 +55,9 @@ app.use("/api/restaurants", restaurantsRoutes(db));
 app.use("/orders", ordersRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
+// Creates app.get("/poll") for the long poll
+longpoll.create("/poll");
 
-// Home page
-// Warning: avoid creating more routes in this file!
-// Separate them into separate routes files (see above).
 
 app.use(express.static(path.join(__dirname, './public')));
 
@@ -65,3 +65,4 @@ app.use(express.static(path.join(__dirname, './public')));
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+

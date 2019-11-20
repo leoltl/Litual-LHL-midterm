@@ -25,6 +25,7 @@ $(() => {
   }
 
   function renderOrders(ordersRes) {
+    poll();
     clearOrders();
     $("footer").hide();
     const ordersArr = [...ordersRes.orders]
@@ -34,6 +35,21 @@ $(() => {
     acceptedOrders.forEach(order => addCardToDom(createOrderCard(order), '#accepted'));
   }
   
+
+  var poll = function () {
+    $.ajax({
+      url:'poll',
+      success: function(data) {
+        findOrders(1).then(res => $order_view.renderOrders(res));
+        poll();
+      }, 
+      error: function() {
+        poll();
+      },
+      timeout: 30000
+    })
+  };
+
   window.$order_view.renderOrders = renderOrders;
   
   function addCardToDom(el, domSelector) {
