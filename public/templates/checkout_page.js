@@ -255,7 +255,7 @@ $('body').on('click', "#cart-checkout-btn", function() {
     for (let i of JSON.parse(localStorage[`itemsIdArray`])) {
       if (localStorage[`item${i}Quantity`] && parseInt(localStorage[`item${i}Quantity`]) > 0) {
         const item = {foodid: i, quantity: parseInt(localStorage[`item${i}Quantity`])};
-        ordersItem.push(item);
+        orderItems.push(item);
       }
     }
 
@@ -279,6 +279,9 @@ $('body').on('click', "#cart-checkout-btn", function() {
     console.log(data);
     submitOrder(data);
     console.log('order items after loop, after submit', orderItems)
+    alert('Your order has been submitted! Check your phone for updates')
+    views_manager.show('food_options');
+    // call clear cart function here
   }
 
 });

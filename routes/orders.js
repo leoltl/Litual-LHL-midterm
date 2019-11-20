@@ -9,7 +9,8 @@
   let result = '';
   switch (status) {
     case 'accepted':
-      result += `Your order has been accepted! It will be ready in approximately ${estimate} minutes`;
+      result += estimate  ? `Your order has been accepted! It will be ready in approximately ${estimate} minutes` :
+                            statusCheck('done', estimate);
       break;
     case 'rejected':
       result += 'Your order has been rejected... Try another restaurant!';
@@ -53,7 +54,7 @@ module.exports = (db) => {
         .then(dbres => {
           res.send(dbres);
           return database.getUserWithId(parseInt(user_id))
-            .then(dbres2 => sendSMS('+16476998007', dbres2.phone.toString(), statusCheck(status, estimate)));
+            .then(dbres2 => sendSMS('+17784035054', dbres2.phone.toString(), statusCheck(status, estimate)));
         })
         .catch(err => res.status(500).send(err));
     }
@@ -72,13 +73,16 @@ module.exports = (db) => {
   router.post('/', (req, res) => {
     const { userId } = req.session;
     const order = req.body;
-    console.log(order)
     if (userId && order) {
     database.addOrder(userId, order)
       .then(dbres => res.send({ orders: dbres.rows }))
       .catch(err => res.status(500).send({ message: err }));
       console.log('order sent!')
-    return;
+    return database.getRestaurantWithId(order.restaurant_id)
+      .then(dbres2 => {
+        console.log(dbres2.phone.toString());
+        sendSMS('+17784035054', dbres2.phone.toString(), 'You have a new order!')
+      });
     }
     res.status(406).send({message: 'Failed placing the order'});
   })
