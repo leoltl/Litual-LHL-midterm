@@ -10,6 +10,7 @@ $(() => {
   });; */
   // delete localStorage.restaurant_id;
   //localStorage.clear();
+  //localStorage.clear();
   loadCheckoutPage();
   localStorage.res > 0 ?
         $('#main-content article').hide() &&

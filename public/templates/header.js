@@ -56,7 +56,8 @@ $(() => {
   getMyDetails()
     .then(function( json ) {
       updateHeader(json.user);
-    });
+      return json.user
+    }).then(user => user.title ? renderOrderView() : '');
 
   // $("header").on("click", '.my_reservations_button', function() {
   //   propertyListings.clearListings();
@@ -117,13 +118,29 @@ $(() => {
   });
 
   $("header").on('click', '.logout_button', () => {
+
+    let totalItemsInCart = 0;
+    let i = 1;
+    while (true) {
+      if (localStorage[`item${i}Quantity`]) {
+        localStorage.setItem(`item${i}Quantity`, "0");
+        i++;
+      } else {
+        break;
+      }
+    }
+    $("footer p").text(`items in cart: ${totalItemsInCart}`);
+    $("footer").show();
+
     logOut().then(() => {
       localStorage.removeItem('res');
+      //loadCheckoutPage();
       views_manager.show();
       $('#main-content .food-option').show();
       $('#restaurant-listing').show();
-      // views_manager.show('food_options');
+      //views_manager.show('food_options');
       header.update(null);
+      localStorage.removeItem("logIn");
     });
   });
 
@@ -132,3 +149,8 @@ $(() => {
   // });
 
 });
+
+function renderOrderView() {
+  findOrders(1).then(res => $order_view.renderOrders(res));
+  views_manager.show('order_view');
+}
