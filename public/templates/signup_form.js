@@ -5,7 +5,7 @@ $(() => {
         <p class="h4 mb-4">Sign Up</p>
 
         <div class="login-forms">
-            <input type="text" name="name" class="d-flex justify-content-center mb-4" placeholder="Name">
+            <input type="text" name="name" class="d-flex justify-content-center form-control mb-4" placeholder="Name">
           </div>
 
         <div class="login-forms">
@@ -13,7 +13,7 @@ $(() => {
         </div>
 
         <div class="login-forms">
-            <input type="password" name="password" class="d-flex justify-content-center mb-4" placeholder="Password">
+            <input type="password" name="password" class="d-flex justify-content-center form-control mb-4" placeholder="Password">
         </div>
 
         <div class="login-forms">
