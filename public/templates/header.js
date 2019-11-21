@@ -28,7 +28,7 @@ $(() => {
     let header;
     if (!user) {
       header = $(`<nav class="navbar navbar-light teal accent-4 mb-4" id="navbar">
-                    <a class="navbar-brand navbar-dark" id="brand" href="#">LITUAL</a>
+                    <a class="navbar-brand navbar-dark" id="brand" >LITUAL</a>
                     <button id="myToggle" class="navbar-toggler second-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent23"
     aria-controls="navbarSupportedContent23" aria-expanded="false" aria-label="Toggle navigation">
     <div class="animated-icon2"><span></span><span></span><span></span><span></span></div>
@@ -38,20 +38,20 @@ $(() => {
 
                     <ul class="navbar-nav mr-auto">
                       <li class="nav-item ml-auto">
-                        <a class="nav-link" id="login-btn" href="#">Login</a>
+                        <a class="nav-link" id="login-btn" >Login</a>
                       </li>
                       <li class="nav-item ml-auto">
-                        <a class="nav-link" id="register-btn" href="#">Register</a>
+                        <a class="nav-link" id="register-btn" >Register</a>
                       </li>
                     </ul>
                   </div>
                 </nav>`);
     } else {
       header = $(`<nav class="navbar navbar-light teal accent-4 mb-4" id="navbar">
-      <a class="navbar-brand navbar-dark" id="brand" href="#">LITUAL</a>
+      <a class="navbar-brand navbar-dark" id="brand" >LITUAL</a>
       <p class="nav-item">Hello ${currentUser.name ? currentUser.name : currentUser.title}</p>
       <div>
-        <a href="#" class="logout_button nav-link nav-item">Logout</a>
+        <a class="logout_button nav-link nav-item">Logout</a>
       </div>
       </div>
     </nav>`);

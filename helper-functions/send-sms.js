@@ -1,5 +1,5 @@
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
+const accountSid = `AC9776c27e20080b2c3fd6d6dc0dcc96b6`;//process.env.TWILIO_ACCOUNT_SID;
+const authToken = `e901977999dd7962fd76f5d61c8e6b29`;//process.env.TWILIO_AUTH_TOKEN;
 
 const client = require('twilio')(accountSid, authToken);
 // //I think it will be easier to send the entire message string into the body when we call the helper function
