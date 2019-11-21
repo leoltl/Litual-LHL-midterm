@@ -10,6 +10,11 @@ main {
   max-width: 1124px;
   margin: 0 auto;
   margin-bottom: 5vh;
+
+  section#restaurant-cards{
+    display: flex;
+    overflow: auto;
+  }
   
   section#restaurant-listing {
     display: flex;
