@@ -8,8 +8,11 @@ $(() => {
   const $pageFooter = $('.checkout-footer');
 
   function updateFooter() {
-    footer = $(`<p>items in cart: 0</p>
-    <button class="cart">Go To Cart</button>`);
+    footer = $(`
+
+    <a class="cart"><i class="fas fa-shopping-cart"></i></a>
+    <p>0</p>
+    `);
 
     $pageFooter.append(footer);
   }

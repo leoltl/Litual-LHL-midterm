@@ -4,11 +4,11 @@ section.cart {
 
   table.cart-table {
     margin-top: 2rem;
-  
+
     .item-row {
       height: 100px;
       border-bottom: 2px solid $font-color;
-  
+
       a {
         color: $font-secondary-color;
         cursor: pointer;
@@ -19,7 +19,7 @@ section.cart {
   .cart-action {
     float: right;
     margin-right: 5vw;
-    text-align: end;
+    text-align: center;
     a {
       color: $font-secondary-color;
       cursor: pointer;
@@ -28,8 +28,8 @@ section.cart {
 
   @media screen and (min-width: 800px) {
     .cart-action {
-      margin-right: 10vw;
-      margin-top: 5wh;
+
+      margin: 5vw 5vw 10vw;
     }
   }
 }

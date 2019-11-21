@@ -17,7 +17,7 @@ $(() => {
         </div>
 
         <div class="sign-up-form__field-wrapper">
-          <input type="tel" name="phone-number" placeholder="Phone Number" pattern="[0-9]{10}" required>
+          <input type="tel" name="phone" placeholder="Phone Number" pattern="[0-9]{10}" required>
           <span>Format: 6471239876</span>
         </div>
 
@@ -34,14 +34,15 @@ $(() => {
     event.preventDefault();
 
     const data = $(this).serialize();
-    console.log(data);
 
-    /* signUp(data)
-      .then(getMyDetails)
+     signUp(data)
+      .then(console.log(data))
+      .then(logIn(data))
       .then((json) => {
-        header.update(json.user);
+        header.update(json);
+        localStorage.setItem("logIn", "true");
         views_manager.show('food_options');
-      }); */
+      });
   });
 
   $('body').on('click', '#sign-up-form__cancel', function() {

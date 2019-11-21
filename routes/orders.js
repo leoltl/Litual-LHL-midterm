@@ -9,8 +9,7 @@
   let result = '';
   switch (status) {
     case 'accepted':
-      result += estimate > 0 ? `Your order has been accepted! It will be ready in approximately ${estimate} minutes` :
-                            statusCheck('done', estimate);
+      result += `Your order has been accepted! It will be ready in approximately ${estimate} minutes`;
       break;
     case 'rejected':
       result += 'Your order has been rejected... Try another restaurant!';

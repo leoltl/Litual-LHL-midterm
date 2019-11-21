@@ -54,7 +54,9 @@ module.exports = (db) => {
 
   router.post('/', (req, res) => {
     const user = req.body;
+    console.log(user)
     user.password = bcrypt.hashSync(user.password, 12);
+    console.log(user)
     database.addUser(user)
     .then(user => {
       if (!user) {
@@ -62,7 +64,7 @@ module.exports = (db) => {
         return;
       }
       req.session.userId = user.id;
-      res.send("Successfully registered!");
+      res.send(user);
     })
     .catch(e => res.send(e));
   });

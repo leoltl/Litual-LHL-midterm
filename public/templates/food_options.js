@@ -17,10 +17,12 @@ $(() => {
     const $restaurant_banner = $(`
       <section id="restaurant-listing" data-restaurantId="${item.restaurant_id}" >
       <div id="information">
-        <h1>${resInfo.res.title}</h1>
-        <small>131 King Street, Toronto</small>
-        <p>${resInfo.res.phone}</p>
-        <p>${resInfo.res.email}</p>
+        <div id="transbox">
+          <h1>${resInfo.res.title}</h1>
+          <small>131 King Street, Toronto</small>
+          <p>${resInfo.res.phone}</p>
+          <p>${resInfo.res.email}</p>
+        </div>
       </div>
       </section>
     `)
@@ -159,12 +161,12 @@ $(() => {
       console.log("hello");
       console.log($(this).data("itemid"));
       const id = $(this).data("itemid");
-      let totalItemsInCart = parseInt($("footer p").text().split(":")[1]);
+      let totalItemsInCart = parseInt($("footer p").text());
       console.log("yolo", totalItemsInCart);
       localStorage[`item${id}Quantity`] = (parseInt(localStorage[`item${id}Quantity`]) + 1).toString();
       //let totalItemsInCart = parseInt(localStorage["item1Quantity"]) + parseInt(localStorage["item2Quantity"]) + parseInt(localStorage["item3Quantity"]);
       totalItemsInCart++;
-      $("footer p").text(`items in cart: ${totalItemsInCart}`);
+      $("footer p").text(`${totalItemsInCart}`);
       $("footer").show();
     });
 

@@ -1,11 +1,10 @@
-.restaurant-card {
+#restaurant-listing {
   color: white;
   width: 350px;
   height: 210px;
   border-radius: 25px;
   margin: 0.5rem;
   box-shadow: 0 2px 6px 0 hsla(0%, 0%, 0%, 0.5);
-  background: url(https://lh3.googleusercontent.com/YeaLWIYybZKMRrur4fg_ARl516UIJuxAQiFSBqkvTKsqp02uwImLqLVtbstrZVvalwkkaWL2SIHkATeW_5-ujM0vWg);
   .text {
     display: flex;
     flex-direction: column;
@@ -14,9 +13,10 @@
     height: 100%;
     background: rgba(0,0,0,0.5);
     border-radius: 25px;
+
     h5 {
       color: rgba(100%,100%,100%, 0.7);
     }
   }
-  
-}
+
+

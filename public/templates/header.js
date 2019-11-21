@@ -10,6 +10,12 @@
       if restaurant -> just name
 */
 
+$(document).ready(function () {
+  $("header").on('click', '.second-button', function() {
+    $('.animated-icon2').toggleClass('open');
+  });
+
+})
 
 $(() => {
   window.header = {};
@@ -21,25 +27,31 @@ $(() => {
     $pageHeader.find("nav").remove();
     let header;
     if (!user) {
-      header = $(`<nav class="navbar navbar-expand-lg navbar-light">
-                    <a class="navbar-brand" id="brand" href="#">LitApp.JS</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-                      <span class="navbar-toggler-icon"></span>
-                    </button>
+      header = $(`<nav class="navbar navbar-light teal accent-4 mb-4">
+                    <a class="navbar-brand navbar-dark" id="brand" href="#">LitApp.JS</a>
+                    <button class="navbar-toggler second-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent23"
+    aria-controls="navbarSupportedContent23" aria-expanded="false" aria-label="Toggle navigation">
+    <div class="animated-icon2"><span></span><span></span><span></span><span></span></div>
+  </button>
 
-                    <div class="collapse navbar-collapse" id="navbarToggler">
-                      <div class="user-actions ml-auto d-flex flex-column flex-lg-row">
-                        <button id="register-btn" class="btn btn-outline-secondary my-2 my-lg-0 ml-0 ml-lg-2">Register</button>
-                        <button id="login-btn" class="btn btn-outline btn-login my-2 my-lg-0 ml-0 ml-lg-2">Login</button>
-                      </div>
-                    </div>
-                  </nav>`);
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent23">
+
+                    <ul class="navbar-nav mr-auto">
+                      <li class="nav-item ml-auto">
+                        <a class="nav-link" id="login-btn" href="#">Login</a>
+                      </li>
+                      <li class="nav-item ml-auto">
+                        <a class="nav-link" id="register-btn" href="#">Register</a>
+                      </li>
+                    </ul>
+                  </div>
+                </nav>`);
     } else {
-      header = $(`<nav class="navbar navbar-expand-lg navbar-light">
-      <a class="navbar-brand" id="brand" href="#">LitApp.JS</a>
-      <p>Hello ${currentUser.name ? currentUser.name : currentUser.title}</p>
+      header = $(`<nav class="navbar navbar-light teal accent-4 mb-4">
+      <a class="navbar-brand navbar-dark" id="brand" href="#">LitApp.JS</a>
+      <p class="nav-item">Hello ${currentUser.name ? currentUser.name : currentUser.title}</p>
       <div>
-        <button class="logout_button">Logout</button>
+        <a href="#" class="logout_button nav-link nav-item">Logout</a>
       </div>
       </div>
     </nav>`);

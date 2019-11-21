@@ -1,21 +1,21 @@
 $(() => {
 
   const $logInForm = $(`
-  <form id="login-form" class="login-form">
-      <p>Login</p>
-      <div class="login-form__field-wrapper">
-        <input type="email" name="email" placeholder="Email">
-      </div>
-
-      <div class="login-form__field-wrapper">
-          <input type="password" name="password" placeholder="Password">
+  <form id="login-form" class="login-form text-center border border-light p-5">
+      <p class="h4 mb-4">Login</p>
+        <div class="login-forms">
+          <input id="defaultLoginFormEmail" class="d-flex justify-content-center form-control mb-4" type="email" name="email" placeholder="Email">
         </div>
-
-      <div class="login-form__field-wrapper">
-          <button>Login</button>
+        <div class="login-forms">
+          <input id="defaultLoginFormPassword" class="form-control mb-4" type="password" name="password" placeholder="Password">
+        </div>
+        <button id="login-form-login-btn" class="login-forms btn btn-info btn-block my-4">Login</button>
+        <p>Don't have an account? <a id="register-btn2" href="#">Register</a></p>
+        <div>
           <a id="login-form__cancel" href="#">Cancel</a>
-      </div>
+        </div>
     </form>
+
   `);
 
   window.$logInForm = $logInForm;
@@ -55,7 +55,13 @@ $(() => {
     // return false;
   });
 
+  $("body").on('click', '#register-btn2', () => {
+    event.preventDefault();
+    console.log('register btn click')
+    views_manager.show('signUp');
+  });
 });
+
 
 // function logIn(data) {
 //   return $.ajax({
