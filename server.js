@@ -61,7 +61,6 @@ longpoll.create("/poll");
 
 app.use(express.static(path.join(__dirname, './public')));
 
-
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
