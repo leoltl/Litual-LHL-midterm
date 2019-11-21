@@ -170,8 +170,12 @@ $(() => {
       $("footer").show();
     });
 
-    $("footer .cart").on('click', function(event) {
+    $("footer").on('click', function(event) {
       event.preventDefault();
+      const navToggle = $('#myToggle')
+      if (navToggle.attr('aria-expanded') === 'true') {
+        navToggle.click();
+      }
       //console.log(localStorage);
       /* localStorage.setItem("item1Quantity", item1Quantity.toString());
       localStorage.setItem("item2Quantity", item2Quantity.toString());
