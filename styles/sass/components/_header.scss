@@ -24,7 +24,7 @@ nav {
     color: #eeeeee;
   }
 
-  #login-btn:hover, #register-btn:hover, .logout_button:hover  {
+  #login-btn:hover, #register-btn:hover, #logout-button:hover  {
     color: rgba(0,0,0,.7);
   }
 
@@ -32,6 +32,10 @@ nav {
     margin-top: 1rem;
   }
 
+  #logout-button {
+    color: #eeeeee;
+    font-weight: bolder;
+  }
 }
 
 #navbar {
@@ -41,10 +45,6 @@ nav {
   width: 100%;
 }
 
-.logout_button {
-  color: #eeeeee;
-  font-weight: bolder;
-}
 
 .animated-icon1, .animated-icon2, .animated-icon3 {
   width: 30px;

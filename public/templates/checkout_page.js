@@ -118,7 +118,7 @@ window.loadCheckoutPage = () => {
   <!-- start checkout_page component -->
       <section class="cart">
         <h3>Your Cart</h3>
-        <table class="table cart-table mx-auto"">
+        <table class="table cart-table mx-auto">
           <thead>
             <tr>
               <th scope="col">Item</th>
@@ -142,7 +142,7 @@ window.loadCheckoutPage = () => {
           </tfoot>
         </table>
         <div class="cart-action">
-          <input id="cart-checkout-btn" type="submit" value="Confirm Order" class="call-to-action btn">
+          <input id="cart-checkout-btn" type="submit" value="Confirm" class="btn btn-success">
           <br />
           <small><a id="cancel">Cancel</a></small>
         </div>
@@ -208,7 +208,7 @@ $('body').on('change', "#quantity3", function() {
 }); */
 
 $('body').on('click', "#cart-checkout-btn", function() {
-  
+
   if (!localStorage["logIn"]) {
     views_manager.show("logIn");
   } else {
