@@ -1,15 +1,3 @@
-/*
-  always: logo and app name
-
-  when logged out:
-    register
-    login
-  when logged in:
-    user name, or restaurant name
-      if user name -> cart icon
-      if restaurant -> just name
-*/
-
 $(document).ready(function () {
   $("header").on('click', '.second-button', function() {
     $('.animated-icon2').toggleClass('open');
@@ -17,6 +5,7 @@ $(document).ready(function () {
 
 })
 
+//change page header depending on user login status
 $(() => {
   window.header = {};
 
@@ -63,39 +52,13 @@ $(() => {
 
   window.header.update = updateHeader;
 
-
   getMyDetails()
     .then(function( json ) {
       updateHeader(json.user);
     });
 
-  // $("header").on("click", '.my_reservations_button', function() {
-  //   propertyListings.clearListings();
-  //   getAllReservations()
-  //     .then(function(json) {
-  //       propertyListings.addProperties(json.reservations, true);
-  //       views_manager.show('listings');
-  //     })
-  //     .catch(error => console.error(error));
-  // });
-  // $("header").on("click", '.my_listing_button', function() {
-  //   propertyListings.clearListings();
-  //   getAllListings(`owner_id=${currentUser.id}`)
-  //     .then(function(json) {
-  //       propertyListings.addProperties(json.properties);
-  //       views_manager.show('listings');
-  //   });
-  // });
 
-  // $("header").on("click", '.home', function() {
-  //   propertyListings.clearListings();
-  //   getAllListings()
-  //     .then(function(json) {
-  //       propertyListings.addProperties(json.properties);
-  //       views_manager.show('listings');
-  //   });
-  // });
-
+  //take user back to food options upon clicking logo
   $("header").on('click', '#brand', function(event) {
     event.preventDefault();
     views_manager.show('food_options');
@@ -106,35 +69,29 @@ $(() => {
     }
   });
 
+  //take user to login page upon clicking login
   $("header").on('click', '#login-btn', () => {
-    console.log('login btn click')
-    // $('#main-content article').hide();
-    // $('#restaurant-listing').hide();
     views_manager.show('logIn');
     $('#myToggle').click()
   });
 
+  //take user to signup page upon clicking register
   $("header").on('click', '#register-btn', () => {
-    console.log('register btn click')
-    console.log(this, event.target)
     views_manager.show('signUp');
     $('#myToggle').click()
   });
 
+  //Upon logout, clear cart back to 0
   $("header").on('click', '.logout_button', () => {
-
     for (let item of JSON.parse(localStorage[`itemsIdArray`])) {
       if (localStorage[`item${item}Quantity`]) {
         localStorage.setItem(`item${item}Quantity`, "0");
       }
     }
-    updateCartTotal();
-
-
+  updateCartTotal();
 
     logOut().then(() => {
       localStorage.removeItem('res');
-      //loadCheckoutPage();
       views_manager.show();
       $('#main-content .food-option').show();
       $('#restaurant-listing').show();
@@ -143,10 +100,6 @@ $(() => {
       localStorage.removeItem("logIn");
     });
   });
-
-  // $('header').on('click', '.create_listing_button', function() {
-  //   views_manager.show('newProperty');
-  // });
 
 });
 

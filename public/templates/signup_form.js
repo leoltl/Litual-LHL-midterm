@@ -36,21 +36,23 @@ $(() => {
 
   window.$signUpForm = $signUpForm;
 
+  //after registering, stay logged in and show food options page
   $signUpForm.on('submit', function(event) {
     event.preventDefault();
 
     const data = $(this).serialize();
 
-     signUp(data)
-      .then(console.log(data))
-      .then(logIn(data))
-      .then((json) => {
-        header.update(json);
-        localStorage.setItem("logIn", "true");
-        views_manager.show('food_options');
-      });
+    signUp(data)
+    .then(console.log(data))
+    .then(logIn(data))
+    .then((json) => {
+      header.update(json);
+      localStorage.setItem("logIn", "true");
+      views_manager.show('food_options');
+    });
   });
 
+  //redirect user to food options upon cancel with items still in cart
   $('body').on('click', '#sign-up-form__cancel', function() {
     event.preventDefault();
     views_manager.show('food_options');

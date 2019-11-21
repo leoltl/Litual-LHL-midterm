@@ -24,7 +24,7 @@ $(() => {
     event.preventDefault();
 
     const data = $(this).serialize();
-    console.log(data);
+
     logIn(data)
       .then(json => {
         if (!json.user) {
@@ -47,26 +47,16 @@ $(() => {
       });
   });
 
+  //take user back to food options page on cancel with items saved in cart
   $('body').on('click', '#login-form__cancel', function() {
     event.preventDefault();
     views_manager.show('food_options');
     updateCartTotal();
     footer.show();
-    // return false;
   });
 
   $("body").on('click', '#register-btn2', () => {
     event.preventDefault();
-    console.log('register btn click')
     views_manager.show('signUp');
   });
 });
-
-
-// function logIn(data) {
-//   return $.ajax({
-//     method: "POST",
-//     url: "/api/users/login",
-//     data
-//   });
-// }

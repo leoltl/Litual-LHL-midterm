@@ -1,3 +1,4 @@
+//Global function to update cart total
 window.updateCartTotal = () => {
   let totalItemsInCart = 0;
   for (let item of JSON.parse(localStorage[`itemsIdArray`])) {
