@@ -29,7 +29,7 @@ $(() => {
     if (!user) {
       header = $(`<nav class="navbar navbar-light teal accent-4 mb-4" id="navbar">
                     <a class="navbar-brand navbar-dark" id="brand" href="#">LitApp.JS</a>
-                    <button class="navbar-toggler second-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent23"
+                    <button id="myToggle" class="navbar-toggler second-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent23"
     aria-controls="navbarSupportedContent23" aria-expanded="false" aria-label="Toggle navigation">
     <div class="animated-icon2"><span></span><span></span><span></span><span></span></div>
   </button>
@@ -101,7 +101,10 @@ $(() => {
     event.preventDefault();
     views_manager.show('food_options');
     updateCartTotal();
-
+    const navToggle = $('#myToggle')
+    if (navToggle.attr('aria-expanded') === 'true') {
+      navToggle.click();
+    }
   });
 
   $("header").on('click', '#login-btn', () => {
@@ -109,11 +112,14 @@ $(() => {
     // $('#main-content article').hide();
     // $('#restaurant-listing').hide();
     views_manager.show('logIn');
+    $('#myToggle').click()
   });
 
   $("header").on('click', '#register-btn', () => {
     console.log('register btn click')
+    console.log(this, event.target)
     views_manager.show('signUp');
+    $('#myToggle').click()
   });
 
   $("header").on('click', '.logout_button', () => {

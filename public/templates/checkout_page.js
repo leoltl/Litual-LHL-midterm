@@ -208,6 +208,7 @@ $('body').on('change', "#quantity3", function() {
 }); */
 
 $('body').on('click', "#cart-checkout-btn", function() {
+  
   if (!localStorage["logIn"]) {
     views_manager.show("logIn");
   } else {
