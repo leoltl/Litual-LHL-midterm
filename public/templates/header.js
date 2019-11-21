@@ -38,22 +38,21 @@ $(() => {
 
                     <ul class="navbar-nav mr-auto">
                       <li class="nav-item ml-auto">
-                        <a class="nav-link" id="login-btn" >Login</a>
+                        <a class="nav-link" id="login-btn">Login</a>
                       </li>
                       <li class="nav-item ml-auto">
-                        <a class="nav-link" id="register-btn" >Register</a>
+                        <a class="nav-link" id="register-btn">Register</a>
                       </li>
                     </ul>
                   </div>
                 </nav>`);
     } else {
       header = $(`<nav class="navbar navbar-light teal accent-4 mb-4" id="navbar">
-      <a class="navbar-brand navbar-dark" id="brand" >LITUAL</a>
+      <a class="navbar-brand navbar-dark" id="brand">LitApp.JS</a>
       <p class="nav-item">Hello ${currentUser.name ? currentUser.name : currentUser.title}</p>
-      <div>
-        <a class="logout_button nav-link nav-item">Logout</a>
-      </div>
-      </div>
+
+        <a class="logout_button nav-link nav-item" id="logout-button">Logout</a>
+
     </nav>`);
     }
 

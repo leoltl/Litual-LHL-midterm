@@ -42,11 +42,13 @@ $(() => {
           <p>${item.description}</p>
 
           <div class="buy-box">
+          <div class ="login-forms">
             <h5 class="price-tag">$${item.price}/order</h5>
             <form action="/order" method="AJAXPOST--TODO">
-              <input data-itemid="${item.id}" class="add-to-cart call-to-action form-control" type="submit" value="Add To Cart">
+            <input data-itemid="${item.id}" class="add-to-cart form-control" type="submit" value="Add To Cart">
             </form>
-          </div>
+            </div>
+            </div>
         </article>
         <!-- end food-options item component -->
 

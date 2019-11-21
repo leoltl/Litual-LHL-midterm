@@ -10,9 +10,9 @@ $(() => {
           <input id="defaultLoginFormPassword" class="form-control mb-4" type="password" name="password" placeholder="Password">
         </div>
         <button id="login-form-login-btn" class="login-forms btn btn-info btn-block my-4">Login</button>
-        <p>Don't have an account? <a id="register-btn2" href="#">Register</a></p>
+        <p>Don't have an account? <a id="register-btn2" href="">Register</a></p>
         <div>
-          <a id="login-form__cancel" href="#">Cancel</a>
+          <a id="login-form__cancel">Cancel</a>
         </div>
     </form>
 

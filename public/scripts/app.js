@@ -1,5 +1,17 @@
 $(() => {
-  //call loadCheckoutPage function to load on start for rendering main page
+  /* $.ajax({
+    method: "GET",
+    url: "/api/users"
+  }).done(({users}) => {
+    for(user of users) {
+      console.log(users);
+      $("<div>").text(user.name).appendTo($("body"));
+    }
+  });; */
+  // delete localStorage.restaurant_id;
+  //localStorage.clear();
+  //localStorage.clear();
+  if(!localStorage.itemsIdArray) {localStorage.itemsIdArray = '[]'}
   loadCheckoutPage();
   //render food menu page on load
   localStorage.res > 0 ?
