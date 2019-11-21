@@ -5,5 +5,5 @@ window.updateCartTotal = () => {
       totalItemsInCart += parseInt(localStorage[`item${item}Quantity`]);
     }
   }
-  $("footer p").text(`items in cart: ${totalItemsInCart}`);
+  $("footer p").text(`${totalItemsInCart}`);
 }

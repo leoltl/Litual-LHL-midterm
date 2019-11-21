@@ -4,8 +4,8 @@
   position: fixed;
   bottom: 0;
   width: 100vw;
-  height: 5vh;
-  background-color: $light-accent;
+  height: 2.5rem;
+  background-color: #00bfa5;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,4 +16,9 @@
   //   max-width: 400px;
   //   right: 0;
   // }
+
+  p {
+    margin-top: 1rem;
+    margin-left: 1rem;
+  }
 }

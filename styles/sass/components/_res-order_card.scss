@@ -17,4 +17,16 @@
   form {
     display: inline;
   }
+  #estimated {
+    box-shadow: 0 2px 6px 0 hsla(0%, 0%, 0%, 0.3);
+  }
+  #reject-btn {
+    float: right;
+  }
+  #done-btn {
+    float: right;
+  }
+  #accept-form {
+    text-align: center;
+  }
 }

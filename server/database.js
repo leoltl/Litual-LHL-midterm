@@ -23,11 +23,12 @@ const getUserWithEmail = function(email) {
 // exports.getUserWithEmail = getUserWithEmail;
 
 const addUser =  function(user) {
+  console.log('in database user', user)
   const insert = `
-    INSERT INTO users (name, email, password)
-    VALUES ($1, $2, $3) RETURNING *
+    INSERT INTO users (name, email, password, phone)
+    VALUES ($1, $2, $3, $4) RETURNING *
     `;
-  return db.query(insert, [user.name, user.email, user.password])
+  return db.query(insert, [user.name, user.email, user.password, parseInt(user.phone)])
     .then(res => res.rows ? res.rows[0] : null);
 }
 

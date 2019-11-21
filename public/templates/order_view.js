@@ -37,14 +37,15 @@ $(() => {
 
 
   var poll = function () {
+    console.log('poll is called');
     $.ajax({
       url:'poll',
-      success: function(data) {
+      success: function() {
         findOrders(1).then(res => $order_view.renderOrders(res));
-        poll();
+        setTimeout(() => poll(), 5000);
       },
       error: function() {
-        poll();
+        setTimeout(() => poll(), 5000)
       },
       timeout: 30000
     })
@@ -68,14 +69,14 @@ $(() => {
                       <ul class="list-group list-group-flush">
                         ${orderItems}
                       </ul>
-                      <div class="card-footer">
-                      ${order.status === 'pending' ? `<button id="accept" class="card-link call-to-action">ACCEPT</button>
-                      <form class="hidden">
-                        <input id="estimated" type="number" name="time" min="1" max="30">
-                        <input type="submit" data-submit="${order.order_id}" data-user="${order.user_id}" id="submit-btn" name="order-accept" value="Confirm">
+                      <div class="card-footer d-flex justify-content-sm-between">
+                      ${order.status === 'pending' ? `<button id="accept" class="btn btn-success">ACCEPT</button>
+                      <form class="hidden" id="accept-form">
+                        <input class="btn rounded-pill border" id="estimated" type="number" name="time" min="1" max="30" value="5">
+                        <input type="submit" data-submit="${order.order_id}" data-user="${order.user_id}" id="submit-btn" name="order-accept" value="CONFIRM" class="btn btn-success">
                       </form>
-                      <button data-reject="${order.order_id}" data-user="${order.user_id}" id="reject-btn" class="card-link">REJECT</button>
-                      ` : `<button data-done="${order.order_id}" data-user="${order.user_id}" id="done-btn" class="card-link call-to-action">Ready</button>`}
+                      <button data-reject="${order.order_id}" data-user="${order.user_id}" id="reject-btn" class="btn btn-danger">REJECT</button>
+                      ` : `<button data-done="${order.order_id}" data-user="${order.user_id}" id="done-btn" class="btn btn-success ml-auto">READY</button>`}
                       </div>
                     </article>
                     `
@@ -85,6 +86,8 @@ $(() => {
   $("main").on('click', '#accept', function(event) {
     event.preventDefault();
     $(this).siblings('form').toggleClass('hidden');
+    $(this).toggleClass('btn-success btn-warning');
+    $(this).html() === 'ACCEPT' ? $(this).html('CANCEL') : $(this).html('ACCEPT');
   });
 
   $("main").on('click', '#reject-btn', function(event) {
