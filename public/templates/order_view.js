@@ -42,10 +42,10 @@ $(() => {
       url:'poll',
       success: function() {
         findOrders(1).then(res => $order_view.renderOrders(res));
-        poll();
+        setTimeout(() => poll(), 5000);
       },
       error: function() {
-        setTimeout(() => poll(trails), 5000)
+        setTimeout(() => poll(), 5000)
       },
       timeout: 30000
     })
