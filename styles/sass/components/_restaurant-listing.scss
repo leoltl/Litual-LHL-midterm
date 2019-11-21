@@ -13,8 +13,9 @@ section#restaurant-listing {
     margin: 0.5rem;
   }
 
-  .information {
-    background: rgba(0, 0, 0, 0.3);
+  #information {
+    width: 100%;
+    background-color: rgba(100%, 100%, 100%, 0.3);
   }
 
   @media only screen and (min-width: 800px) {

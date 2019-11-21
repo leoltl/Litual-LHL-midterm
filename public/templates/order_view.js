@@ -37,14 +37,15 @@ $(() => {
 
 
   var poll = function () {
+    console.log('poll is called');
     $.ajax({
       url:'poll',
-      success: function(data) {
+      success: function() {
         findOrders(1).then(res => $order_view.renderOrders(res));
-        poll();
+        setTimeout(() => poll(), 5000);
       },
       error: function() {
-        poll();
+        setTimeout(() => poll(), 5000)
       },
       timeout: 30000
     })
