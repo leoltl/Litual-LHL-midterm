@@ -1,13 +1,21 @@
 section#restaurant-carousel {
   display: flex;
-  overflow: scroll;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
 }
 
 .restaurant-card {
+  flex: 0 0 auto;
   color: white;
-  width: 350px;
-  height: 210px;
-  margin: 0.5rem;
+  width: 250px;
+  height: 150px;
+  margin-bottom: 0.5rem; 
+  margin-left: 1rem;
   border-radius: 25px;
   box-shadow: 0 2px 6px 0 hsla(0%, 0%, 0%, 0.5);
   background: url("https://www.qsrmagazine.com/sites/default/files/styles/story_page/public/news-image/freshii-launches-biiblos-bowl-inspired-moroccan-flavors.jpg?itok=G2Fr9BZT");
@@ -20,7 +28,7 @@ section#restaurant-carousel {
     background: rgba(0,0,0,0.5);
     border-radius: 25px;
 
-    h5 {
+    h4 {
       color: rgba(100%,100%,100%, 0.7);
     }
   }
