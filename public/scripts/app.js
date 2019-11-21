@@ -11,6 +11,7 @@ $(() => {
   // delete localStorage.restaurant_id;
   //localStorage.clear();
   //localStorage.clear();
+  if(!localStorage.itemsIdArray) {localStorage.itemsIdArray = '[]'}
   loadCheckoutPage();
   localStorage.res > 0 ?
         $('#main-content article').hide() &&
