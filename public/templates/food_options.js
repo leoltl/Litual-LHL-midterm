@@ -16,14 +16,12 @@ $(() => {
     console.log(resInfo);
     const $restaurant_banner = $(`
       <section id="restaurant-listing" data-restaurantId="${item.restaurant_id}" >
-      <div id="information">
         <div id="transbox">
           <h1>${resInfo.res.title}</h1>
           <small>131 King Street, Toronto</small>
           <p>${resInfo.res.phone}</p>
           <p>${resInfo.res.email}</p>
         </div>
-      </div>
       </section>
     `)
 
