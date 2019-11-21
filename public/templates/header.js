@@ -121,7 +121,7 @@ $(() => {
       views_manager.show();
       $('#main-content .food-option').show();
       $('#restaurant-listing').show();
-      //views_manager.show('food_options');
+      views_manager.show('food_options');
       header.update(null);
       localStorage.removeItem("logIn");
     });
