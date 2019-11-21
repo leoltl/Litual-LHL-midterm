@@ -27,7 +27,7 @@ $(() => {
     $pageHeader.find("nav").remove();
     let header;
     if (!user) {
-      header = $(`<nav class="navbar navbar-light teal accent-4 mb-4">
+      header = $(`<nav class="navbar navbar-light teal accent-4 mb-4" id="navbar">
                     <a class="navbar-brand navbar-dark" id="brand" href="#">LitApp.JS</a>
                     <button class="navbar-toggler second-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent23"
     aria-controls="navbarSupportedContent23" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,7 +47,7 @@ $(() => {
                   </div>
                 </nav>`);
     } else {
-      header = $(`<nav class="navbar navbar-light teal accent-4 mb-4">
+      header = $(`<nav class="navbar navbar-light teal accent-4 mb-4" id="navbar">
       <a class="navbar-brand navbar-dark" id="brand" href="#">LitApp.JS</a>
       <p class="nav-item">Hello ${currentUser.name ? currentUser.name : currentUser.title}</p>
       <div>

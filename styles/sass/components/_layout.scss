@@ -8,14 +8,13 @@ body {
 
 main {
   max-width: 1124px;
-  margin: 0 auto;
-  margin-bottom: 5vh;
+  margin: 5rem auto;
 
   section#restaurant-cards{
     display: flex;
     overflow: auto;
   }
-  
+
   section#restaurant-listing {
     display: flex;
     flex-direction: column;
@@ -28,16 +27,17 @@ main {
     section#restaurant-listing {
       height: 40vh;
     }
-    
+
     section#food-options {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
       max-width: 100vw;
+      justify-content: center;
       > * {
-        flex-basis: 33%;
+        flex-basis: 30%;
       }
     }
   }
 }
-  
+

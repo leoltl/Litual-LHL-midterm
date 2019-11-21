@@ -4,6 +4,7 @@
 nav {
   background-color: $light-accent;
 
+
   #brand {
 
     font-family: $brand-font;
@@ -31,6 +32,13 @@ nav {
     margin-top: 1rem;
   }
 
+}
+
+#navbar {
+  z-index: 10;
+  position: fixed;
+  top: 0px;
+  width: 100%;
 }
 
 .logout_button {
