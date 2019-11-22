@@ -15,13 +15,9 @@ $(() => {
 
     console.log(resInfo);
     const $restaurant_banner = $(`
-      <section id="restaurant-listing" data-restaurantId="${item.restaurant_id}" >
+      <section id="restaurant-listing" data-restaurantId="${item.restaurant_id}" style="background-image: url(${resInfo.res.image})">
         <div id="transbox">
           <h1>${resInfo.res.title}</h1>
-<<<<<<< HEAD
-=======
-
->>>>>>> 311578eee902064c23fabf2de3531fb69e977375
           <p>${resInfo.res.phone}</p>
           <p>${resInfo.res.email}</p>
         </div>
