@@ -3,7 +3,9 @@
 section#restaurant-listing {
   // padding: 0.5rem;
   text-align: center;
-  background-image: url("https://i.imgur.com/F4m0XZY.png");
+  // background-image: url("https://i.imgur.com/F4m0XZY.png");
+  background-size: cover;
+background-repeat: no-repeat;
   border: 2px solid $dark-accent;
   border-radius: 25px;
   margin: 0.5rem;

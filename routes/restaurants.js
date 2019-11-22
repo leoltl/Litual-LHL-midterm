@@ -70,6 +70,7 @@ module.exports = (db) => {
         info.title = dbres.title;
         info.phone = dbres.phone;
         info.email = dbres.email;
+        info.image = dbres.image;
         res.send(info);
       });
     });
