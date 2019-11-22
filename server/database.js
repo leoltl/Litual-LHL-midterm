@@ -22,6 +22,16 @@ const getUserWithEmail = function(email) {
 }
 // exports.getUserWithEmail = getUserWithEmail;
 
+const addRestaurant =  function(res) {
+  console.log('in database user', res)
+  const insert = `
+    INSERT INTO restaurants (title, email, password, phone)
+    VALUES ($1, $2, $3, $4) RETURNING *
+    `;
+  return db.query(insert, [res.title, res.email, res.password, parseInt(res.phone)])
+    .then(res => res.rows ? res.rows[0] : null);
+}
+
 const addUser =  function(user) {
   console.log('in database user', user)
   const insert = `
@@ -118,9 +128,21 @@ const getRestaurants = function() {
     .then(res => res.rows ? res.rows : null);
 }
 
+const addToMenu = function(resId) {
+  return db.query(`
+  INSERT INTO foods
+    (restaurant_id, name, price, photo_url, description)
+  VALUES
+    ($1, 'sample item', 1,'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/440px-Good_Food_Display_-_NCI_Visuals_Online.jpg', 'example')
+  RETURNING *;
+  `)
+}
+
 return { getUserWithId, getUserWithEmail, addUser, addOrder, getMenu, getRestaurantWithId, getAllOrders,
   getOrder,
   updateOrderStatus,
-  getRestaurants };
+  getRestaurants,
+  addRestaurant,
+  addToMenu };
 }
 

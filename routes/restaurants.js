@@ -7,6 +7,7 @@
 
 const express = require('express');
 const router  = express.Router();
+const bcrypt = require('bcrypt');
 
 module.exports = (db) => {
   const database = require('../server/database.js')(db);
@@ -27,8 +28,21 @@ module.exports = (db) => {
   });
 
   router.post("/add", (req, res) => {
-
+    let resToAdd = req.body;
+    console.log(resToAdd);
+    resToAdd.password = bcrypt.hashSync(resToAdd.password, 12);
+    database.addRestaurant(resToAdd)
+    .then(user => {
+      if (!user) {
+        res.send({error: "error"});
+        return;
+      }
+      addToMenu(resToAdd.id)
+      req.session.userId = resToAdd.id;
+      res.send(user)
   })
+  .catch(e => res.send(e));
+  });
 
   router.post("/me", (req, res) => {
     let resId = req.body;

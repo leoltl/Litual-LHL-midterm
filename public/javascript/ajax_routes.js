@@ -31,7 +31,7 @@ function addRes(data) {
   return $.ajax({
     method: "POST",
     url: "api/restaurants/add",
-    data : {data}
+    data
   })
 }
 

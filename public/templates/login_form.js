@@ -36,7 +36,7 @@ $(() => {
         localStorage.setItem("logIn", "true");
 
         if (json.user.title !== undefined)  {
-          findOrders(1).then(res => $order_view.renderOrders(res));
+          findOrders(json.user.id).then(res => $order_view.renderOrders(res));
           views_manager.show('order_view');
           localStorage.setItem('res', `${json.user.id}`)
 

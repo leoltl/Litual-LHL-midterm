@@ -42,16 +42,23 @@ $(() => {
 
   $signUpForm.on('submit', function(event) {
     event.preventDefault();
-    const data = $(this).serialize();
+    let data = $(this).serialize();
     if (data.includes('isRes=on')) {
+      data = data.replace('&isRes=on', '')
+      data = data.replace('name', 'title')
+      console.log(data)
       addRes(data)
       .then(logIn(data))
       .then((json) => {
-        header.update(json)
+        console.log(json);
+      renderCarousel();
+
         localStorage.setItem("logIn", "true");
+        view_manager.show('order_view')
       })
     } else {
-     signUp(data)
+      data = data.replace('&isRes=on', '')
+    signUp(data)
       .then(console.log(data))
       .then(logIn(data))
       .then((json) => {
