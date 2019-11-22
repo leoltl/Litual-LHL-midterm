@@ -5,7 +5,7 @@ $(() => {
         <p class="h4 mb-4">Sign Up</p>
 
         <div class="login-forms">
-            <input type="text" name="name" class="d-flex justify-content-center mb-4" placeholder="Name">
+            <input type="text" name="name" class="d-flex justify-content-center form-control mb-4" placeholder="Name">
           </div>
 
         <div class="login-forms">
@@ -13,11 +13,15 @@ $(() => {
         </div>
 
         <div class="login-forms">
-            <input type="password" name="password" class="d-flex justify-content-center mb-4" placeholder="Password">
+            <input type="password" name="password" class="d-flex justify-content-center form-control mb-4" placeholder="Password">
         </div>
 
         <div class="login-forms">
           <input type="tel" name="phone" class="d-flex justify-content-center form-control mb-4" placeholder="Phone Number" pattern="[0-9]{10}" required>
+        </div>
+
+        <div class="login-forms">
+          <input type="checkbox" name="isRes" class="d-flex justify-content-center form-control mb-4" pattern="[0-9]{10}" required>
         </div>
 
         <button id="login-form-signup-btn" class="login-forms btn btn-info btn-block my-4">Sign Up</button>
@@ -38,9 +42,15 @@ $(() => {
 
   $signUpForm.on('submit', function(event) {
     event.preventDefault();
-
     const data = $(this).serialize();
-
+    if (data.includes('isRes=on')) {
+      addRes(data)
+      .then(logIn(data))
+      .then((json) => {
+        header.update(json)
+        localStorage.setItem("logIn", "true");
+      })
+    } else {
      signUp(data)
       .then(console.log(data))
       .then(logIn(data))
@@ -49,6 +59,7 @@ $(() => {
         localStorage.setItem("logIn", "true");
         views_manager.show('food_options');
       });
+    }
   });
 
   $('body').on('click', '#sign-up-form__cancel', function() {

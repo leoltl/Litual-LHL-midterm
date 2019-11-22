@@ -18,7 +18,7 @@ $(() => {
       <section id="restaurant-listing" data-restaurantId="${item.restaurant_id}" >
         <div id="transbox">
           <h1>${resInfo.res.title}</h1>
-          <small>131 King Street, Toronto</small>
+
           <p>${resInfo.res.phone}</p>
           <p>${resInfo.res.email}</p>
         </div>
