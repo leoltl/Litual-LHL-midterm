@@ -14,9 +14,12 @@ $(() => {
     $order_view.detach();
     $checkout_page.detach();
     $signUpForm.detach();
+    $res_carousel.detach();
+
 
     switch (item) {
       case 'food_options':
+        $res_carousel.prependTo($main)
         displayRes()
         .then(show_main());
         // data.restaurant_id = $restaurant.restaurant_id;
