@@ -18,8 +18,6 @@ $(() => {
     <article data-id="${resInfo.id}" class="restaurant-card" style="background-image: url(${url})">
       <div class="text">
         <h3>${resInfo.title}</h3>
-        <small>${resInfo.phone}</small>
-        <small>${resInfo.email}</small>
       </div>
     </article>
     `)
