@@ -28,7 +28,7 @@ $(() => {
     let header;
     if (!user) {
       header = $(`<nav class="navbar navbar-light teal accent-4 mb-4" id="navbar">
-                    <a class="navbar-brand navbar-dark" id="brand">LitApp.JS</a>
+                    <a class="navbar-brand navbar-dark" id="brand" >LITUAL</a>
                     <button id="myToggle" class="navbar-toggler second-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent23"
     aria-controls="navbarSupportedContent23" aria-expanded="false" aria-label="Toggle navigation">
     <div class="animated-icon2"><span></span><span></span><span></span><span></span></div>

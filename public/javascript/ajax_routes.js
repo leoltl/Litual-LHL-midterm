@@ -27,9 +27,11 @@ function signUp(data) {
   });
 }
 
-function showMenu() {
+function showMenu(data) {
   return $.ajax({
-    url: "api/restaurants/me"
+    method: "POST",
+    url: "api/restaurants/me",
+    data : {data}
   })
 }
 
@@ -61,5 +63,11 @@ function updateOrder(data, status) {
     method: "POST",
     url: `orders/${data.order_id}`,
     data: {status: status , user_id: data.user_id, estimate: data.estimate}
+  })
+}
+
+function getAllRestaurants() {
+  return $.ajax({
+    url: "api/restaurants/all"
   })
 }

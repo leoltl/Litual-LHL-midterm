@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "local": "./node_modules/.bin/nodemon -L ",
+    "start": "sass styles/sass/main.scss:public/styles/styles.css && node server.js",
+    "local": "./node_modules/.bin/nodemon -L server.js local",
     "build-sass": "sass --watch styles/sass/main.scss:public/styles/styles.css",
     "db:reset": "node bin/resetdb.js"
   },
@@ -25,6 +25,7 @@
     "node-sass-middleware": "^0.11.0",
     "pg": "^6.4.2",
     "pg-native": "^3.0.0",
+    "sass": "^1.23.7",
     "twilio": "^3.37.1"
   },
   "devDependencies": {

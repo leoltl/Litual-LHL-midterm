@@ -224,20 +224,6 @@ $('body').on('click', "#cart-checkout-btn", function() {
 
     let orderItems = [];
 
-    // let i = 1;
-    // while (true) {
-    //   if (localStorage[`item${i}Quantity`] && parseInt(localStorage[`item${i}Quantity`]) > 0) {
-    //     const item = {foodid: i, quantity: parseInt(localStorage[`item${i}Quantity`])};
-    //     console.log(orderItems)
-    //     orderItems.push(item);
-    //     i++;
-    //   } else {
-    //     console.log('loop over')
-    //     break;
-    //   }
-    // }
-
-
     for (let i of JSON.parse(localStorage[`itemsIdArray`])) {
       if (localStorage[`item${i}Quantity`] && parseInt(localStorage[`item${i}Quantity`]) > 0) {
         const item = {foodid: i, quantity: parseInt(localStorage[`item${i}Quantity`])};
@@ -245,19 +231,9 @@ $('body').on('click', "#cart-checkout-btn", function() {
       }
     }
 
-    /* let i = 1;
-    while (true) {
-      if (localStorage[`item${i}Quantity`] && parseInt(localStorage[`item${i}Quantity`]) > 0) {
-        const item = {foodid: i, quantity: parseInt(localStorage[`item${i}Quantity`])};
-        ordersItem.push(item);
-        i++;
-      } else {
-        break;
-      }
-    } */
 
     const data = {
-      restaurant_id: parseInt(localStorage.restaurant_id),
+      restaurant_id: parseInt(localStorage.resToRender),
       orderItems: orderItems
     };
     console.log('order items after loop, before submit', orderItems);

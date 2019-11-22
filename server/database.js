@@ -110,8 +110,17 @@ const getMenu = function(resId) {
   `, [resId])
   .then(res => res.rows ? res.rows : null);
 }
+
+const getRestaurants = function() {
+  return db.query(`
+  SELECT id, title, phone, email, image
+  FROM restaurants;`)
+    .then(res => res.rows ? res.rows : null);
+}
+
 return { getUserWithId, getUserWithEmail, addUser, addOrder, getMenu, getRestaurantWithId, getAllOrders,
   getOrder,
-  updateOrderStatus };
+  updateOrderStatus,
+  getRestaurants };
 }
 

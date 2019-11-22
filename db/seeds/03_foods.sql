@@ -19,12 +19,48 @@ INSERT INTO foods (restaurant_id, name, price, photo_url, description) VALUES (
 'GROSS NOT HEALTHY!'
 );
 INSERT INTO foods (restaurant_id, name, price, photo_url, description) VALUES (
-2, 'test salad', 10,
+2, 'burger with meat', 10,
 'http://www.todayifoundout.com/wp-content/uploads/2016/05/breakfast-cereal-640x427.png',
 'lol'
 );
 INSERT INTO foods (restaurant_id, name, price, photo_url, description) VALUES (
 1, 'test salad', 10,
 'http://www.todayifoundout.com/wp-content/uploads/2016/05/breakfast-cereal-640x427.png',
+'lol'
+);
+INSERT INTO foods (restaurant_id, name, price, photo_url, description) VALUES (
+2, 'burger without buns', 10,
+'http://www.todayifoundout.com/wp-content/uploads/2016/05/breakfast-cereal-640x427.png',
+'lol'
+);
+INSERT INTO foods (restaurant_id, name, price, photo_url, description) VALUES (
+3, 'Hot Bean Water', 7,
+'https://i.imgur.com/3d31cCR.jpg',
+'lol'
+);
+
+INSERT INTO foods (restaurant_id, name, price, photo_url, description) VALUES (
+4, 'Bean Water Soup With Ice', 9,
+'https://lovingitvegan.com/wp-content/uploads/2018/05/Vegan-Iced-Coffee-11.webp',
+'lol'
+);
+INSERT INTO foods (restaurant_id, name, price, photo_url, description) VALUES (
+5, 'Bean Water Soup With Ice', 9,
+'https://lovingitvegan.com/wp-content/uploads/2018/05/Vegan-Iced-Coffee-11.webp',
+'lol'
+);
+INSERT INTO foods (restaurant_id, name, price, photo_url, description) VALUES (
+6, 'Bean Water Soup With Ice', 9,
+'https://lovingitvegan.com/wp-content/uploads/2018/05/Vegan-Iced-Coffee-11.webp',
+'lol'
+);
+INSERT INTO foods (restaurant_id, name, price, photo_url, description) VALUES (
+4, 'Bean Water Soup With Ice', 9,
+'https://lovingitvegan.com/wp-content/uploads/2018/05/Vegan-Iced-Coffee-11.webp',
+'lol'
+);
+INSERT INTO foods (restaurant_id, name, price, photo_url, description) VALUES (
+5, 'Bean Water Soup With Ice', 9,
+'https://lovingitvegan.com/wp-content/uploads/2018/05/Vegan-Iced-Coffee-11.webp',
 'lol'
 );

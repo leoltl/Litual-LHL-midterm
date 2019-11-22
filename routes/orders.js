@@ -71,6 +71,7 @@ module.exports = (db) => {
   }
   */
   router.post('/', (req, res) => {
+    console.log('inside post req', req.body)
     const { userId } = req.session;
     const order = req.body;
     if (userId && order) {
@@ -79,9 +80,9 @@ module.exports = (db) => {
       .then(longpoll.publish('/poll', 'new order'))
       .catch(err => res.status(500).send({ message: err }));
       console.log('order sent!')
-    return database.getRestaurantWithId(order.restaurant_id)
+    return database.getRestaurantWithId(parseInt(order.restaurant_id))
       .then(dbres2 => {
-        console.log(dbres2.phone.toString());
+        // console.log(dbres2.phone.toString());
         sendSMS('+17784035054', dbres2.phone.toString(), 'You have a new order!')
       });
     }

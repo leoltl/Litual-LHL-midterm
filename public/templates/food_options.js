@@ -26,7 +26,7 @@ $(() => {
     `)
 
     window.$restaurant_banner = $restaurant_banner;
-    $('main').append($restaurant_banner).append('<section id="food-options"></section>')
+    $('#res-display').prepend($restaurant_banner).append('<section id="food-options"></section>')
   }
 
   let itemsIdArray = [];
@@ -53,6 +53,7 @@ $(() => {
         <!-- end food-options item component -->
 
     `);
+    itemsIdArray.includes(item.id) ? '' :
     itemsIdArray.push(item.id);
     localStorage.setItem(`item${item.id}Price`, item.price.toString());
     localStorage.setItem(`item${item.id}Name`, item.name);
@@ -65,30 +66,34 @@ $(() => {
     $('#food-options').append($food_options);
   }
 
-  localStorage.restaurant_id = '1';
-
+  localStorage.resToRender ? localStorage.resToRender : localStorage.resToRender = '1';
+console.log(localStorage.resToRender)
   let resInfo = {};
 
   const displayRes = async () => {
-    let res_id = parseInt(localStorage.restaurant_id);
+    let res_id = parseInt(localStorage.resToRender);
     await findRestaurant(res_id)
       .then(res => resInfo.res = res)
     return resInfo;
   }
 
-  displayRes();
+  window.displayRes = displayRes;
 
-  showMenu()
+  const show_main = () => showMenu(parseInt(localStorage.resToRender))
     .then(function(json) {
       if (localStorage.res === undefined) {
+        console.log(json)
         showRestaurant(json.menu[0])
         localStorage.setItem("restaurant_id", json.menu[0].id.toString());
-        console.log("res id", json.menu[0].id);
+        // console.log("res id", json.menu[0].restaurant_id);
         for (let item of json.menu) {
           updateMenu(item)
         }
       }
     });
+
+    // show_main();
+    window.show_main = show_main;
 
 
 

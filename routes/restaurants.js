@@ -26,9 +26,9 @@ module.exports = (db) => {
       });
   });
 
-  router.get("/me", (req, res) => {
-    let resId = 1;
-    database.getMenu(resId)
+  router.post("/me", (req, res) => {
+    let resId = req.body;
+    database.getMenu(parseInt(resId.data))
       .then(foods => {
         if (!foods) {
           res.send({error : "no restaurant with that id"});
@@ -55,6 +55,13 @@ module.exports = (db) => {
         res.send(info);
       });
     });
+
+    router.get('/all', (req, res) => {
+      database.getRestaurants()
+        .then(dbres => {
+          res.send(dbres)
+        })
+    })
 
 
   return router;
