@@ -29,7 +29,10 @@ $(() => {
       .then(json => {
         if (!json.user) {
           console.log( "!!!!",json.user);
-          views_manager.show('error', 'Failed to login');
+          views_manager.show('logIn')
+          const loginError = $('<div class="alert alert-warning alert-dismissible fade show" role="alert" >Could not login with provided credentials, please try again.</div>');
+          $("main").prepend(loginError);
+          setTimeout(() => loginError.remove(), 2500);
           return;
         }
         header.update(json.user);
