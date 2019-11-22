@@ -26,6 +26,10 @@ module.exports = (db) => {
       });
   });
 
+  router.post("/add", (req, res) => {
+
+  })
+
   router.post("/me", (req, res) => {
     let resId = req.body;
     database.getMenu(parseInt(resId.data))

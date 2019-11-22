@@ -18,6 +18,10 @@ $(() => {
       <section id="restaurant-listing" data-restaurantId="${item.restaurant_id}" >
         <div id="transbox">
           <h1>${resInfo.res.title}</h1>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 311578eee902064c23fabf2de3531fb69e977375
           <p>${resInfo.res.phone}</p>
           <p>${resInfo.res.email}</p>
         </div>

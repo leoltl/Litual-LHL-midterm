@@ -27,6 +27,14 @@ function signUp(data) {
   });
 }
 
+function addRes(data) {
+  return $.ajax({
+    method: "POST",
+    url: "api/restaurants/add",
+    data : {data}
+  })
+}
+
 function showMenu(data) {
   return $.ajax({
     method: "POST",
