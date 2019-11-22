@@ -29,16 +29,19 @@ module.exports = (db) => {
 
   router.post("/add", (req, res) => {
     let resToAdd = req.body;
-    console.log(resToAdd);
+    console.log('resToAdd', resToAdd);
     resToAdd.password = bcrypt.hashSync(resToAdd.password, 12);
     database.addRestaurant(resToAdd)
     .then(user => {
+      console.log('inside add bfore ', user)
       if (!user) {
         res.send({error: "error"});
         return;
       }
-      addToMenu(resToAdd.id)
+      console.log('myID', resToAdd.id)
+     database.addToMenu(user.id)
       req.session.userId = resToAdd.id;
+      console.log('inside add ', user)
       res.send(user)
   })
   .catch(e => res.send(e));

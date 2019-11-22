@@ -50,16 +50,13 @@ $(() => {
       addRes(data)
       .then(logIn(data))
       .then((json) => {
-        console.log(json);
-      renderCarousel();
-
-        localStorage.setItem("logIn", "true");
-        view_manager.show('order_view')
+        header.update(json);
+        localStorage.setItem("res", json.id.toString());
+        views_manager.show('order_view')
       })
     } else {
       data = data.replace('&isRes=on', '')
     signUp(data)
-      .then(console.log(data))
       .then(logIn(data))
       .then((json) => {
         header.update(json);

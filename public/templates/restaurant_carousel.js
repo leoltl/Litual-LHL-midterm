@@ -10,10 +10,8 @@ $(() => {
   $('main').prepend($res_carousel).append('<section id="res-display"></section>')
 
   const appendToCarousel = (resInfo) => {
-    console.log(resInfo.image)
-    const url = resInfo.image
+    const url = resInfo.image || "https://assets.lightspeedhq.com/img/2019/07/8aac85b2-blog_foodpresentationtipsfromtopchefs.jpg";
     url.replace('/',"&sol;")
-    console.log(url);
     return $res_carousel.append(`
     <article data-id="${resInfo.id}" class="restaurant-card" style="background-image: url(${url})">
       <div class="text">
